@@ -1,0 +1,532 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-fluid p-0">
+    
+    <div id="carouselExampleCaptions" class="carousel slide ">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner h-50">
+            <div class="carousel-item active">
+                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container mt-5 col-lg-12 ">
+        <div>
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <h2 class="text-secondary mb-2 text-uppercase text-center">Our Mission</h2>
+                    <h6 class="  text-center">To empower the less privileged through education, and community engagement</h6>
+                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2 border-0" style="max-width: 100%; height:400px">
+            <div class="row no-gutters">
+                <div class="col-md-6 ">
+                    <img src="~/images/img.jpg" class="card-img m-2" alt="...">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4 fw-bold">Working Since 2020</h1>
+                        <p class="card-text">
+                            <b>Khyber Youth Welfare Organization</b> is a registered non-profit organization with the Government of Pakistan,
+                            dedicated to making a positive impact in the community through a variety of initiatives. 
+                            The organization focuses on providing educational scholarships to deserving students, 
+                            supporting the needy and poor, particularly orphans, and fostering opportunities for growth and development. 
+                            Additionally, Khyber Youth Welfare Organization organizes entertainment activities, including sports like cricket, 
+                            to promote healthy engagement and community bonding. Their mission is to uplift the less privileged and create a better future for all.
+                        </p>
+                        
+                    </div>
+                    <div class="card-footer">
+                        <div class="row align-items-center mt-5">
+                            <!-- Image Section -->
+                            <div class="col-md-2 text-center">
+                                <img src="~/images/rafiq.png" class="rounded-circle img-fluid custom-footer-image" alt="Profile Image">
+                            </div>
+                            <!-- Text Section -->
+                            <div class="col-md-10">
+                                <h5 class="mb-0 font-weight-bold">M.Rafiq</h5>
+                                <p class="text-secondary mb-0">CEO & Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+           
+            <div class="col-4">
+                <a asp-controller="MediaGallery" asp-action="Index" class="text-decoration-none">
+                    <div class="card text-center custom-card border-0">
+                        <div class="card-body">
+                            <h2 class="card-title fw-bold mb-3 custom-title">MEDIA</h2>
+                            <i class="fa-solid fa-music custom-icon"></i>
+                            <p class="mt-3">It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years olde</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-4">
+                <a asp-controller="Volunteers" asp-action="Create" data-toggle="modal" data-target="#myModal" class="text-decoration-none">
+                    @* <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> *@
+                    <div class="card border-0 custom-card text-center">
+                        <div class="card-body">
+                            <h2 class="card-title fw-bold custom-title mb-3">BECOME VOLUNTEER</h2>
+                            <i class="fa-solid fa-bullhorn custom-icon"></i>
+                            <p class="mt-3">It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+
+                        </div>
+                    </div>
+               </a>
+
+            </div>
+            <div class="col-4">
+                <a asp-controller="MediaGallery" asp-action="Index" class="text-decoration-none">
+                    <div class="card border-0 custom-card text-center">
+                        <div class="card-body">
+                            <h2 class="card-title fw-bold custom-title mb-3">SEND DONATION</h2>
+                            <i class="fa-solid fa-hand-holding-dollar custom-icon"></i>
+                            <p class="mt-3">It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+
+                        </div>
+                    </div>
+               </a>
+
+            </div>
+        </div>
+    </div>
+ 
+
+
+    <div>
+        <!-- Blog 3 - Bootstrap Brain Component -->
+        <section class="py-3 py-md-5">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our News</h2>
+                        <h3 class="display-8 mb-4 mb-md-5 text-center">Our ongoing and completed projects</h3>
+                        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container overflow-hidden">
+                <div class="row gy-4 gy-lg-0">
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p1.jpg" alt="Business">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                        <ul class="entry-meta list-unstyled d-flex mb-2">
+                                            <li>
+                                                <a class="link-primary text-decoration-none" href="#!">Business</a>
+                                            </li>
+                                        </ul>
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">Overcoming Challenges to Make a Living Online</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Making money online is attainable. However, even if the processes are simple, you may still need help with issues.
+                                    </p>
+                                </div>
+                             
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p3.jpg" alt="Nutrition">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInDown" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInUp mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                        <ul class="entry-meta list-unstyled d-flex mb-2">
+                                            <li>
+                                                <a class="link-primary text-decoration-none" href="#!">Nutrition</a>
+                                            </li>
+                                        </ul>
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">How to Exercise to Achieve Your Nutrition Goals</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Fitness trainer explains how nutrition is as important as workouts when it comes to losing fat or building muscle.
+                                    </p>
+                                </div>
+                               
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p4.jpg" alt="Health">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInRight" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInLeft mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                        <ul class="entry-meta list-unstyled d-flex mb-2">
+                                            <li>
+                                                <a class="link-primary text-decoration-none" href="#!">Health</a>
+                                            </li>
+                                        </ul>
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">10 Tips To Lose Weight Quickly Without Dieting</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Chewing slowly and eating more fiber may help you lose weight quickly without exercise or a specific diet plan.
+                                    </p>
+                                </div>
+                               
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Section Start -->
+        <section class="event-section">
+            <div class="container ">
+                <div class="row align-items-center">
+                    <!-- Event Info Box -->
+                    <div class="col-md-4">
+                        <div class="event-info-box">
+                            <h3>Find Us Next</h3>
+                            <h2>EVENT</h2>
+                            <p>Near to You..</p>
+                        </div>
+                    </div>
+
+                    <!-- Countdown Timer -->
+                    <div class="col-md-5">
+                        <div class="countdown-timer">
+                            <h3>Next Event Start In</h3>
+                            <div class="timer">
+                                <div><span class="days">276</span> Days</div>
+                                <div><span class="hours">22</span> Hours</div>
+                                <div><span class="minutes">58</span> Minutes</div>
+                                <div><span class="seconds">23</span> Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Form -->
+                    <div class="col-md-3">
+                        <div class="subscription-box">
+                            <h4>Subscribe for Updates</h4>
+                            <form>
+                                <input type="email" placeholder="Email Address" required>
+                                <button type="submit">Subscribe Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Event Section End -->
+
+        <!--D HELP VOLUNTEER TEAM START-->
+        <section class="d-help-volunteer-team">
+            <div class="container mt-4">
+                <!--Section Heading Start-->
+                <div class="d-help-section-title-new text-center">
+                    <h1>SEE OUR PERFECT TEAM</h1>
+                    
+                    <h5>Sed cursus elementum arcu vitae mollis. Curabitur vehicula egestas libero.</h5>
+                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+                <!--Section Heading End-->
+                <div class="row justify-content-center">
+                    <div class="card m-3" style="width: 16rem; height: 22rem;">
+                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass1.jpeg" />
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Johnny Doe</h5>
+                            <a href="#" class="btn btn-primary mt-auto">More details</a>
+                        </div>
+                    </div>
+
+                    <div class="card m-3" style="width: 16rem; height: 22rem;">
+                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass2.jpeg" />
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Johnny Doe</h5>
+                            <a href="#" class="btn btn-primary mt-auto">More details</a>
+                        </div>
+                    </div>
+
+                    <div class="card m-3" style="width: 16rem; height: 22rem;">
+                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass3.jpeg" />
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Johnny Doe</h5>
+                            <a href="#" class="btn btn-primary mt-auto">More details</a>
+                        </div>
+                    </div>
+
+                    <div class="card m-3" style="width: 16rem; height: 22rem;">
+                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass4.jpeg" />
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Johnny Doe</h5>
+                            <a href="#" class="btn btn-primary mt-auto">More details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--D HELP VOLUNTEER TEAM END-->
+        <!--Stats Section Start-->
+        <section class="d-help-stats-wrap">
+            <div class="container mt-5">
+                <div class="row">
+                    <!--Help Stats Start-->
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="d-help-stats">
+                            <h4>Enrollment 2018</h4>
+                            <h5><span class="counter">197</span>r.</h5>
+                            <p>We Work Constantly and We Strive for</p>
+                        </div>
+                    </div>
+                    <!--Help Stats End-->
+                    <!--Help Stats Start-->
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="d-help-stats">
+                            <h4>Child Abuse Cases</h4>
+                            <h5><span class="counter">98352</span></h5>
+                            <p>Active Volunteers Around the World</p>
+                        </div>
+                    </div>
+                    <!--Help Stats End-->
+                    <!--Help Stats Start-->
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="d-help-stats">
+                            <h4>Human Rights Violations</h4>
+                            <h5><span class="counter">5,91,000</span></h5>
+                            <p>We Have Compiled for all people</p>
+                        </div>
+                    </div>
+                    <!--Help Stats End-->
+                </div>
+            </div>
+        </section>
+        <!--Stats Section End-->
+        <!--Stats Section End-->
+        <!-- Blog 3 - Bootstrap Brain Component -->
+        <section class="py-3 py-md-5">
+            <div class="container">
+                <div class="d-help-section-title-new text-center">
+                    <h1>SEE OUR BLOG</h1>
+
+                    <h5>Sed cursus elementum arcu vitae mollis. Curabitur vehicula egestas libero.</h5>
+                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+
+            <div class="container overflow-hidden">
+                <div class="row gy-4 gy-lg-0">
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p1.jpg" alt="Business">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                        
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">Overcoming Challenges to Make a Living Online</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Making money online is attainable. However, even if the processes are simple, you may still need help with issues.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p3.jpg" alt="Nutrition">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInDown" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInUp mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                      
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">How to Exercise to Achieve Your Nutrition Goals</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Fitness trainer explains how nutrition is as important as workouts when it comes to losing fat or building muscle.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <article>
+                            <div class="card border-0">
+                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+                                    <a href="#!">
+                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p4.jpg" alt="Health">
+                                    </a>
+                                    <figcaption>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInRight" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                        </svg>
+                                        <h4 class="h6 text-white bsb-hover-fadeInLeft mt-2">Read More</h4>
+                                    </figcaption>
+                                </figure>
+                                <div class="card-body border bg-white p-4">
+                                    <div class="entry-header mb-3">
+                                       
+                                        <h2 class="card-title entry-title h4 mb-0">
+                                            <a class="link-dark text-decoration-none" href="#!">10 Tips To Lose Weight Quickly Without Dieting</a>
+                                        </h2>
+                                    </div>
+                                    <p class="card-text entry-summary text-secondary">
+                                        Chewing slowly and eating more fiber may help you lose weight quickly without exercise or a specific diet plan.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </article>
+                    </div>
+                 
+
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container-fluid theme-color">
+                
+                <div class="container ">
+                    <div class="brand-logo-slider p-5 ">
+                        <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
+                        <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
+                        <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
+                        <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
+                        <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
+                        <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </section>
+
+    </div>
+</div>
+
+
+<!-- Make sure this script is placed either at the bottom of your HTML before closing </body> tag or in the <head> with the document ready function -->
+@section Scripts {
+    <script>
+        $(function () {
+            $('.brand-logo-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                 autoplay: true,
+                autoplaySpeed: 2000,
+                 arrows: false,
+             
+            });
+        });
+    </script>
+}

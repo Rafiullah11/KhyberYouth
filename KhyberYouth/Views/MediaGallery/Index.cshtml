@@ -1,0 +1,67 @@
+﻿@model IEnumerable<KhyberYouth.Models.MediaGallery>
+
+
+<div class="container p-3 mt-lg-5">
+   <div class="container mt-lg-5">
+        <div style="display:flex; justify-content:space-between">
+            <h2>Media Gallery</h2>
+            <a asp-action="Create" class="btn btn-primary">Add Media</a>
+        </div>
+   </div>
+
+    <div class="row">
+        @foreach (var media in Model)
+        {
+            var photoPath = "~/images/" + (media.ImagePath ?? "images.png");
+
+            <div class="col-md-3 p-2">
+                <div class="card">
+                    <img asp-append-version="true"  src="@photoPath" class="card-img-top" alt="Media Image" width="200" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">@media.Title</h5>
+                        <p class="card-text">@media.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@media.Id" class="btn btn-primary">View</a>
+                        <a asp-action="Edit" asp-route-id="@media.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@media.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<section>
+    <div class="container-fluid theme-color">
+
+        <div class="container ">
+            <div class="brand-logo-slider p-5 ">
+                <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
+                <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
+                <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
+                <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
+                <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
+                <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<!-- Make sure this script is placed either at the bottom of your HTML before closing </body> tag or in the <head> with the document ready function -->
+@section Scripts {
+    <script>
+        $(function () {
+            $('.brand-logo-slider').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+
+            });
+        });
+    </script>
+}

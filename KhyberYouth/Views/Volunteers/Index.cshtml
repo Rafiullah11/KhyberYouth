@@ -1,0 +1,38 @@
+﻿@model IEnumerable<KhyberYouth.Models.Volunteer>
+
+<div class="container p-3 mt-lg-5">
+    <div class="container mt-lg-5">
+        <div style="display:flex; justify-content:space-between">
+            <h2>Volunteers</h2>
+            <a asp-action="Create" class="btn btn-primary">Add Volunteer</a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var volunteer in Model)
+        {
+            var photoPath = "~/images/" + (volunteer.ImagePath ?? "default-image.png"); // Use a default image if none is provided
+
+            <div class="col-md-3 p-2">
+                <div class="card">
+                    <img asp-append-version="true" src="@photoPath" class="card-img-top" alt="@volunteer.Name" width="200" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">@volunteer.Name</h5>
+                        <p class="card-text">
+                            <strong>Qualification:</strong> @volunteer.Qualification<br />
+                            <strong>Email:</strong> @volunteer.Email<br />
+                            <strong>Phone:</strong> @volunteer.PhoneNumber<br />
+                            <strong>Address:</strong> @volunteer.Address<br />
+                            <strong>Joined Date:</strong> @volunteer.JoinedDate.ToString("dd-MM-yyyy")
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@volunteer.Id" class="btn btn-primary">View</a>
+                        <a asp-action="Edit" asp-route-id="@volunteer.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@volunteer.Id" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
