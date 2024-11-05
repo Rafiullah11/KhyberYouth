@@ -8,9 +8,16 @@
 
 <div class="container container-fluid mt-lg-5">
     <div class="container mt-lg-5 ">
-        <h4 class="offset-1">Update Volunteer</h4>
 
-        <form class=" border border-warning col-md-10 offset-1 " enctype="multipart/form-data" asp-controller="Volunteers" asp-action="Edit" method="post">
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Update Record </h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
+            </div>
+        </div>
+        
+            <form class=" border border-warning shadow col-md-10 offset-1 " enctype="multipart/form-data" asp-controller="Volunteers" asp-action="Edit" method="post">
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ExistingImagePath" />
 
@@ -66,7 +73,7 @@
             </div>
 
             <div class="form-group m-4">
-                <input type="submit" value="Update record" class="btn btn-primary" />
+                <input type="submit" value="Update record" class="btn theme-btn" />
                 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>

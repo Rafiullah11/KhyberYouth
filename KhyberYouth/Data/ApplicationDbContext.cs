@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using KhyberYouth.ViewModel;
 
 namespace KhyberYouth.Models
 {
@@ -12,5 +13,7 @@ namespace KhyberYouth.Models
         public DbSet<MediaGallery> MediaGalleries { get; set; }
         public DbSet<Volunteer> Volunteers { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Project> Projects { get; set; }
     }
 }

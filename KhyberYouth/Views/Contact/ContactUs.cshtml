@@ -1,0 +1,84 @@
+﻿@model KhyberYouth.ViewModel.ContactViewModel
+
+<div class="container my-5">
+    <!-- Contact Us Card -->
+    <div class="card shadow mb-4 theme-color text-light col-md-10 offset-md-1">
+        <div class="card-body text-center">
+            <h4 class="text-light">Contact Us</h4>
+            <p>Please fill out the form below to send us a message.</p>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center col-md-10 offset-md-1">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Contact Form -->
+    <form class="border border-warning shadow col-md-10 offset-md-1 mb-5 p-4" enctype="multipart/form-data" asp-controller="Contact" asp-action="ContactUs" method="post">
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label text-dark"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label text-dark"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label text-dark"></label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Message" class="form-label text-dark"></label>
+            <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn theme-btn w-100">Send Message</button>
+    </form>
+
+    <!-- Contact Info & Map -->
+    <div class="row">
+        <!-- Contact Info Section -->
+        <div class="col-lg-10 offset-lg-1 mb-4">
+            <div class="card text-center shadow theme-color text-light">
+                <div class="card-body">
+                    <h4 class="card-title">Contact Information</h4>
+                    <p><strong>Phone:</strong> +1 (123) 456-7890</p>
+                    <p><strong>Email:</strong> contact@yourcompany.com</p>
+                    <p><strong>Address:</strong> 123 Your Street, Your City, Your Country</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Section -->
+        <div class="col-lg-10 offset-lg-1 mb-5">
+            <div class="card shadow mb-2">
+                <div class="card-body theme-color text-light text-center">
+                    <h4 class="card-title">Our Location</h4>
+                </div>
+            </div>
+
+            <!-- Embedded Map -->
+            <div class="card shadow">
+                <div class="card-body p-0">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2517313674356!2d144.96305761532182!3d-37.81421797975185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1a7e1d5%3A0x5e50e88c0bcd59a3!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1614107285628!5m2!1sen!2sau"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

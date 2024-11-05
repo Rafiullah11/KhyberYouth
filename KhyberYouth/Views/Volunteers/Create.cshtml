@@ -6,10 +6,15 @@
 
 <div class="container container-fluid mt-lg-5 ">
     <div class="container mt-lg-5 ">
-       
-        <h4 class="offset-1">Become a volunteer</h4>
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Become a volunteer</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
+            </div>
+        </div>
         
-        <form class=" border border-warning col-md-10 offset-1 " enctype="multipart/form-data" asp-controller="Volunteers" asp-action="Create" method="post">
+        <form class=" border border-warning shadow col-md-10 offset-1 " enctype="multipart/form-data" asp-controller="Volunteers" asp-action="Create" method="post">
 
             <div class="row m-3">
                 <div class="form-group col-md-6">
@@ -56,7 +61,7 @@
                 </div>
           </div>
             <div class="form-group m-4">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn theme-btn" />
                 <a asp-action="Index" class="btn btn-secondary">Back to List</a>
             </div>
         </form>
