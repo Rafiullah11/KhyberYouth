@@ -18,7 +18,15 @@ namespace KhyberYouth.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Donation()
+        {
+            return View();
+        }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult About()
         {
             return View();
         }

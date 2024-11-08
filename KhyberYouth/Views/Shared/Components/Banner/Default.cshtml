@@ -10,7 +10,7 @@
             <div class="carousel-item active">
                 @foreach (var banner in projectsToShow)
                 {
-                   <img src="~/images/@(banner.ImagePath ?? "default-image.png")" alt="Banner Logo" style="height:500px; width:100%">
+                    <img class="img-fluid" src="~/images/@(banner.ImagePath ?? "default-image.png")" alt="Banner Logo" style="height:500px; width:100%">
                 }
             </div>
         </div>

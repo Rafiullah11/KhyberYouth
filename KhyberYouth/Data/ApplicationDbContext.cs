@@ -20,6 +20,8 @@ namespace KhyberYouth.Models
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<BankAccountDetail> BankAccountDetails { get; set; }
+        public DbSet<AboutUs> AboutUs { get; set; }
+        public DbSet<KhyberYouth.ViewModel.AboutDetailsViewModel> AboutDetailsViewModel { get; set; } = default!;
 
     }
 }
