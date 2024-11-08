@@ -11,8 +11,7 @@ namespace KhyberYouth.ViewModel
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
-        [Phone(ErrorMessage = "Invalid Phone Number")]
-        public string PhoneNumber { get; set; }
+        public string Subject { get; set; }
 
         [Required(ErrorMessage = "Message is required")]
         public string Message { get; set; }

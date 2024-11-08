@@ -1,0 +1,24 @@
+﻿@model IEnumerable<KhyberYouth.ViewModel.BrandDetailsViewModel>
+@{
+    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count();
+    var projectsToShow = Model.Take(maxItems);
+}
+
+<section>
+    <div class="container-fluid theme-color">
+        <div class="container">
+            <!-- Single slider container wrapping all brand images -->
+            <div class="brand-logo-slider p-5">
+                @foreach (var brand in Model)
+                {
+                    <div class="image-box">
+                        <a href="#">
+                            <img src="~/images/@(brand.ImagePath ?? "default-image.png")" alt="Brand Logo">
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

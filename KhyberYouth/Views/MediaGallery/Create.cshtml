@@ -1,43 +1,49 @@
 ﻿@model KhyberYouth.ViewModel.MediaGalleryCreateViewModel
 @{
- 
-        ViewData["Title"] = "Create Media";
-   
+
+    ViewData["Title"] = "Create Media";
+
 }
-
 <div class="container container-fluid mt-lg-5">
-   <div class="container mt-lg-5">
-        <h4>Create Media Item</h4>
-        <div class="row col-12">
-            <div class="col-md-6 offset-2">
-                <form enctype="multipart/form-data" asp-controller="MediaGallery" asp-action="Create" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container mt-lg-5">
 
-                    <div class="form-group mt-2">
-                        <label asp-for="Title" class="control-label"></label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mt-2">
-                        <label asp-for="Description" class="control-label"></label>
-                        <textarea asp-for="Description" class="form-control"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mt-2">
-                        <label asp-for="Photo" class="control-label"></label>
-                        <input asp-for="Photo" class="form-control custom-file-input" type="file" />
-                        <span asp-validation-for="Photo" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mt-4">
-                        <input type="submit" value="Create" class="btn theme-btn" />
-                    </div>
-                </form>
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Create Media Item</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
             </div>
         </div>
-   </div>
+
+
+        <form class="border border-warning shadow col-md-10 offset-1" enctype="multipart/form-data" asp-controller="MediaGallery" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group  m-3 mt-2">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group  m-3 mt-2">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group  m-3 mt-2">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control custom-file-input" type="file" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group  m-3 mt-4 mb-3">
+                <input type="submit" value="Create" class="btn theme-btn" />
+            </div>
+        </form>
+
+    </div>
+
 </div>
 
 @section Scripts {

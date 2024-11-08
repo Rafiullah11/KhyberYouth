@@ -1,0 +1,55 @@
+﻿@model KhyberYouth.ViewModel.TeamDetailsViewModel
+
+@{
+    ViewData["Title"] = "Team Details";
+    var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
+}
+
+<div class="container mt-lg-5">
+    <div class="card mb-3 offset-2" style="max-width: 800px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img asp-append-version="true" src="@photoPath" class="img-fluid rounded-start" alt="Profile Image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <table class="table">
+                        <tr>
+                            <td><strong>Email:</strong> @Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact:</strong> @Model.PhoneNumber</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Qualification:</strong> @Model.Qualification</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Department:</strong> @Model.Dept</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Join Date:</strong> @Model.JoinedDate.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address:</strong> @Model.Address</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-controller="Team" asp-action="Index" class="btn btn-primary">Back</a>
+            <a asp-controller="Team" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-controller="Team" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+
+        </div>
+    </div>
+</div>
+
+<!-- Related Team Section -->
+<section class="d-help-volunteer-team mt-5">
+    @{
+        ViewData["MaxItems"] = 4; // Set the number of items to display
+    }
+    @await Component.InvokeAsync("Team", new { TeamMember = 4 })
+</section>

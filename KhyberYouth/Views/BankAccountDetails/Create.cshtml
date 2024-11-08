@@ -1,0 +1,86 @@
+﻿@model KhyberYouth.Models.BankAccountDetail
+
+@{
+    ViewData["Title"] = "Create New Bank Account";
+}
+
+<div class="container-fluid mt-lg-5">
+    <div class="container mt-lg-5">
+        <div class="card shadow mb-4 theme-color col-lg-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Create New Bank Account</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
+            </div>
+        </div>
+
+        <form asp-action="Create" method="post" class="card shadow border-warning mb-4 p-lg-3 col-lg-10 offset-1">
+            <div class="row">
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="AccountTitle" class="control-label"></label>
+                    <input asp-for="AccountTitle" class="form-control" />
+                    <span asp-validation-for="AccountTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="AccountNumber" class="control-label"></label>
+                    <input asp-for="AccountNumber" class="form-control" />
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="IbanNumber" class="control-label"></label>
+                    <input asp-for="IbanNumber" class="form-control" />
+                    <span asp-validation-for="IbanNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="CurrencyType" class="control-label"></label>
+                    <input asp-for="CurrencyType" class="form-control" />
+                    <span asp-validation-for="CurrencyType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="BankName" class="control-label"></label>
+                    <input asp-for="BankName" class="form-control" />
+                    <span asp-validation-for="BankName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="BranchCode" class="control-label"></label>
+                    <input asp-for="BranchCode" class="form-control" />
+                    <span asp-validation-for="BranchCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="SwiftCode" class="control-label"></label>
+                    <input asp-for="SwiftCode" class="form-control" />
+                    <span asp-validation-for="SwiftCode" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 mt-2">
+                    <label asp-for="ContactPhoneNumber" class="control-label"></label>
+                    <input asp-for="ContactPhoneNumber" class="form-control" />
+                    <span asp-validation-for="ContactPhoneNumber" class="text-danger"></span>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="form-group mt-2">
+                    <label asp-for="BankAddress" class="control-label"></label>
+                    <input asp-for="BankAddress" class="form-control" />
+                    <span asp-validation-for="BankAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn theme-btn mt-lg-2">Create Record</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

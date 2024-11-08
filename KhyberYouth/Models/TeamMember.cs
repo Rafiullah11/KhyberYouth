@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KhyberYouth.Models
 {
@@ -6,6 +7,9 @@ namespace KhyberYouth.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        [Display(Name = "Position")]
+        public Dept Dept { get; set; }
         public string Qualification { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

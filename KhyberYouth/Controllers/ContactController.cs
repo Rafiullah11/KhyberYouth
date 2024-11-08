@@ -31,7 +31,7 @@ namespace KhyberYouth.Controllers
                 {
                     FullName = model.FullName,
                     Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
+                    Subject = model.Subject,
                     Message = model.Message
                 };
 
@@ -39,7 +39,7 @@ namespace KhyberYouth.Controllers
                 await _context.SaveChangesAsync();
 
                 TempData["SuccessMessage"] = "Thank you for reaching out! We will get back to you soon.";
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
 
             return View(model);

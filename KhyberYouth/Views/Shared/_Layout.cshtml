@@ -44,7 +44,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Events</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Volunteers" asp-action="Index">Voluteers</a>
@@ -63,6 +63,8 @@
 
     <div class="container-fluid p-0 pt-lg-5 mt-lg-3">
         <main role="main" class="pb-3">
+            @await Html.PartialAsync("_Breadcrumb")
+
             @RenderBody()
         </main>
     </div>
@@ -82,6 +84,19 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    
+    <!-- Scripts for brand-logo-slider -->
+    <script>
+            $(function () {
+                $('.brand-logo-slider').slick({
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    arrows: false,
 
+                });
+            });
+    </script>
 </body>
 </html>

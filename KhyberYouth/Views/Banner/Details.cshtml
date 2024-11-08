@@ -1,0 +1,26 @@
+﻿@model KhyberYouth.ViewModel.BannerDetailsViewModel
+
+@{
+    ViewData["Title"] = "Team Details";
+    var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
+}
+
+<div class="container mt-lg-5">
+    <div class="card mb-3 offset-2" style="max-width: 800px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img asp-append-version="true" src="@photoPath" class="img-fluid rounded-start" alt="Profile Image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-controller="Banner" asp-action="Index" class="btn btn-primary">Back</a>
+            <a asp-controller="Banner" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+            <a asp-controller="Banner" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>

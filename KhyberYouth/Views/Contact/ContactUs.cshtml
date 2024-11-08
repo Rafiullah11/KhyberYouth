@@ -1,84 +1,118 @@
 ﻿@model KhyberYouth.ViewModel.ContactViewModel
 
+<!-- Uncomment the Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+
+
+
+
 <div class="container my-5">
     <!-- Contact Us Card -->
-    <div class="card shadow mb-4 theme-color text-light col-md-10 offset-md-1">
-        <div class="card-body text-center">
-            <h4 class="text-light">Contact Us</h4>
-            <p>Please fill out the form below to send us a message.</p>
+    <div class="row ">
+        <div class="card shadow mb-4 theme-color text-light col-lg-12">
+            <div class="card-body text-center">
+                <h4 class="text-light">Contact Us</h4>
+                <p>Please fill out the form below to send us a message.</p>
+            </div>
         </div>
     </div>
-
     <!-- Success Message -->
     @if (TempData["SuccessMessage"] != null)
     {
-        <div class="alert alert-success text-center col-md-10 offset-md-1">
+        <div class="alert alert-success text-center ">
             @TempData["SuccessMessage"]
         </div>
     }
+    @*
+    <div class="container my-5"> *@
 
-    <!-- Contact Form -->
-    <form class="border border-warning shadow col-md-10 offset-md-1 mb-5 p-4" enctype="multipart/form-data" asp-controller="Contact" asp-action="ContactUs" method="post">
-        <div class="mb-3">
-            <label asp-for="FullName" class="form-label text-dark"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label text-dark"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="PhoneNumber" class="form-label text-dark"></label>
-            <input asp-for="PhoneNumber" class="form-control" />
-            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Message" class="form-label text-dark"></label>
-            <textarea asp-for="Message" class="form-control" rows="4"></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
-        </div>
-
-        <button type="submit" class="btn theme-btn w-100">Send Message</button>
-    </form>
-
-    <!-- Contact Info & Map -->
-    <div class="row">
-        <!-- Contact Info Section -->
-        <div class="col-lg-10 offset-lg-1 mb-4">
-            <div class="card text-center shadow theme-color text-light">
-                <div class="card-body">
-                    <h4 class="card-title">Contact Information</h4>
-                    <p><strong>Phone:</strong> +1 (123) 456-7890</p>
-                    <p><strong>Email:</strong> contact@yourcompany.com</p>
-                    <p><strong>Address:</strong> 123 Your Street, Your City, Your Country</p>
-                </div>
+    <div class="row ">
+        <div class="col-lg-5">
+            <div class=" border border-warning shadow p-lg-2"  style="height: 500px;">
+                <iframe style="height: 480px; width:100%" class="embed-responsive-item"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0936436261343!2d-122.4194151846814!3d37.77492917975954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d10a4a1f%3A0xc0f0c0c0c0c0c0c0!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sus!4v1605135065695!5m2!1sen!2sus"
+                        allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
-
-        <!-- Location Section -->
-        <div class="col-lg-10 offset-lg-1 mb-5">
-            <div class="card shadow mb-2">
-                <div class="card-body theme-color text-light text-center">
-                    <h4 class="card-title">Our Location</h4>
+        <div class="col-lg-7">
+            <form class="border border-warning shadow col-lg-12  mb-5 p-4" enctype="multipart/form-data" asp-controller="Contact" asp-action="ContactUs" method="post">
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label text-dark">Full Name</label>
+                    <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label text-dark">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Subject" class="form-label text-dark">Subject</label>
+                    <input asp-for="Subject" class="form-control" placeholder="Subject" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Message" class="form-label text-dark">Message</label>
+                    <textarea asp-for="Message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn theme-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+    @* </div> *@
 
-            <!-- Embedded Map -->
-            <div class="card shadow">
-                <div class="card-body p-0">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2517313674356!2d144.96305761532182!3d-37.81421797975185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1a7e1d5%3A0x5e50e88c0bcd59a3!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1614107285628!5m2!1sen!2sau"
-                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <div class="col-lg-12">
+        <div class="card mt-4 border-0 mb-4">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="card-body d-flex align-items-center c-detail pl-0">
+                        <div class="m-3 align-self-center">
+                            <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon1.png">
+                        </div>
+                        <div class="">
+                            <h6 class="font-weight-medium">Address</h6>
+                            <p>Deans Trad Center.<br> Peshawar Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="card-body d-flex align-items-center c-detail">
+                        <div class="m-3 align-self-center">
+                            <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon2.png">
+                        </div>
+                        <div class="">
+                            <h6 class="font-weight-medium">Phone</h6>
+                            <p>251 546 9442<br> 630 446 8851</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="card-body d-flex align-items-center c-detail">
+                        <div class="m-3 align-self-center">
+                            <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon3.png">
+                        </div>
+                        <div class="">
+                            <h6 class="font-weight-medium">Email</h6>
+                            <p>info@kywo.com<br> 123@wrappixel.com</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+@*     <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([34.0004095, -71.5448003], 12); // Example coordinates
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            L.marker([34.0004095, -71.5448003]).addTo(map)
+                .bindPopup('Your location')
+                .openPopup();
+        });
+    </script> *@
+</div>

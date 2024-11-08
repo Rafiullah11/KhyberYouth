@@ -4,49 +4,16 @@
 
 <div class="container-fluid p-0">
     
-    <div id="carouselExampleCaptions" class="carousel slide ">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner h-50">
-            <div class="carousel-item active">
-                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
+    <div>
+        @{
+            ViewData["MaxItems"] = 1; // Set the number of items to display
+        }
+        @await Component.InvokeAsync("Banner", new { Banner = 1 })
 
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
-
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="~/images/images.jpeg" class="d-block w-100" alt="..." height="500px" />
-
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
 
-    <div class="container mt-5 col-lg-12 ">
+    <!-- Start Working Since section -->
+    <div class="container mt-5 col-lg-12">
         <div>
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
@@ -91,6 +58,9 @@
             </div>
         </div>
     </div>
+    <!-- END Working Since section -->
+
+    <!-- Media, Volunteer and Donation Section Start -->
     <div class="container mt-5">
         <div class="row">
            
@@ -108,7 +78,6 @@
 
             <div class="col-4">
                 <a asp-controller="Volunteers" asp-action="Create" data-toggle="modal" data-target="#myModal" class="text-decoration-none">
-                    @* <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> *@
                     <div class="card border-0 custom-card text-center">
                         <div class="card-body">
                             <h2 class="card-title fw-bold custom-title mb-3">BECOME VOLUNTEER</h2>
@@ -135,122 +104,35 @@
             </div>
         </div>
     </div>
- 
+    <!-- Media, Volunteer and Donation Section Start -->
 
 
     <div>
         <!-- Blog 3 - Bootstrap Brain Component -->
         <section class="py-3 py-md-5">
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our News</h2>
-                        <h3 class="display-8 mb-1 mb-md-1 text-center">Our ongoing and completed projects</h3>
-                        <hr class="w-50 mx-auto mb-2 mb-xl-4 border-dark-subtle">
-                    </div>
-                </div>
-            </div>
 
-            <div class="container overflow-hidden">
-              
-                <div class="row gy-4 gy-lg-0">
-                    @{
-                        ViewData["MaxItems"] = 3; // Set the number of items to display
-                    }
-                    @await Component.InvokeAsync("Project", new { Project = 3 })
-                </div>
-            </div>
+            @{
+                ViewData["MaxItems"] = 3; // Set the number of items to display
+            }
+            @await Component.InvokeAsync("Project", new { Project = 3 })
+           
         </section>
 
         <!-- Event Section Start -->
-        <section class="event-section">
-            <div class="container ">
-                <div class="row align-items-center">
-                    <!-- Event Info Box -->
-                    <div class="col-md-4">
-                        <div class="event-info-box">
-                            <h3>Find Us Next</h3>
-                            <h2>EVENT</h2>
-                            <p>Near to You..</p>
-                        </div>
-                    </div>
-
-                    <!-- Countdown Timer -->
-                    <div class="col-md-5">
-                        <div class="countdown-timer">
-                            <h3>Next Event Start In</h3>
-                            <div class="timer">
-                                <div><span class="days">276</span> Days</div>
-                                <div><span class="hours">22</span> Hours</div>
-                                <div><span class="minutes">58</span> Minutes</div>
-                                <div><span class="seconds">23</span> Seconds</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Subscription Form -->
-                    <div class="col-md-3">
-                        <div class="subscription-box">
-                            <h4>Subscribe for Updates</h4>
-                            <form>
-                                <input type="email" placeholder="Email Address" required>
-                                <button type="submit">Subscribe Now</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="container-fluid">
+                @await Component.InvokeAsync("Event")
         </section>
         <!-- Event Section End -->
 
         <!--D HELP VOLUNTEER TEAM START-->
         <section class="d-help-volunteer-team">
-            <div class="container mt-4">
-                <!--Section Heading Start-->
-                <div class="d-help-section-title-new text-center">
-                    <h1>SEE OUR PERFECT TEAM</h1>
-                    
-                    <h5>Sed cursus elementum arcu vitae mollis. Curabitur vehicula egestas libero.</h5>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
-                </div>
-                <!--Section Heading End-->
-                <div class="row justify-content-center">
-                    <div class="card m-3" style="width: 16rem; height: 22rem;">
-                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass1.jpeg" />
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Johnny Doe</h5>
-                            <a href="#" class="btn btn-primary mt-auto">More details</a>
-                        </div>
-                    </div>
-
-                    <div class="card m-3" style="width: 16rem; height: 22rem;">
-                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass2.jpeg" />
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Johnny Doe</h5>
-                            <a href="#" class="btn btn-primary mt-auto">More details</a>
-                        </div>
-                    </div>
-
-                    <div class="card m-3" style="width: 16rem; height: 22rem;">
-                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass3.jpeg" />
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Johnny Doe</h5>
-                            <a href="#" class="btn btn-primary mt-auto">More details</a>
-                        </div>
-                    </div>
-
-                    <div class="card m-3" style="width: 16rem; height: 22rem;">
-                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-PassImg-size" loading="lazy" src="~/images/pass4.jpeg" />
-                        <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Johnny Doe</h5>
-                            <a href="#" class="btn btn-primary mt-auto">More details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @{
+                ViewData["MaxItems"] = 4; // Set the number of items to display
+            }
+            @await Component.InvokeAsync("Team", new { TeamMember = 4 })
         </section>
-
         <!--D HELP VOLUNTEER TEAM END-->
+
         <!--Stats Section Start-->
         <section class="d-help-stats-wrap">
             <div class="container mt-5">
@@ -286,7 +168,7 @@
             </div>
         </section>
         <!--Stats Section End-->
-        <!--Stats Section End-->
+        
         <!-- Blog 3 - Bootstrap Brain Component -->
         <section class="py-3 py-md-5">
             <div class="container">
@@ -395,41 +277,12 @@
                 </div>
             </div>
         </section>
-
+        <!--Brand logo slider-->
         <section>
-            <div class="container-fluid theme-color">
-                
-                <div class="container ">
-                    <div class="brand-logo-slider p-5 ">
-                        <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
-                        <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
-                        <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
-                        <div class="image-box"><a href="#"><img src="images/help-brand1.png" alt=""></a></div>
-                        <div class="image-box"><a href="#"><img src="images/help-brand2.png" alt=""></a></div>
-                        <div class="image-box"><a href="#"><img src="images/help-brand3.png" alt=""></a></div>
-                    </div>
-                </div>
-            </div>
-            
-
+            @await Component.InvokeAsync("Brand")
         </section>
 
     </div>
 </div>
 
 
-<!-- Make sure this script is placed either at the bottom of your HTML before closing </body> tag or in the <head> with the document ready function -->
-@section Scripts {
-    <script>
-        $(function () {
-            $('.brand-logo-slider').slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                 autoplay: true,
-                autoplaySpeed: 2000,
-                 arrows: false,
-             
-            });
-        });
-    </script>
-}

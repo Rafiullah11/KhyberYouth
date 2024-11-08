@@ -247,22 +247,26 @@ body {
     }
 
 /* Apply the primary theme color */
+
+.btn-warning:focus, .btn-warning:active {
+    outline: none !important;
+    box-shadow: none !important;
+
+}
+
 .theme-btn {
-    background-color: #FF8C00; /* Theme color (orange) */
+    background-color: #FF8C00;   
     color: white;
     border: none;
 }
 
-    /* Dim the color on hover */
-    .theme-btn:hover {
-        background-color: #FFA500; /* Dimmed orange */
+    .theme-btn:active, .theme-btn:focus, .theme-btn:hover {
+        background-color: #FFA500 !important;
         color: white;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
-/* Alternatively, using filter for a dynamic approach */
-.theme-btn-hover:hover {
-    filter: brightness(90%); /* Decrease brightness slightly */
-}
 
 /*CSS for project */
 /* Custom styling */
@@ -307,3 +311,10 @@ body {
     .card-text.expanded {
         -webkit-line-clamp: unset;
     }
+
+/*.index-custom-card-size {
+    height: 500px;
+    width: 400px;
+    margin: 3px;
+}
+*/

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<KhyberYouth.Models.TeamMember>
+
+<div class="container p-3 mt-lg-5">
+    <div class="row pt-4">
+        <div class="col-9">
+            <h3 class="text-warning">Team Members</h3>
+        </div>
+        <div class="col-3 text-end">
+            <a asp-action="Create" asp-controller="Team" class="btn theme-btn">
+                <i class="bi bi-plus-circle"></i> &nbsp; Add Member
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var teamMember in Model)
+        {
+            var photoPath = "~/images/" + (teamMember.ImagePath ?? "default-image.png"); // Use a default image if none is provided
+
+            <div class="col-md-3 p-2">
+                <div class="card">
+                    <img asp-append-version="true" src="@photoPath" class="card-img-top" alt="@teamMember.Name" width="200" height="250" />
+                    <div class="card-body">
+                        <h5 class="card-title">@teamMember.Name</h5>
+                        <p class="card-text">
+                            <strong>Qualification:</strong> @teamMember.Qualification<br />
+                            <strong>Email:</strong> @teamMember.Email<br />
+                            <strong>Phone:</strong> @teamMember.PhoneNumber<br />
+                            <strong>Address:</strong> @teamMember.Address<br />
+                            <strong>Joined Date:</strong> @teamMember.JoinedDate.ToString("dd-MM-yyyy")
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="btn-group w-100" role="group">
+                            <a asp-action="Details" asp-route-id="@teamMember.Id" class="btn btn-primary m-1">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@teamMember.Id" class="btn btn-info m-1">
+                                <i class="fas fa-pen-to-square"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@teamMember.Id" class="btn btn-danger m-1">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
