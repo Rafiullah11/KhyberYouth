@@ -318,3 +318,10 @@ body {
     margin: 3px;
 }
 */
+
+
+.custom-card:hover .icon-custom-hover {
+    color: orange; /* Change color to orange on hover */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<KhyberYouth.Models.MainIcons>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container mt-lg-4">
+    <div class="row pt-4">
+        <div class="col-9">
+            <h3 class="text-warning">Icons List</h3>
+        </div>
+        <div class="col-3 text-end">
+            <a asp-action="Create" asp-controller="MainIcon" class="btn theme-btn">
+                <i class="bi bi-plus-circle "></i> &nbsp; Add New Event
+            </a>
+        </div>
+        <hr />
+    </div>
+    <div class="row">
+        <table class="table ">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>Description</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Icons)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ControllerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ActionName)
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @{
+                                var content = item.Description;
+                                var truncatedContent = content.Length > 20 ? content.Substring(0, 20) + "..." : content;
+                            }
+                            @truncatedContent
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Icons)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ControllerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ActionName)
+                        </td>
+                        
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">  <i class="fas fa-pen-to-square"></i></a> |
+                            <a asp-action="Details" asp-route-id="@item.Id"> <i class="fas fa-eye text-info"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt text-danger"></i></a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

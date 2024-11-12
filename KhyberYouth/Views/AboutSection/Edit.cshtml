@@ -1,0 +1,92 @@
+﻿@model KhyberYouth.ViewModel.AboutEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var mainImage = "~/images/" + (Model.ExistingMainImagePath ?? "placeholder.png");
+    var founderImage = "~/images/" + (Model.ExistingFounderImagePath ?? "placeholder.png");
+
+}
+
+<div class="container container-fluid mt-lg-5 ">
+    <div class="container mt-lg-5 ">
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">About Section</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
+            </div>
+        </div>
+
+        <form class="border border-warning shadow col-md-10 offset-1" enctype="multipart/form-data" asp-controller="AboutSection" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ExistingMainImagePath" />
+            <input type="hidden" asp-for="ExistingFounderImagePath" />
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+                    <label asp-for="SectionTitle " class="control-label"></label>
+                    <input asp-for="SectionTitle " class="form-control" />
+                    <span asp-validation-for="SectionTitle " class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Subtitle" class="control-label"></label>
+                    <input asp-for="Subtitle" class="form-control" />
+                    <span asp-validation-for="Subtitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+                    <label asp-for="FounderName" class="control-label"></label>
+                    <input asp-for="FounderName" class="form-control" />
+                    <span asp-validation-for="FounderName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="FounderTitle" class="control-label"></label>
+                    <input asp-for="FounderTitle" class="form-control" />
+                    <span asp-validation-for="FounderTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="form-group col-md-12">
+                    <label asp-for="DescriptionTitle" class="control-label"></label>
+                    <input asp-for="DescriptionTitle" class="form-control"></input>
+                    <span asp-validation-for="DescriptionTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+                    <label asp-for="MainImageFile" class="control-label"></label>
+                    <input asp-for="MainImageFile" class="form-control custom-file-input" type="file" />
+                    <span asp-validation-for="MainImageFile" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="FounderImageFile" class="control-label"></label>
+                    <input asp-for="FounderImageFile" class="form-control custom-file-input" type="file" />
+                    <span asp-validation-for="FounderImageFile" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+
+                    <img asp-append-version="true" src="@mainImage" alt="Media Image" width="250" />
+                </div>
+                <div class="form-group col-md-6">
+
+                    <img asp-append-version="true" src="@founderImage" alt="Media Image" width="250" />
+                </div>
+            </div>
+            <div class="form-group m-4">
+                <input type="submit" value="Update Record" class="btn theme-btn" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

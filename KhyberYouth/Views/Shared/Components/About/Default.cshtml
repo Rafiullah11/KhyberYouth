@@ -1,0 +1,65 @@
+﻿@model IEnumerable<KhyberYouth.ViewModel.AboutDetailsViewModel>
+@{
+    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count(); // Use all items if maxItems not specified
+    var projectsToShow = Model.Take(maxItems); // Limit the items to the specified number
+}
+
+<!-- Start Working Since Section -->
+<div class="container mt-5 col-lg-12">
+    
+
+    <!-- Loop through each About Section -->
+    @foreach (var aboutSection in projectsToShow)
+    {
+        <div>
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <h2 class="text-secondary mb-2 text-uppercase text-center"> @aboutSection.SectionTitle</h2>
+                    <h6 class="text-center">@aboutSection.Subtitle</h6>
+                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4 border-0" style="max-width: 100%; height: 500px">
+            <div class="row no-gutters">
+                <!-- Main Image Section -->
+                <div class="col-md-6">
+                    <img src="~/images/@(aboutSection.ExistingMainImagePath ?? "default-image.png")"
+                         alt="@aboutSection.SectionTitle" class="card-img m-2">
+                </div>
+
+                <!-- Content Section -->
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h1 class="card-title mb-4 mt-lg-5 fw-bold">@aboutSection.DescriptionTitle</h1>
+                       @*  <p class="">
+                            <b>Khyber Youth Welfare Organization</b> - @Html.Raw(aboutSection.Description)
+                        </p> *@
+                        <p style="font-size: 1rem; font-weight: 400; color: #333; line-height: 1.6; font-family: Arial, sans-serif;">
+                            <b>Khyber Youth Welfare Organization</b> - @aboutSection.Description
+                        </p>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row align-items-center mt-5">
+                            <!-- Founder Image Section -->
+                            <div class="col-md-2 text-center">
+                                <img src="~/images/@(aboutSection.ExistingFounderImagePath ?? "default-image.png")"
+                                     class="rounded-circle img-fluid custom-footer-image"
+                                     alt="@aboutSection.FounderName" style="">
+                            </div>
+
+                            <!-- Founder Text Section -->
+                            <div class="col-md-10">
+                                <h5 class="mb-0 font-weight-bold">@aboutSection.FounderName</h5>
+                                <p class="text-secondary mb-0">@aboutSection.FounderTitle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<!-- END Working Since Section -->

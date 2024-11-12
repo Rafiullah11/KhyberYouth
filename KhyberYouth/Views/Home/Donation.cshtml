@@ -3,7 +3,8 @@
 <div class="container my-5">
     <!-- This is a partial view for Donation Bank Details Section -->
   
-    @Html.Partial("_BankAccountDetail", (KhyberYouth.Models.BankAccountDetail)Model)
+    @await Component.InvokeAsync("BankDetails")
+
 
     <!-- Render Partial View -->
 </div>

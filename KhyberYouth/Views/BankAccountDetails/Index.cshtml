@@ -42,15 +42,9 @@
                         <td>@item.BankAddress</td>
                         <td>@item.ContactPhoneNumber</td>
                         <td class="text-center">
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary m-1">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info m-1">
-                                <i class="fas fa-pen-to-square"></i>
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger m-1">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.Id">  <i class="fas fa-pen-to-square"></i></a> |
+                            <a asp-action="Details" asp-route-id="@item.Id"> <i class="fas fa-eye text-info"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt text-danger"></i></a>
                         </td>
                     </tr>
                 }

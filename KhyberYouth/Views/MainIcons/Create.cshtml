@@ -1,0 +1,57 @@
+﻿@model KhyberYouth.Models.MainIcons
+
+@{
+    ViewData["Title"] = "Create New Event";
+}
+
+
+<div class="container mt-lg-5 ">
+    <div class="container mt-lg-5 ">
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Create New Icon</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                </div>
+            </div>
+        </div>
+
+        <form asp-action="Create" method="post" class="p-3 shadow col-md-10 offset-1">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Icons" class="control-label"></label>
+                <input asp-for="Icons" class="form-control"  />
+                <span asp-validation-for="Icons" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ControllerName " class="control-label"></label>
+                <input asp-for="ControllerName " class="form-control" />
+                <span asp-validation-for="ControllerName " class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActionName " class="control-label"></label>
+                <input asp-for="ActionName " class="form-control" />
+                <span asp-validation-for="ActionName " class="text-danger"></span>
+            </div>
+
+           
+            <button type="submit" class="btn theme-btn mt-lg-2">Create Record</button>
+            <a asp-action="Index" class="btn btn-secondary mt-2">Back to List</a>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
