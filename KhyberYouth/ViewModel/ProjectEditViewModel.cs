@@ -24,6 +24,6 @@ namespace KhyberYouth.ViewModel
         public string ExistingImagePath { get; set; }
 
         [Display(Name = "Project Image")]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
     }
 }

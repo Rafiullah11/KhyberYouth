@@ -1,0 +1,59 @@
+﻿@model KhyberYouth.Models.PaginatedList<KhyberYouth.ViewModel.ProjectViewModel>
+
+<section class="py-3 py-md-5">
+    <div class="blog-single">
+        <div class="container mt-lg-2">
+            <div class="row">
+                <div class="row col-lg-10 offset-1">
+                    @foreach (var project in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="card mt-lg-3">
+                                <img src="~/images/@project.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px">
+                                <div class="card-body">
+                                    <h5 class="card-title">@project.Name</h5>
+                                    <p>
+                                        @{
+                                            var text = project.ShortDescription;
+                                            var readMore = text.Length > 50 ? text.Substring(0, 50) + "..." : text;
+                                        }
+                                        @readMore
+                                    </p>
+                                    <a asp-action="Details" asp-controller="Projects" asp-route-id="@project.Id" class="btn theme-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="row mt-lg-5">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-route-page="@(Model.PageIndex - 1)">Previous</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                                <a class="page-link" asp-route-page="@i">@i</a>
+                            </li>
+                        }
+
+                        @if (Model.HasNextPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-route-page="@(Model.PageIndex + 1)">Next</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

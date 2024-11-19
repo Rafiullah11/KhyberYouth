@@ -1,0 +1,48 @@
+﻿ @* @model KhyberYouth.Models.PaginatedList<Project> *@
+
+<!-- Header Section -->
+<header class="theme-color text-white text-center py-5">
+    <h3>Khyber Youth Welfare Organization</h3>
+    <h4>Project List</h4>
+</header>
+
+<div class="container">
+    <section class="py-2">
+        @await Component.InvokeAsync("AllProject", new
+            {
+                page = ViewData["Page"],
+                pageSize = 6
+            })
+    </section>
+</div>
+
+
+
+
+
+@* 
+<div class="container">
+    <section class="py-2">
+
+        @await Component.InvokeAsync("AllProject")
+
+        <div class="mt-lg-5 col-lg-10 offset-1">
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+            <a asp-action="AllProject"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="AllProject"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               class="btn btn-default @nextDisabled">
+                Next
+            </a>
+        </div>
+
+    </section>
+</div> *@

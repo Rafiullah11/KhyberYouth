@@ -18,6 +18,6 @@ namespace KhyberYouth.Models
         public string ImagePath { get; set; } // Path to the image file
 
         [NotMapped] // This won't be mapped to the database
-        public IFormFile ImageFile { get; set; } // For uploading files
+        public IFormFile? ImageFile { get; set; } // For uploading files
     }
 }

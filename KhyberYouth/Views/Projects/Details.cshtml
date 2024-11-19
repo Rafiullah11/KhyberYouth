@@ -5,30 +5,36 @@
     var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
 }
 
+<!-- Header Section -->
+<header class="theme-color text-white text-center py-5">
+    <h3>Khyber Youth Welfare Organization</h3>
+    <h4>Project Details</h4>
+</header>
+
 <!-- Full Page Project Details View -->
-<div class="blog-single gray-bg">
-    <div class="container mt-lg-5 ">
-        <div class="row offset-2">
+<div class="blog-single">
+    <div class="container mt-lg-5">
+        <div class="row">
             <!-- Project Content Section -->
-            <div class="col-lg-10 mb-4">
+            <div class="col-lg-10 offset-1 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <!-- Project Image -->
                         <div class="article-img mb-3">
-                            <img asp-append-version="true" src="@photoPath" class="img-fluid rounded" alt="Project Image" style="height:500px">
+                            <img asp-append-version="true" src="@photoPath" class="img-fluid rounded" alt="Project Image" style="height:500px; object-fit:cover;">
                         </div>
 
                         <!-- Project Title -->
                         <h2 class="widget-title">@Model.Name</h2>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-lg-4">
-                                <p class="text-muted">Published on @Model.StartDate.ToString("dd-MM-yyyy") </p>
+                                <p class="text-muted">Published on @Model.StartDate.ToString("dd-MM-yyyy")</p>
                             </div>
                             <div class="col-lg-4">
-                                <p class="text-muted">End Date: @Model.StartDate.ToString("dd-MM-yyyy") </p>
+                                <p class="text-muted">End Date: @Model.EndDate.ToString("dd-MM-yyyy")</p>
                             </div>
                             <div class="col-lg-4">
-                                <p class="text-muted">Status:  @Model.StartDate.ToString("dd-MM-yyyy") </p>
+                                <p class="text-muted">Status: @(Model.IsCompleted ? "Ended" : "In Progress")</p>
                             </div>
                         </div>
                         <hr>
@@ -40,6 +46,47 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Recent Projects Section -->
+        <div class="row col-lg-10 offset-1 mb-3">
+            <div class="col-9">
+                <h6>Recent Projects</h6>
+            </div>
+            <div class="col-3 text-end">
+                <a asp-action="AllProject" asp-controller="Projects" class=" ">See All</a>
+            </div>
+        </div>
+
+
+        @* <h3>Recent Projects</h3> *@
+        <div class="row col-lg-10 offset-1">
+            @foreach (var project in Model.RecentProjects)
+            {
+                <div class="col-md-4">
+                    <div class="card" style=" height:400px; width:300px">
+                        <img src="~/images/@project.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">@project.Name</h5>
+                            <p>
+                                @{
+                                    var text = project.ShortDescription ?? string.Empty; // Ensure text is not null
+                                    var readMore = text.Length > 50
+                                    ? text.Substring(0, 50) + "..."  // Safely truncate to 50 characters
+                                    : text; // Use full text if it's less than or equal to 50 characters
+                                }
+                                @readMore
+                            </p>
+
+
+                            
+                        </div>
+                        <div>
+                            <a asp-action="Details" asp-controller="Projects" asp-route-id="@project.Id" class="btn theme-btn m-3">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>

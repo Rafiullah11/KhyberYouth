@@ -30,6 +30,11 @@ namespace KhyberYouth.Controllers
             return View(list);
         }
 
+        public IActionResult Media()
+        {
+            return View();
+        }
+
 
         [HttpGet("Details/{id}")]
         //[AllowAnonymous]

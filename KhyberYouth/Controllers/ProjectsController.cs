@@ -25,11 +25,23 @@ namespace KhyberYouth.Controllers
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? pageNumber)
         {
-            var projects = await _context.Projects.ToListAsync();
-            return View(projects);
+            var projects = _context.Projects.AsNoTracking();
+
+            int pageSize = 4;
+
+            return View(await PaginatedList<Project>.CreateAsync(projects, pageNumber ?? 1, pageSize));
         }
+
+        public IActionResult AllProject(int page = 1)
+        {
+            ViewData["Page"] = page; // Pass the page number to the view
+            return View();
+        }
+
+
+
 
         // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -39,6 +51,24 @@ namespace KhyberYouth.Controllers
             var project = await _context.Projects.FindAsync(id);
             if (project == null) return NotFound();
 
+            // Fetch recent projects, excluding the current project
+            var recentProjects = await _context.Projects
+                .Where(p => p.Id != id)
+                .OrderByDescending(p => p.StartDate)
+                .Take(3)
+                .Select(p => new ProjectViewModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    ShortDescription = string.IsNullOrEmpty(p.Description)
+                        ? "No description available."
+                        : (p.Description.Length > 50
+                            ? p.Description.Substring(0, 50) + "..."
+                            : p.Description),
+                    ImagePath = p.ImagePath
+                })
+                .ToListAsync();
+
             var viewModel = new ProjectDetailsViewModel
             {
                 Id = project.Id,
@@ -47,11 +77,13 @@ namespace KhyberYouth.Controllers
                 StartDate = project.StartDate,
                 EndDate = project.EndDate,
                 IsCompleted = project.IsCompleted,
-                ImagePath = project.ImagePath
+                ImagePath = project.ImagePath,
+                RecentProjects = recentProjects
             };
 
             return View(viewModel);
         }
+
 
         // GET: Projects/Create
         public IActionResult Create() => View();
