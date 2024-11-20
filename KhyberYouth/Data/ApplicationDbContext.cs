@@ -23,7 +23,10 @@ namespace KhyberYouth.Models
         public DbSet<AboutSection> AboutSections { get; set; }
         public DbSet<MainIcons> MainIcons { get; set; }
 
-
+        public DbSet<BlogAuthor> BlogAuthors { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);

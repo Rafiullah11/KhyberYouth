@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<KhyberYouth.Models.Banner>
 
 <div class="container p-3 mt-lg-5">
-    <div class="row pt-4">
+    <div class="row ">
         <div class="col-9">
             <h3 class="text-warning">Banner List</h3>
         </div>
@@ -10,37 +10,37 @@
                 <i class="bi bi-plus-circle"></i> &nbsp; Add Brand Logo
             </a>
         </div>
+        <hr />
     </div>
+    <div class="row border border-warning mt-3 p-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var banner in Model)
+                {
+                    var photoPath = "~/images/" + (banner.ImagePath ?? "default-image.png");
 
-    <div class="row">
-        @foreach (var banner in Model)
-        {
-            var photoPath = "~/images/" + (banner.ImagePath ?? "default-image.png");
-
-            <div class="col-md-3 p-2">
-                <div class="card">
-                    <img asp-append-version="true" src="@photoPath" class="card-img-top" alt="@banner.Name" width="200" height="250" />
-                    <div class="card-body">
-                        <h5 class="card-title">@banner.Name</h5>
-                        <p class="card-text">
-                            The Brand picture
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="btn-group w-100" role="group">
-                            <a asp-action="Details" asp-route-id="@banner.Id" class="btn btn-primary m-1">
-                                <i class="fas fa-eye"></i> View
-                            </a>
-                            <a asp-action="Edit" asp-route-id="@banner.Id" class="btn btn-info m-1">
-                                <i class="fas fa-pen-to-square"></i> Edit
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@banner.Id" class="btn btn-danger m-1">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+                    <tr>
+                        <td>@banner.Name</td>
+                        <td>The Brand picture</td>
+                        <td>
+                            <img asp-append-version="true" src="@photoPath" alt="@banner.Name" width="50" height="50" />
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@banner.Id">  <i class="fas fa-pen-to-square"></i></a> |
+                            <a asp-action="Details" asp-route-id="@banner.Id"> <i class="fas fa-eye text-info"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@banner.Id"> <i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

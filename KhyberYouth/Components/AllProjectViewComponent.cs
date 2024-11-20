@@ -15,7 +15,7 @@ namespace KhyberYouth.ViewComponents
 
         public IViewComponentResult Invoke(int page = 1)
         {
-            int pageSize = 3;
+            int pageSize = 6;
             // Fetch total count of projects
             var totalCount = _context.Projects.Count();
 
