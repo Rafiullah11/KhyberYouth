@@ -1,0 +1,76 @@
+﻿@model KhyberYouth.ViewModel.BlogDetailsViewModel
+
+@{
+    ViewData["Title"] = "Blog Details";
+    var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
+}
+
+<!-- Header Section -->
+<header class="theme-color text-white text-center py-5">
+    <h3>Khyber Youth Welfare Organization</h3>
+    <h4>Blog Details</h4>
+</header>
+
+<!-- Full Page Blog Details View -->
+<div class="blog-single">
+    <div class="container mt-lg-5">
+        <div class="row">
+            <!-- Blog Content Section -->
+            <div class="col-lg-10 offset-1 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <!-- Blog Image -->
+                        <div class="article-img mb-3">
+                            <img asp-append-version="true" src="@photoPath" class="img-fluid rounded" alt="Blog Image" style="height:500px; object-fit:cover;">
+                        </div>
+
+                        <!-- Blog Title -->
+                        <h2 class="widget-title">@Model.Title</h2>
+                        <div class="row mt-3">
+                            <div class="col-lg-4">
+                                <p class="text-muted">Published on @Model.PublishedOn.ToString("dd-MM-yyyy")</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p class="text-muted">Status: @(Model.IsPublish ? "Published" : "Unpublished")</p>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- Blog Content -->
+                        <blockquote class="blockquote">
+                            <p>@Model.Contents</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Blogs Section -->
+        <div class="row col-lg-10 offset-1 mb-3">
+            <div class="col-9">
+                <h6>Recent Blogs</h6>
+            </div>
+            <div class="col-3 text-end">
+                <a asp-action="AllBlogs" asp-controller="Blog" class="">See All</a>
+            </div>
+        </div>
+
+        <div class="row col-lg-10 offset-1">
+            @foreach (var blog in Model.RecentBlogs)
+            {
+                <div class="col-md-4">
+                    <div class="card" style="height:400px; width:300px">
+                        <img src="~/images/@blog.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px">
+                        <div class="card-body">
+                            <h5 class="card-title">@blog.Title</h5>
+                            <p>@blog.ShortDescription</p>
+                        </div>
+                        <div>
+                            <a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.Id" class="btn theme-btn m-3">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

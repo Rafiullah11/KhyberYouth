@@ -1,0 +1,14 @@
+﻿<header class="theme-color text-white text-center py-5">
+    <h3>Khyber Youth Welfare Organization</h3>
+    @* <h4>Project List</h4> *@
+</header>
+
+<div class="container">
+    <section class="py-2">
+        @await Component.InvokeAsync("AllTeam", new
+            {
+                page = ViewData["Page"],
+                pageSize = 6
+            })
+    </section>
+</div>

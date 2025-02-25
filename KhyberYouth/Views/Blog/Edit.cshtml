@@ -1,0 +1,73 @@
+﻿@model KhyberYouth.ViewModel.BlogEditViewModel
+
+@{
+    ViewData["Title"] = "Edit Blog";
+    var photoPath = "~/images/" + (Model.ExistImage ?? "placeholder.png");
+}
+
+<div class="container container-fluid mt-lg-5">
+    <div class="container mt-lg-5">
+        <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+            <div class="card-body text-center">
+                <h4 class="text-light">Update Blog</h4>
+                <div class="d-flex justify-content-center gap-3 mt-3"></div>
+            </div>
+        </div>
+
+        <form class="border border-warning shadow col-md-10 offset-1" enctype="multipart/form-data" asp-controller="Blog" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ExistImage" />
+
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="PublishedOn" class="control-label"></label>
+                    <input asp-for="PublishedOn" class="form-control" type="date" />
+                    <span asp-validation-for="PublishedOn" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group col-md-12">
+                    <label asp-for="Contents" class="control-label"></label>
+                    <textarea asp-for="Contents" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Contents" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group col-md-6">
+                    <label asp-for="IsPublish" class="control-label"></label>
+                    <input asp-for="IsPublish" class="form-check-input" type="checkbox" />
+                    <span asp-validation-for="IsPublish" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group col-md-12">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" class="form-control custom-file-input" type="file" />
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <div class="form-group col-md-12">
+                    <img asp-append-version="true" src="@photoPath" alt="Blog Image" width="250" />
+                </div>
+            </div>
+
+            <div class="form-group m-4">
+                <input type="submit" value="Update Blog" class="btn theme-btn" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

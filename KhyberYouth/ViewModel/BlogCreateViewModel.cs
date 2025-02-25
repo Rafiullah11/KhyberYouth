@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace KhyberYouth.Models
+namespace KhyberYouth.ViewModel
 {
-    public class BlogPost
+    public class BlogCreateViewModel
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string? Contents { get; set; }
 

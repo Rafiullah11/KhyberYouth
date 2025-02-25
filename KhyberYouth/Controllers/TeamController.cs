@@ -31,6 +31,11 @@ namespace KhyberYouth.Controllers
             return View(teamMembers);
         }
 
+        public IActionResult AllTeam(int page = 1)
+        {
+            ViewData["Page"] = page; // Pass the page number to the view
+            return View();
+        }
         // GET: Team/Details/5
         public async Task<IActionResult> Details(int? id)
         {

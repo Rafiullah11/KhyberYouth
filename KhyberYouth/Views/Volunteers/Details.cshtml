@@ -1,60 +1,52 @@
 ﻿@model KhyberYouth.ViewModel.VolunteerDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Volunteer Details";
 }
 
-<h1>Details</h1>
+<section class="py-4">
+    <div class="container">
+        <div class="card shadow-lg p-4">
+            <div class="row">
+                <!-- Left Side - Profile Image -->
+                <div class="col-md-4 text-center">
+                    <img src="~/images/@Model.ImagePath" class="img-fluid rounded-circle shadow" alt="Volunteer Image" style="width: 250px; height: 250px; object-fit: cover;">
+                    @* <img src="~/images/@volunteer.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px"> *@
+                </div>
 
-<div>
-    <h4>Volunteer</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Qualification)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Qualification)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JoinedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JoinedDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageFile)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageFile)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+                <!-- Right Side - Volunteer Details -->
+                <div class="col-md-8">
+                    <h2 class="mb-4">@Model.Name</h2>
+                    <table class="table table-borderless">
+                        <tr>
+                            <th>Qualification:</th>
+                            <td>@Model.Qualification</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>@Model.PhoneNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Address:</th>
+                            <td>@Model.Address</td>
+                        </tr>
+                        <tr>
+                            <th>Joined Date:</th>
+                            <td>@Model.JoinedDate.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                    </table>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-4">
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -31,6 +31,11 @@ namespace KhyberYouth.Controllers
             return View(volunteers);
         }
 
+        public IActionResult AllVolunteer(int page = 1)
+        {
+            ViewData["Page"] = page; // Pass the page number to the view
+            return View();
+        }
         // GET: Volunteers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,6 +59,7 @@ namespace KhyberYouth.Controllers
                 PhoneNumber = volunteer.PhoneNumber,
                 Address = volunteer.Address,
                 JoinedDate = volunteer.JoinedDate,
+                ImagePath=volunteer.ImagePath
                 // Additional mapping for ImageFile if necessary
             };
 

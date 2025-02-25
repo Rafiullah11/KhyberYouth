@@ -33,6 +33,13 @@ namespace KhyberYouth.Controllers
             }
             return View(eventDetails);
         }
+        
+        // GET: AllEvent/Details/5
+        public IActionResult AllEvent()
+        {
+            var events = _context.Events.OrderBy(e => e.StartDate).ToList();
+            return View(events);
+        }
         // GET: Event
         //public IActionResult Index()
         //{

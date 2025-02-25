@@ -4,6 +4,7 @@ using KhyberYouth.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KhyberYouth.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225142833_addingBlog")]
+    partial class addingBlog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,15 +149,70 @@ namespace KhyberYouth.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.ToTable("BlogAuthors");
+                });
+
+            modelBuilder.Entity("KhyberYouth.Models.BlogCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BlogCategories");
+                });
+
+            modelBuilder.Entity("KhyberYouth.Models.BlogComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.ToTable("BlogComments");
                 });
 
             modelBuilder.Entity("KhyberYouth.Models.BlogPost", b =>
@@ -165,28 +223,38 @@ namespace KhyberYouth.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BlogAuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Contents")
+                    b.Property<int>("BlogAuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BlogCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsPublish")
-                        .HasColumnType("bit");
+                    b.Property<string>("FeaturedImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PublishedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BlogAuthorId");
+
+                    b.HasIndex("BlogCategoryId");
 
                     b.ToTable("BlogPosts");
                 });
@@ -465,11 +533,34 @@ namespace KhyberYouth.Migrations
                     b.ToTable("Volunteers");
                 });
 
+            modelBuilder.Entity("KhyberYouth.Models.BlogComment", b =>
+                {
+                    b.HasOne("KhyberYouth.Models.BlogPost", "BlogPost")
+                        .WithMany("BlogComments")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogPost");
+                });
+
             modelBuilder.Entity("KhyberYouth.Models.BlogPost", b =>
                 {
-                    b.HasOne("KhyberYouth.Models.BlogAuthor", null)
+                    b.HasOne("KhyberYouth.Models.BlogAuthor", "BlogAuthor")
                         .WithMany("BlogPosts")
-                        .HasForeignKey("BlogAuthorId");
+                        .HasForeignKey("BlogAuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KhyberYouth.Models.BlogCategory", "BlogCategory")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("BlogCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlogAuthor");
+
+                    b.Navigation("BlogCategory");
                 });
 
             modelBuilder.Entity("KhyberYouth.Models.Subscription", b =>
@@ -486,6 +577,16 @@ namespace KhyberYouth.Migrations
             modelBuilder.Entity("KhyberYouth.Models.BlogAuthor", b =>
                 {
                     b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("KhyberYouth.Models.BlogCategory", b =>
+                {
+                    b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("KhyberYouth.Models.BlogPost", b =>
+                {
+                    b.Navigation("BlogComments");
                 });
 #pragma warning restore 612, 618
         }

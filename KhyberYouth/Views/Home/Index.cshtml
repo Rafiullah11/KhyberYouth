@@ -109,115 +109,18 @@
             </div>
         </section>
         <!--Stats Section End-->
-        
-        <!-- Blog 3 - Bootstrap Brain Component -->
+
+
+        <!--Blog Section start-->
         <section class="py-3 py-md-5">
-            <div class="container">
-                <div class="d-help-section-title-new text-center">
-                    <h1>SEE OUR BLOG</h1>
 
-                    <h5>Sed cursus elementum arcu vitae mollis. Curabitur vehicula egestas libero.</h5>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
-                </div>
-            </div>
+            @{
+                ViewData["MaxItems"] = 3; // Set the number of items to display
+            }
+            @await Component.InvokeAsync("Blog", new { Blogs = 3 })
 
-            <div class="container overflow-hidden">
-                <div class="row gy-4 gy-lg-0">
-                    <div class="col-12 col-lg-4">
-                        <article>
-                            <div class="card border-0">
-                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
-                                    <a href="#!">
-                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p1.jpg" alt="Business">
-                                    </a>
-                                    <figcaption>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
-                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                        </svg>
-                                        <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">Read More</h4>
-                                    </figcaption>
-                                </figure>
-                                <div class="card-body border bg-white p-4">
-                                    <div class="entry-header mb-3">
-                                        
-                                        <h2 class="card-title entry-title h4 mb-0">
-                                            <a class="link-dark text-decoration-none" href="#!">Overcoming Challenges to Make a Living Online</a>
-                                        </h2>
-                                    </div>
-                                    <p class="card-text entry-summary text-secondary">
-                                        Making money online is attainable. However, even if the processes are simple, you may still need help with issues.
-                                    </p>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <article>
-                            <div class="card border-0">
-                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
-                                    <a href="#!">
-                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p3.jpg" alt="Nutrition">
-                                    </a>
-                                    <figcaption>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInDown" viewBox="0 0 16 16">
-                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                        </svg>
-                                        <h4 class="h6 text-white bsb-hover-fadeInUp mt-2">Read More</h4>
-                                    </figcaption>
-                                </figure>
-                                <div class="card-body border bg-white p-4">
-                                    <div class="entry-header mb-3">
-                                      
-                                        <h2 class="card-title entry-title h4 mb-0">
-                                            <a class="link-dark text-decoration-none" href="#!">How to Exercise to Achieve Your Nutrition Goals</a>
-                                        </h2>
-                                    </div>
-                                    <p class="card-text entry-summary text-secondary">
-                                        Fitness trainer explains how nutrition is as important as workouts when it comes to losing fat or building muscle.
-                                    </p>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <article>
-                            <div class="card border-0">
-                                <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
-                                    <a href="#!">
-                                        <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/p4.jpg" alt="Health">
-                                    </a>
-                                    <figcaption>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInRight" viewBox="0 0 16 16">
-                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
-                                        </svg>
-                                        <h4 class="h6 text-white bsb-hover-fadeInLeft mt-2">Read More</h4>
-                                    </figcaption>
-                                </figure>
-                                <div class="card-body border bg-white p-4">
-                                    <div class="entry-header mb-3">
-                                       
-                                        <h2 class="card-title entry-title h4 mb-0">
-                                            <a class="link-dark text-decoration-none" href="#!">10 Tips To Lose Weight Quickly Without Dieting</a>
-                                        </h2>
-                                    </div>
-                                    <p class="card-text entry-summary text-secondary">
-                                        Chewing slowly and eating more fiber may help you lose weight quickly without exercise or a specific diet plan.
-                                    </p>
-                                </div>
-
-                            </div>
-                        </article>
-                    </div>
-                 
-
-                </div>
-            </div>
         </section>
+       
         <!--Brand logo slider-->
         <section>
             @await Component.InvokeAsync("Brand")

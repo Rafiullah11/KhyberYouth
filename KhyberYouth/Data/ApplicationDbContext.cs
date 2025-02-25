@@ -24,9 +24,8 @@ namespace KhyberYouth.Models
         public DbSet<MainIcons> MainIcons { get; set; }
 
         public DbSet<BlogAuthor> BlogAuthors { get; set; }
-        public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
-        public DbSet<BlogComment> BlogComments { get; set; }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    base.OnModelCreating(modelBuilder);
@@ -40,7 +39,7 @@ namespace KhyberYouth.Models
         //            Icons = "fa-solid fa-music",
         //            Description = "Explore our journey and see the impact we’re making together.",
         //            ControllerName = "MediaGallery",
-        //            ActionName = "Index",
+        //            ActionName = "Media",
         //        },
         //        new MainIcons
         //        {

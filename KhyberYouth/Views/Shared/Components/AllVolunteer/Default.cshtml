@@ -1,0 +1,79 @@
+﻿@model KhyberYouth.Models.PaginatedList<KhyberYouth.ViewModel.VolunteerViewModel>
+
+<section class="py-3 py-md-5">
+    <div class="blog-single">
+        <div class="container mt-lg-2">
+            <div class="row">
+                <div class="row col-lg-10 offset-1">
+                    @foreach (var volunteer in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="card mt-lg-3">
+                                <img src="~/images/@volunteer.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px">
+                                <div class="card-body">
+                                    <h5 class="card-title">@volunteer.Name</h5>
+                                    <p>
+                                        @if (!string.IsNullOrEmpty(volunteer.Qualification))
+                                        {
+                                            var qualificationText = volunteer.Qualification.Length > 50
+                                            ? volunteer.Qualification.Substring(0, 50) + "..."
+                                            : volunteer.Qualification;
+                                            @qualificationText
+                                        }
+                                        else
+                                        {
+                                            <span>No Qualification Provided</span>
+                                        }
+                                    </p>
+                                    <a asp-action="Details" asp-controller="Volunteers" asp-route-id="@volunteer.Id" class="btn theme-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="row mt-lg-5">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-route-page="@(Model.PageIndex - 1)">Previous</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        }
+
+                        <!-- Page Numbers -->
+                        @for (int i = 1; i <= Model.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                                <a class="page-link" asp-route-pageNumber="@i">@i</a>
+                            </li>
+                        }
+
+                        <!-- Next Button -->
+                        @if (Model.HasNextPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-route-pageNumber="@(Model.PageIndex + 1)">Next</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
