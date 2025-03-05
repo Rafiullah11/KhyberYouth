@@ -16,7 +16,12 @@ namespace KhyberYouth.ViewComponents
         public IViewComponentResult Invoke()
         {
             // Fetch projects from the database
-            var projects = _context.Projects.ToList(); // Assuming you have a DbSet<Projects> in your context
+            //var projects = _context.Projects.ToList(); // Assuming you have a DbSet<Projects> in your context
+
+            var projects = _context.Projects
+               .Where(projet => projet.IsPublished) // Only include published projets
+               .OrderByDescending(projet => projet.Id) // Optional: Sort by latest published
+               .ToList();
 
             // Map to ViewModel
             var projectViewModels = projects.Select(project => new ProjectDetailsViewModel
@@ -25,7 +30,7 @@ namespace KhyberYouth.ViewComponents
                 Name = project.Name,
                 Description = project.Description,
                 StartDate = project.StartDate,
-                EndDate = project.EndDate,
+                EndDate = (DateTime)project.EndDate,
                 IsCompleted = project.IsCompleted,
                 ImagePath = project.ImagePath
             }).ToList();

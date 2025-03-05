@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KhyberYouth.Models;
 using KhyberYouth.ViewModel;
+using System.Linq;
 
 namespace KhyberYouth.ViewComponents
 {
@@ -13,17 +14,10 @@ namespace KhyberYouth.ViewComponents
             _context = context;
         }
 
-        public IViewComponentResult Invoke(int page = 1)
+        public IViewComponentResult Invoke()
         {
-            int pageSize = 6;
-            // Fetch total count of volunteers
-            var totalCount = _context.Volunteers.Count();
-
-            // Fetch paginated volunteers
-            var volunteers = _context.Volunteers
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            // Fetch all volunteers without pagination
+            var volunteers = _context.Volunteers.ToList();
 
             // Map to ViewModel
             var volunteerViewModels = volunteers.Select(volunteer => new VolunteerViewModel
@@ -38,11 +32,7 @@ namespace KhyberYouth.ViewComponents
                 ImagePath = volunteer.ImagePath
             }).ToList();
 
-            // Create a PaginatedList view model
-            var paginatedVolunteers = new PaginatedList<VolunteerViewModel>(
-                volunteerViewModels, totalCount, page, pageSize);
-
-            return View(paginatedVolunteers); // Pass PaginatedList to the view
+            return View(volunteerViewModels); // Return full list to the view
         }
     }
 }

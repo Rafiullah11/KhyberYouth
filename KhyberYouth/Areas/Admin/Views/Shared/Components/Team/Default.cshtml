@@ -1,0 +1,42 @@
+﻿@model IEnumerable<KhyberYouth.ViewModel.TeamDetailsViewModel>
+@{
+    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count();
+    var projectsToShow = Model.Take(maxItems);
+}
+
+<section class="d-help-volunteer-team py-5">
+    <div class="container mt-4">
+        <div class="d-help-section-title-new text-center mb-5">
+            <h1>SEE OUR PERFECT TEAM</h1>
+            <h5>Meet our exceptional team members who inspire and motivate us every day.</h5>
+            <hr class="w-50 mx-auto border-dark-subtle">
+        </div>
+
+        <div class="row">
+            @foreach (var member in projectsToShow)
+            {
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative overlay">
+                            <img class="card-img-top img-fluid custom-PassImg-size"
+                                 loading="lazy"
+                                 src="~/images/@(member.ImagePath ?? "default-image.png")"
+                                 alt="@member.Name"
+                                 style="height: 400px; object-fit: cover;">
+                        </div>
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@member.Name</h5>
+                            <p class="card-text text-secondary">
+                                @member.Dept 
+                                <br />
+                            </p>
+                            <a asp-controller="Team" asp-action="Details" asp-route-id="@member.Id"
+                               class="btn btn-primary mt-auto">More details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

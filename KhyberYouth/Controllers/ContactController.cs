@@ -1,9 +1,11 @@
 ﻿using KhyberYouth.Models;
 using KhyberYouth.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KhyberYouth.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private readonly ApplicationDbContext _context;

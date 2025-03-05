@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<KhyberYouth.Models.BlogPost>
 @* @model List<KhyberYouth.ViewModel.BlogViewModel> *@
 
+
+
+
 <section class="py-3 py-md-5">
     <div class="blog-single">
         <div class="container mt-lg-2">
@@ -9,8 +12,8 @@
                     @foreach (var blog in Model)
                     {
                         <div class="col-md-4">
-                            <div class="card mt-lg-3">
-                                <img src="~/images/@blog.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px">
+                            <div class="card mt-3" style="height:400px; width:300px">
+                                <img src="~/images/@blog.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px; ">
                                 <div class="card-body">
                                     <h5 class="card-title">@blog.Title</h5>
                                     <p>

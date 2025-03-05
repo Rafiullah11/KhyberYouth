@@ -16,9 +16,10 @@ namespace KhyberYouth.ViewModel
             public DateTime EndDate { get; set; }
 
             public bool IsCompleted { get; set; }
+            public bool IsPublished { get; set; }
 
             [Display(Name = "Project Image")]
-            public IFormFile ImageFile { get; set; }
+            public IFormFile? ImageFile { get; set; }
         
     }
 }

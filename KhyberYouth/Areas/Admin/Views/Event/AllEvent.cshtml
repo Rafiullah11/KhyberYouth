@@ -1,0 +1,80 @@
+﻿@model IEnumerable<KhyberYouth.Models.Event>
+<section class="event-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div class="event-info-box">
+                    <h3>Find Us Next</h3>
+                    <h2>@Model.FirstOrDefault()?.Title</h2>
+                    <p>@Model.FirstOrDefault()?.Location</p>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="countdown-timer">
+                    <h3>Next Event Starts In</h3>
+                    <div class="timer" id="countdown">
+                        <div><span id="days">0</span> Days</div>
+                        <div><span id="hours">0</span> Hours</div>
+                        <div><span id="minutes">0</span> Minutes</div>
+                        <div><span id="seconds">0</span> Seconds</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="subscription-box">
+                    <h4>Subscribe for Updates</h4>
+                    <form id="subscribeForm">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                        <button type="button" onclick="subscribe(@Model.FirstOrDefault()?.Id)">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Countdown Timer
+    const eventDate = new Date('@Model.FirstOrDefault()?.EndDate.ToString()');
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = eventDate - now;
+
+        if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+    }
+    setInterval(updateCountdown, 1000);
+
+    // Subscription
+    function subscribe(eventId) {
+        const email = document.getElementById('email').value;
+        fetch(`/Event/Subscribe`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('input[name="__RequestVerificationToken"]').value
+            },
+            body: JSON.stringify({ eventId: eventId, email: email })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    document.getElementById("email").value = '';
+                } else {
+                    alert(data.message);
+                }
+            });
+    }
+</script>

@@ -1,0 +1,52 @@
+﻿@{
+    
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container py-4">
+    <!-- Welcome Section -->
+    <div class="card shadow-lg border-0 mb-4">
+        <div class="card-body text-center">
+            <h3 class="fw-bold text-primary">Welcome, Admin!</h3>
+            <p class="text-muted">Manage your website efficiently with the tools available in this panel.</p>
+        </div>
+    </div>
+
+    <!-- Admin Tiles Section -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-2"></i>
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Manage user accounts and permissions.</p>
+                    <a asp-area="Admin" asp-action="ListUser" asp-controller="Administration" class="btn btn-light btn-sm">View Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-user-shield fa-3x mb-2"></i> <!-- Roles Icon Added -->
+                    <h5 class="card-title">Roles</h5>
+                    <p class="card-text">Manage user roles and permissions.</p>
+                    <a asp-area="Admin" asp-action="ListRole" asp-controller="Administration" class="btn btn-light btn-sm">View Roles</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning shadow-sm mb-4">
+                <div class="card-body text-center">
+                    <i class="fas fa-key fa-3x mb-2"></i>
+                    <h5 class="card-title">Change Password</h5>
+                    <p class="card-text">Change or reset your account password.</p>
+                    <a asp-area="Admin" asp-action="ResetPassword" asp-controller="Account" class="btn btn-light btn-sm">
+                        Change Password
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

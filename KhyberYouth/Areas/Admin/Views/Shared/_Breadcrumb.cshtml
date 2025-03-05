@@ -1,0 +1,68 @@
+﻿<div>
+    <style>
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #f8f9fa;
+            border-radius: 0.25rem;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "/";
+            padding: 0 0.5rem;
+            color: #6c757d;
+        }
+
+        .breadcrumb-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+    </style>
+    <!-- Views/Shared/_Breadcrumb.cshtml -->
+  
+    <!-- Header Section -->
+   
+        <nav aria-label="breadcrumb">
+            <ol id="breadcrumb" class="breadcrumb bg-dark text-white text-center py-2"></ol>
+        </nav>
+  
+
+    <script>
+        // Get the URL path and split it into segments
+        const pathSegments = window.location.pathname.split('/').filter(segment => segment);
+        const breadcrumb = document.getElementById('breadcrumb');
+
+        // Start with a link to Home
+        let path = '/';
+        const homeCrumb = document.createElement('li');
+        homeCrumb.classList.add('breadcrumb-item');
+        homeCrumb.innerHTML = `<a href="/">Home</a>`;
+        breadcrumb.appendChild(homeCrumb);
+
+        // Loop through each segment to build the breadcrumb trail
+        pathSegments.forEach((segment, index) => {
+            path += `${segment}/`;
+            const crumb = document.createElement('li');
+            crumb.classList.add('breadcrumb-item');
+
+            // Check if it's the last item
+            if (index === pathSegments.length - 1) {
+                crumb.classList.add('active');
+                crumb.setAttribute('aria-current', 'page');
+                crumb.textContent = segment;
+            } else {
+                crumb.innerHTML = `<a href="${path}">${segment}</a>`;
+            }
+
+            breadcrumb.appendChild(crumb);
+        });
+    </script>
+
+</div>

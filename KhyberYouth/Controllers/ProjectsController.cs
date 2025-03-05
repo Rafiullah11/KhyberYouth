@@ -8,9 +8,12 @@ using System.IO;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KhyberYouth.Controllers
 {
+    [AllowAnonymous]
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -34,12 +37,15 @@ namespace KhyberYouth.Controllers
             return View(await PaginatedList<Project>.CreateAsync(projects, pageNumber ?? 1, pageSize));
         }
 
-        public IActionResult AllProject(int page = 1)
+        public IActionResult AllProject()
         {
-            ViewData["Page"] = page; // Pass the page number to the view
-            return View();
-        }
+            var publishedBlogs = _context.Projects
+          .Where(b => b.IsPublished) // Only fetch blogs where IsPublish is true
+          .OrderByDescending(b => b.Id) // Optional: Order by latest published
+          .ToList();
 
+            return View(publishedBlogs);
+        }
 
 
 
@@ -53,7 +59,7 @@ namespace KhyberYouth.Controllers
 
             // Fetch recent projects, excluding the current project
             var recentProjects = await _context.Projects
-                .Where(p => p.Id != id)
+                .Where(p => p.Id != id && p.IsPublished)
                 .OrderByDescending(p => p.StartDate)
                 .Take(3)
                 .Select(p => new ProjectViewModel
@@ -75,8 +81,9 @@ namespace KhyberYouth.Controllers
                 Name = project.Name,
                 Description = project.Description,
                 StartDate = project.StartDate,
-                EndDate = project.EndDate,
+                EndDate = (DateTime)project.EndDate,
                 IsCompleted = project.IsCompleted,
+                IsPublished = project.IsPublished,
                 ImagePath = project.ImagePath,
                 RecentProjects = recentProjects
             };
@@ -97,13 +104,19 @@ namespace KhyberYouth.Controllers
             {
                 string uniqueFileName = UploadFile(model.ImageFile);
 
+                // Sanitize the content
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(model.Description);
+                string plainTextContents = htmlDoc.DocumentNode.InnerText;
+
                 var project = new Project
                 {
                     Name = model.Name,
-                    Description = model.Description,
+                    Description = plainTextContents,
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
                     IsCompleted = model.IsCompleted,
+                    IsPublished = model.IsPublished,
                     ImagePath = uniqueFileName
                 };
 
@@ -128,8 +141,9 @@ namespace KhyberYouth.Controllers
                 Name = project.Name,
                 Description = project.Description,
                 StartDate = project.StartDate,
-                EndDate = project.EndDate,
+                EndDate = (DateTime)project.EndDate,
                 IsCompleted = project.IsCompleted,
+                IsPublished = project.IsPublished,
                 ExistingImagePath = project.ImagePath
             };
 
@@ -145,12 +159,18 @@ namespace KhyberYouth.Controllers
 
             if (ModelState.IsValid)
             {
+                // Sanitize the content
+                var htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(model.Description);
+                string plainTextContents = htmlDoc.DocumentNode.InnerText;
+
                 var project = await _context.Projects.FindAsync(id);
                 project.Name = model.Name;
-                project.Description = model.Description;
+                project.Description = plainTextContents;
                 project.StartDate = model.StartDate;
                 project.EndDate = model.EndDate;
                 project.IsCompleted = model.IsCompleted;
+                project.IsPublished = model.IsPublished;
 
                 if (model.ImageFile != null)
                 {

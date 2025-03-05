@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using KhyberYouth.ViewModel;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using KhyberYouth.Identity;
 
 namespace KhyberYouth.Models
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -57,7 +59,7 @@ namespace KhyberYouth.Models
         //            Icons = "fa-solid fa-hand-holding-dollar",
         //            Description = "Your donation brings hope and change. Support our mission by donating now.",
         //            ControllerName = "Home",
-        //            ActionName = "Privacy",
+        //            ActionName = "Donation",
         //        }
         //    );
         //}

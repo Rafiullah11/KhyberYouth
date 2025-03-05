@@ -18,6 +18,8 @@ namespace KhyberYouth.ViewModel
         [NotMapped] // This won't be mapped to the database
         public IFormFile? ImageFile { get; set; } // For uploading files
         public List<BlogViewModel> RecentBlogs { get; set; } // Add this
+                                                             // New property for full URL
+        public string BlogUrl { get; set; }
 
     }
 }

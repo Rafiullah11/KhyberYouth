@@ -1,0 +1,60 @@
+﻿@model KhyberYouth.Identity.LoginViewModel
+@{
+    // Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewData["Title"] = "Login";
+}
+
+
+    <div class="mt-lg-3 container  d-flex justify-content-center align-items-center">
+        <div class="mt-lg-5 col-md-6 col-lg-4 border shadow p-4" style="background-color: rgba(255, 255, 255, 0.85); border-radius: 15px;">
+            <h1 class="text-center mb-3 mt">Login</h1>
+            <hr />
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mt-2">
+                    <label asp-for="UserName" class="control-label">Username</label>
+                    <input asp-for="UserName" class="form-control" placeholder="admin@example.com" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <div class="input-group">
+                        <input asp-for="Password" id="myInput" class="form-control" placeholder="Admin@123" />
+                        <button class="btn btn-primary" type="button"><i onclick="togglePassword()" class="fas fa-eye"></i></button>
+                        <div class="input-group-append">
+                        </div>
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check mt-3">
+                    <input class="form-check-input" asp-for="RememberMe" />
+                    <label class="form-check-label">Remember Me</label>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Login" class="btn btn-primary w-100" />
+                </div>
+                <div class="row mt-4">
+                   @*  <div class="col-6">
+                        <a class="text-decoration-none btn-sm btn-outline-success" asp-action="Register" asp-controller="Account">Sign up here.</a><br />
+                    </div>
+ *@
+                    <div class="">
+                    <a class="btn btn-outline-info w-100" asp-action="ForgotPassword" asp-controller="Account">Forgot password?</a>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("myInput");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
