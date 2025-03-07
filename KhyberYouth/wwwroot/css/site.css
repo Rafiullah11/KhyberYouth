@@ -331,3 +331,13 @@ body {
     transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
+.custom-margin-top{
+    margin-top :5rem !important;
+}
+.btn-sm{
+    height:35px !important;
+    width:100px !important;
+    padding-top:0px !important;
+    margin-top:0px !important;
+    font-size:13px !important;
+}
