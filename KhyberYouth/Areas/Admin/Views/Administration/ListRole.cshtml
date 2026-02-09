@@ -1,37 +1,157 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @model IEnumerable<IdentityRole>
 
+<style>
+    .search-box {
+        border-radius: 20px;
+        padding-left: 40px;
+    }
+    .search-icon {
+        position: absolute;
+        left: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+   /*  .role-card {
+        transition: all 0.2s;
+        border: none;
+        border-left: 5px solid #0d6efd;
+    }
+    .role-card:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.01);
+    } */
 
-<div class="row ">
-    <div class="col-lg-9">
-        <h3 class="text-primary mb-4">List Of Roles</h3>
+    .role-card {
+        transition: all 0.2s;
+        border: none;
+        border-left: 5px solid #6c757d;
+    }
 
+        .role-card:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            border-left-color: #0d6efd;
+        }
+</style>
+
+<div class="container-fluid py-4">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+            <h3 class="text-primary fw-bold mb-0">Role Management</h3>
+            <p class="text-muted small">Viewing @Model.Count() total roles</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+            <a asp-action="CreateRole" asp-controller="Administration" class="btn btn-primary shadow-sm px-4">
+                <i class="fas fa-plus-circle me-2"></i>Create New Role
+            </a>
+        </div>
     </div>
 
-    <div class="col-3 text-end padding-right">
-
-        <a asp-action="CreateRole" asp-controller="Administration" class="btn btn-primary mb-3 ">
-            Add New Role
-        </a>
-
+    <div class="row mb-4">
+        <div class="col-md-4 position-relative">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="roleSearch" class="form-control search-box shadow-sm" placeholder="Search roles by name...">
+        </div>
     </div>
+
     <hr />
+
+    <div id="roleList">
+        @if (!Model.Any())
+        {
+            <div class="card shadow-sm border-0 text-center p-5">
+                <i class="fas fa-user-tag fa-4x text-light mb-3"></i>
+                <h5>No Roles Created Yet</h5>
+                <p class="text-muted">Use the button above to start adding security roles.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var role in Model)
+            {
+                <div class="card role-card shadow-sm mb-3 role-item" data-role-name="@role.Name.ToLower()">
+                    <div class="card-body py-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-4">
+                                <span class="text-muted small d-block">Role Name</span>
+                                <span class="fw-bold h5">@role.Name</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="text-muted small d-block">Role ID</span>
+                                <code class="text-dark">@role.Id</code>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post" id="deleteForm-@role.Id">
+                                    <a asp-action="EditRole" asp-controller="Administration" asp-route-id="@role.Id" 
+                                       class="btn btn-outline-primary btn-sm px-3 me-2">
+                                        <i class="fas fa-edit me-1"></i>Edit
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger btn-sm px-3" 
+                                            onclick="confirmDelete('@role.Id', '@role.Name')">
+                                        <i class="fas fa-trash me-1"></i>Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>
-@foreach (var role in Model)
-{
-    <div class="border pb-2">
-        <div class="card-header">
-            <strong>RoleId</strong>  : @role.Id
-        </div>
-        <div class="card-body">
-            <strong>Role Name</strong>  : @role.Name
-        </div>
-        <div class="card-footer">
-            <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                <a asp-action="EditRole" asp-controller="Administration" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
-                <button type="submit" class="btn btn-danger" 
-                        onclick="return confirm('Are you sure you want delete @role.Name')">Delete</button>
-            </form>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-triangle me-2"></i>Confirm Deletion</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <p class="mb-0">Are you sure you want to delete the role: <br><strong id="roleNameDisplay" class="h4"></strong>?</p>
+                <p class="text-muted small mt-2">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center border-0">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="confirmDeleteBtn" class="btn btn-danger px-4">Yes, Delete</button>
+            </div>
         </div>
     </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 1. Real-time Search Filtering
+        document.getElementById('roleSearch').addEventListener('input', function(e) {
+            const searchText = e.target.value.toLowerCase();
+            const roles = document.querySelectorAll('.role-item');
+            
+            roles.forEach(role => {
+                const name = role.getAttribute('data-role-name');
+                if(name.includes(searchText)) {
+                    role.style.display = 'block';
+                } else {
+                    role.style.display = 'none';
+                }
+            });
+        });
+
+        // 2. Interactive Modal Logic
+        let roleIdToDelete = null;
+        const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+
+        function confirmDelete(id, name) {
+            roleIdToDelete = id;
+            document.getElementById('roleNameDisplay').innerText = name;
+            deleteModal.show();
+        }
+
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+            if (roleIdToDelete) {
+                document.getElementById('deleteForm-' + roleIdToDelete).submit();
+            }
+        });
+    </script>
 }

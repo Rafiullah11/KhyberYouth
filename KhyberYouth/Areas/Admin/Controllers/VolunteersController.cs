@@ -34,9 +34,13 @@ namespace KhyberYouth.Areas.Admin.Controllers
             return View(volunteers);
         }
 
-        public IActionResult AllVolunteer(int page = 1)
+        //public IActionResult AllVolunteer(int page = 1)
+        //{
+        //    ViewData["Page"] = page; // Pass the page number to the view
+        //    return View();
+        //}
+        public IActionResult AllVolunteer()
         {
-            ViewData["Page"] = page; // Pass the page number to the view
             return View();
         }
         // GET: Volunteers/Details/5
@@ -97,7 +101,7 @@ namespace KhyberYouth.Areas.Admin.Controllers
 
                 _context.Add(volunteer);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(AllVolunteer));
+                return RedirectToAction(nameof(Index));
             }
             return View(model);
         }

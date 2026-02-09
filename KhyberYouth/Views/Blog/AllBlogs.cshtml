@@ -1,37 +1,76 @@
 ﻿@model IEnumerable<KhyberYouth.Models.BlogPost>
-@* @model List<KhyberYouth.ViewModel.BlogViewModel> *@
 
+<style>
+    .blog-list-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
 
+        .blog-list-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-<!-- Header Section -->
-<header class="theme-color text-white text-center py-5">
-    <h3>Khyber Youth Welfare Organization</h3>
-    <h4>All Blog</h4>
+    .blog-img-container {
+        height: 220px;
+        overflow: hidden;
+    }
+
+        .blog-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Keeps aspect ratio without stretching */
+        }
+</style>
+
+<header class="theme-color text-white text-center py-5 shadow-sm">
+    <div class="container">
+        <h3>Khyber Youth Welfare Association (KYWA)</h3>
+        <h1 class="display-6 fw-bold">All Blogs</h1>
+    </div>
 </header>
-<section class="py-3 py-md-5">
-    <div class="blog-single">
-        <div class="container mt-lg-2">
-                <div class="row col-sm-10 offset-1">
+
+<section class="py-4 py-md-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            @* Centered column to keep the feed from stretching too wide on massive screens *@
+            <div class="col-lg-11">
+                <div class="row g-4">
                     @foreach (var blog in Model)
                     {
-                        <div class="col-md-4">
-                            <div class="card mt-3">
-                                <img src="~/images/@blog.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px; ">
-                                <div class="card-body">
-                                    <h5 class="card-title">@blog.Title</h5>
-                                    <p>
+                        <div class="col-12 col-md-6 col-lg-4 d-flex">
+                            @* h-100 ensures cards in the same row align perfectly *@
+                            <div class="card blog-list-card h-100 w-100 d-flex flex-column">
+                                <div class="blog-img-container">
+                                    <img src="~/images/@blog.ImagePath"
+                                         class="card-img-top"
+                                         alt="@blog.Title"
+                                         loading="lazy">
+                                </div>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title fw-bold">@blog.Title</h5>
+                                    <p class="card-text text-secondary flex-grow-1">
                                         @{
                                             var text = blog.Contents ?? string.Empty;
-                                            var readMore = text.Length > 50 ? text.Substring(0, 50) + "..." : text;
+                                            var preview = text.Length > 80 ? text.Substring(0, 80) + "..." : text;
                                         }
-                                        @readMore
+                                        @preview
                                     </p>
-                                    <a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.Id" class="btn theme-btn">View Details</a>
+                                    <div class="mt-3">
+                                        <a asp-action="Details"
+                                           asp-controller="Blog"
+                                           asp-route-id="@blog.Id"
+                                           class="btn theme-btn w-100">
+                                            Read Full Story
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
+            </div>
         </div>
     </div>
 </section>

@@ -1,33 +1,112 @@
 ﻿@model KhyberYouth.Identity.UserClaimsViewModel
 
+@{
+    ViewBag.Title = "Manage User Claims";
+}
 
-<form method="post" asp-action="ManageUserClaims" asp-controller="Administration">
-    <div class="card">
-        <div class="card-header">
-            <h3> Manage user claims</h3>
-        </div>
-        <div class="card-body">
-
-            @for (int i = 0; i < Model.Claims.Count; i++)
-            {
-                <div class="form-check m-1">
-                    <input type="hidden" asp-for="@Model.Claims[i].ClaimsType" />
-                    <input asp-for="@Model.Claims[i].IsSelected" class="form-check-input" />
-
-                    <label class="form-check-label" asp-for="@Model.Claims[i].IsSelected">
-                        @Model.Claims[i].ClaimsType
-                    </label>
-                </div>
-            }
-
-        </div>
-
-        <div class="card-footer">
-            <input type="submit" value="Update" class="btn btn-primary" style="width:auto;" />
-
-            <a asp-action="EditUser" asp-route-id="@Model.UserId" class="btn btn-secondary" style="width:auto;">
-                Cancel
-            </a>
+<div class="container-fluid py-4">
+    <div class="d-flex align-items-center mb-4">
+        <a asp-action="EditUser" asp-route-id="@Model.UserId" class="btn btn-outline-secondary btn-sm me-3 shadow-sm">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div>
+            <h3 class="text-primary fw-bold mb-0">Manage Permissions</h3>
+            <p class="text-muted small mb-0">Toggle claims for User ID: <span class="fw-bold">@Model.UserId</span></p>
         </div>
     </div>
-</form>
+
+    <form method="post" asp-action="ManageUserClaims" asp-controller="Administration">
+        <input type="hidden" asp-for="@Model.UserId" />
+
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white py-3 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5 class="mb-0 fw-bold text-dark">Available System Claims</h5>
+                    </div>
+                    <div class="col text-end">
+                        <span class="badge bg-soft-info text-info border border-info px-3 py-2">
+                            @Model.Claims.Count Total Claims
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    @for (int i = 0; i < Model.Claims.Count; i++)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="claim-item-wrapper p-3 border rounded-3 h-100 transition-all shadow-sm">
+                                <div class="form-check d-flex align-items-center mb-0">
+                                    <input type="hidden" asp-for="@Model.Claims[i].ClaimsType" />
+                                    <input asp-for="@Model.Claims[i].IsSelected" class="form-check-input custom-checkbox me-3" />
+
+                                    <label class="form-check-label flex-grow-1 cursor-pointer fw-semibold" asp-for="@Model.Claims[i].IsSelected">
+                                        @Model.Claims[i].ClaimsType
+                                        <small class="d-block text-muted fw-normal mt-1">Grants access to @Model.Claims[i].ClaimsType features</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card-footer bg-light py-4 border-top">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-center text-md-start">
+                            <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm fw-bold">
+                                <i class="fas fa-check-circle me-2"></i>Save Changes
+                            </button>
+                            <a asp-action="EditUser" asp-route-id="@Model.UserId" class="btn btn-outline-danger px-5 py-2 ms-md-2 mt-2 mt-md-0 shadow-sm fw-bold">
+                                <i class="fas fa-times-circle me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Styling to make the whole card area look interactive */
+    .claim-item-wrapper {
+        background-color: #fff;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .claim-item-wrapper:hover {
+            border-color: #0d6efd !important;
+            background-color: #f0f7ff;
+        }
+
+        /* Highlight the card when the internal checkbox is checked */
+        .claim-item-wrapper:has(.form-check-input:checked) {
+            border-color: #0d6efd !important;
+            background-color: #eef6ff;
+            border-left: 5px solid #0d6efd !important;
+        }
+
+    .custom-checkbox {
+        width: 1.5em;
+        height: 1.5em;
+        cursor: pointer;
+    }
+
+    .bg-soft-info {
+        background-color: #e0f7fa;
+        color: #00838f;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .transition-all {
+        transition: all 0.3s;
+    }
+</style>

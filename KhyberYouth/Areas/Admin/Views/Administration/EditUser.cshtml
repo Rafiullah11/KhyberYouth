@@ -3,89 +3,133 @@
 @{
     ViewBag.Title = "Edit User";
 }
-<h2>Edit User </h2>
 
-<form method="post" class="mt-3">
-    <div class="form-group">
-        <label asp-for="Id" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-        <input asp-for="Id" disabled class="form-control"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-        <input asp-for="UserName"  class="form-control"/>
-        <span asp-validation-for="UserName" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-        <input asp-for="Email"  class="form-control"/>
-        <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group mt-2">
-        <div class="col-sm-10">
-        <input type="submit"  value="Update" class="btn btn-primary"/>
-        <a asp-action="ListUser" asp-controller="Administration" class="btn btn-danger">Cancel</a>
-        </div>
+<div class="container-fluid py-4">
+    <div class="d-flex align-items-center mb-4">
+        <a asp-action="ListUser" asp-controller="Administration"
+           class="btn btn-outline-secondary me-3 d-inline-flex align-items-center">
+            <i class="align-items-center fas fa-arrow-left"></i>
+        </a>
+        <h3 class="text-primary fw-bold mb-0">Edit User Profile</h3>
     </div>
 
-        <div class="card mt-3">
-            <div class="card-header">
-                <h3>User Roles</h3>
-            </div>
-            <div class="card-body">
-                @if(Model.Roles.Any())
-            {
-                foreach(var role in Model.Roles)
-                {
-                     <h3 class="card-title">
-                    User Name : @role
-                    </h3>
-                }
-            }
-            else
-            {
-                <h3 class="card-title">
-                    no user found
-                </h3>
-            }
-           
-            </div>
-            <div class="card-footer">
-                <a asp-action="ManageUserRoles" asp-controller="Administration"
-                asp-route-id="@Model.Id" class="btn btn-primary">Manage role</a>
-            </div>
-        </div>
-        
-        <div class="card mt-3">
-            <div class="card-header">
-                <h3>User Claims</h3>
-            </div>
-            <div class="card-body">
-                @if(Model.Claims.Any())
-            {
-                foreach(var claim in Model.Claims)
-                {
-                     <h3 class="card-title">
-                    User Name : @claim
-                    </h3>
-                }
-            }
-            else
-            {
-                <h3 class="card-title">
-                    no user found
-                </h3>
-            }
-           
-            </div>
-            <div class="card-footer">
-                <a asp-action="ManageUserClaims" asp-controller="Administration"
-               asp-route-id="@Model.Id" class="btn btn-primary">Manage Claims</a>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-user-edit me-2 text-primary"></i>Account Details</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post">
+                        <div asp-validation-summary="All" class="text-danger small"></div>
+
+                        <div class="row mb-3">
+                            <label asp-for="Id" class="col-sm-3 col-form-label fw-bold"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="Id" readonly class="form-control-plaintext text-muted bg-light px-3 rounded" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label asp-for="UserName" class="col-sm-3 col-form-label fw-bold"></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white"><i class="fas fa-at"></i></span>
+                                    <input asp-for="UserName" class="form-control" placeholder="Enter username" />
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <label asp-for="Email" class="col-sm-3 col-form-label fw-bold"></label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white"><i class="fas fa-envelope"></i></span>
+                                    <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary px-4 shadow-sm">
+                                    <i class="fas fa-save me-2"></i>Update Profile
+                                </button>
+                                <a asp-action="ListUser" asp-controller="Administration" class="btn btn-light px-4 ms-2">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-</form>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-user-tag me-2 text-success"></i>Roles</h5>
+                    <a asp-action="ManageUserRoles" asp-controller="Administration" asp-route-id="@Model.Id"
+                       class="btn btn-outline-success rounded-pill">Manage</a>
+                </div>
+                <div class="card-body">
+                    @if (Model.Roles.Any())
+                    {
+                        foreach (var role in Model.Roles)
+                        {
+                            <span class="badge bg-soft-success text-success border border-success px-3 py-2 me-1 mb-2">
+                                <i class="fas fa-shield-alt me-1"></i>@role
+                            </span>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted small mb-0"><i class="fas fa-info-circle me-1"></i> No roles assigned.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-id-badge me-2 text-warning"></i>Claims</h5>
+                    <a asp-action="ManageUserClaims" asp-controller="Administration" asp-route-id="@Model.Id"
+                       class="btn btn-outline-warning rounded-pill">Manage</a>
+                </div>
+                <div class="card-body">
+                    @if (Model.Claims.Any())
+                    {
+                        <ul class="list-group list-group-flush">
+                            @foreach (var claim in Model.Claims)
+                            {
+                                <li class="list-group-item px-0 py-2 small border-0">
+                                    <i class="fas fa-check-circle text-warning me-2"></i>@claim
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-muted small mb-0"><i class="fas fa-info-circle me-1"></i> No claims assigned.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styling for a "soft" badge appearance */
+    .bg-soft-success {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+        border-color: #0d6efd;
+    }
+
+    .card {
+        border-radius: 12px;
+    }
+</style>

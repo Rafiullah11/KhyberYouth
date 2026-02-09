@@ -372,6 +372,35 @@ namespace KhyberYouth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MainIcons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActionName = "Media",
+                            ControllerName = "MediaGallery",
+                            Description = "Explore our journey and see the impact we’re making together.",
+                            Icons = "fa-solid fa-music",
+                            Title = "MEDIA"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActionName = "Create",
+                            ControllerName = "Volunteers",
+                            Description = "Join us to make a difference! Volunteer today and help bring positive change.",
+                            Icons = "fa-solid fa-bullhorn",
+                            Title = "BECOME VOLUNTEER"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActionName = "Donation",
+                            ControllerName = "Home",
+                            Description = "Your donation brings hope and change. Support our mission by donating now.",
+                            Icons = "fa-solid fa-hand-holding-dollar",
+                            Title = "SEND DONATION"
+                        });
                 });
 
             modelBuilder.Entity("KhyberYouth.Models.MediaGallery", b =>

@@ -93,7 +93,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // Required for Identity
+app.UseAuthentication();
 app.UseAuthorization();
 
 // Admin Area Route

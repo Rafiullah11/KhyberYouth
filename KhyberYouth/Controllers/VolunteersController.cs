@@ -61,5 +61,57 @@ namespace KhyberYouth.Controllers
             return View(detailsViewModel);
         }
 
+        // GET: Volunteers/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Volunteers/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(VolunteerCreateViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = UploadFile(model.ImageFile);
+
+                var volunteer = new Volunteer
+                {
+                    Name = model.Name,
+                    Qualification = model.Qualification,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    Address = model.Address,
+                    JoinedDate = model.JoinedDate,
+                    ImagePath = uniqueFileName
+                };
+
+                _context.Add(volunteer);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(AllVolunteer));
+            }
+            return View(model);
+        }
+
+        private string UploadFile(IFormFile imageFile)
+        {
+            string uniqueFileName = null;
+
+            if (imageFile != null)
+            {
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    imageFile.CopyTo(fileStream);
+                }
+            }
+
+            return uniqueFileName;
+        }
+
     }
 }

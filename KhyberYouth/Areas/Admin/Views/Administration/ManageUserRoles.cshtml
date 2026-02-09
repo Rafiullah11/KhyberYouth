@@ -1,34 +1,122 @@
 ﻿@model List<KhyberYouth.Identity.ManageRoleViewModel>
 
 @{
+    ViewBag.Title = "Manage User Roles";
     var userId = ViewBag.userId;
 }
 
-<form method="post" asp-action="ManageUserRoles" asp-controller="Administration">
-    <div class="card">
-        <div class="card-header">
-            <h2>Manage User Roles</h2>
-        </div>
-
-        @for (int i = 0; i < Model.Count; i++)
-        {
-            <div class="form-check m-1">
-                <input type="hidden" asp-for="@Model[i].RoleId" />
-                <input type="hidden" asp-for="@Model[i].RoleName" />
-                <input asp-for="@Model[i].IsSelected" class="form-check-input" />
-
-                <label class="form-check-label" asp-for="@Model[i].IsSelected">
-                    @Model[i].RoleName
-                </label>
-            </div>
-        }
-
-        <div class="card-footer">
-            <input type="submit" value="Update" class="btn btn-primary" style="width:auto;" />
-
-            <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-secondary" style="width:auto;">
-                Cancel
-            </a>
+<div class="container-fluid py-4">
+    <div class="d-flex align-items-center mb-4">
+        <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-outline-secondary btn-sm me-3 shadow-sm">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div>
+            <h3 class="text-primary fw-bold mb-0">Assign User Roles</h3>
+            <p class="text-muted small mb-0">Configuring access levels for User ID: <span class="text-dark fw-bold">@userId</span></p>
         </div>
     </div>
-</form>
+
+    <form method="post" asp-action="ManageUserRoles" asp-controller="Administration">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white py-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-shield-alt me-2 text-primary"></i>System Roles</h5>
+                    <span class="text-muted small">Select at least one role for standard access</span>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <input type="hidden" asp-for="@Model[i].RoleId" />
+                            <input type="hidden" asp-for="@Model[i].RoleName" />
+
+                            <div class="role-selection-card p-3 border rounded-3 h-100 position-relative transition-all">
+                                <div class="form-check d-flex align-items-start">
+                                    <input asp-for="@Model[i].IsSelected" class="form-check-input role-checkbox mt-1 me-3" />
+
+                                    <label class="form-check-label flex-grow-1 cursor-pointer" asp-for="@Model[i].IsSelected">
+                                        <span class="d-block fw-bold text-dark h6 mb-1">@Model[i].RoleName</span>
+
+                                        @* Visual helper text based on common role names *@
+                                        @if (Model[i].RoleName.ToLower().Contains("admin"))
+                                        {
+                                            <small class="text-danger fw-normal">Full system access and security control.</small>
+                                        }
+                                        else
+                                        {
+                                            <small class="text-muted fw-normal">Standard permissions for @Model[i].RoleName tasks.</small>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card-footer bg-light py-4 border-top">
+                <div class="d-flex flex-column flex-md-row justify-content-center justify-content-md-start">
+                    <button type="submit" class="btn btn-primary px-5 py-2 shadow-sm fw-bold mb-2 mb-md-0">
+                        <i class="fas fa-user-check me-2"></i>Update User Roles
+                    </button>
+                    <a asp-action="EditUser" asp-route-id="@userId" class="btn btn-outline-dark px-5 py-2 ms-md-3 shadow-sm fw-bold">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Custom Styling for Role Selection Cards */
+    .role-selection-card {
+        background-color: #ffffff;
+        border-color: #dee2e6;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        border-left: 4px solid #dee2e6;
+    }
+
+        .role-selection-card:hover {
+            border-color: #0d6efd;
+            background-color: #f8fbff;
+            transform: translateY(-2px);
+        }
+
+        /* Highlight style when the checkbox is checked */
+        .role-selection-card:has(.role-checkbox:checked) {
+            border-color: #0d6efd;
+            border-left-color: #0d6efd;
+            background-color: #f0f7ff;
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.1) !important;
+        }
+
+            /* Specific accent for Admin roles when selected */
+            .role-selection-card:has(.role-checkbox:checked) .fw-bold:contains('Admin'),
+            .role-selection-card:has(.role-checkbox:checked) span:contains('Admin') {
+                color: #dc3545;
+            }
+
+    .role-checkbox {
+        width: 1.4em;
+        height: 1.4em;
+        cursor: pointer;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .transition-all {
+        transition: all 0.25s ease;
+    }
+
+    /* Support for older browsers if :has() isn't available */
+    .role-checkbox:checked + .form-check-label {
+        color: #0d6efd;
+    }
+</style>

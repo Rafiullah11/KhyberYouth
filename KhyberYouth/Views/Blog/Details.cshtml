@@ -6,84 +6,145 @@
     var blogUrl = Context.Request.Scheme + "://" + Context.Request.Host + Url.Action("Details", "Blog", new { id = Model.Id });
 }
 
-<!-- Header Section -->
-<header class="theme-color text-white text-center py-5">
-    <h3>Khyber Youth Welfare Organization</h3>
-    <h4>Blog Details</h4>
+<style>
+    .blog-feature-img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Minimal Social Icons */
+    .share-icons a {
+        font-size: 1.4rem;
+        margin-left: 15px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .fa-facebook {
+        color: #1877F2;
+    }
+
+    .fa-twitter {
+        color: #1DA1F2;
+    }
+
+    .fa-whatsapp {
+        color: #25D366;
+    }
+
+    .share-icons a:hover {
+        transform: translateY(-3px);
+        opacity: 0.8;
+    }
+
+    /* Clickable Cards */
+    .clickable-card {
+        position: relative;
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+        .clickable-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+    .stretched-link::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        content: "";
+    }
+
+    .recent-img-wrapper {
+        height: 180px;
+        overflow: hidden;
+    }
+
+        .recent-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+</style>
+
+<header class="theme-color text-white text-center py-5 shadow-sm">
+    <div class="container">
+        <h3>Khyber Youth Welfare Association (KYWA)</h3>
+        <h1 class="display-6 fw-bold">Blog Details</h1>
+    </div>
 </header>
 
-<!-- Full Page Blog Details View -->
-<div class="blog-single">
-    <div class="container mt-lg-5">
-        <div class="row">
-            <!-- Blog Content Section -->
-            <div class="col-lg-10 offset-1 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <!-- Blog Image -->
-                        <div class="article-img mb-3">
-                            <img asp-append-version="true" src="@photoPath" class="img-fluid rounded" alt="Blog Image" style="height:500px; object-fit:cover;">
-                        </div>
+<div class="container mt-5 pb-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 mb-5">
+            <article class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <img asp-append-version="true" src="@photoPath" class="blog-feature-img shadow-sm mb-4" alt="@Model.Title">
 
-                        <!-- Blog Title -->
-                        <h2 class="widget-title">@Model.Title</h2>
+                    <h2 class="fw-bold mb-3">@Model.Title</h2>
 
-                        <div class="row mt-3">
-                            <div class="col-lg-4">
-                                <p class="text-muted">Published on @Model.PublishedOn.ToString("dd-MM-yyyy")</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="text-muted">Status: @(Model.IsPublish ? "Published" : "Unpublished")</p>
+                    <div class="row g-3 mb-4 align-items-center">
+                        <div class="col-12 col-md-8">
+                            <div class="d-flex flex-wrap gap-3">
+                                <div class="bg-light px-3 py-1 rounded-pill small border">
+                                    <i class="far fa-calendar-alt text-primary me-1"></i>
+                                    <strong>Published:</strong> @Model.PublishedOn.ToString("dd-MM-yyyy")
+                                </div>
+                                <div class="bg-light px-3 py-1 rounded-pill small border">
+                                    <i class="fas fa-info-circle text-success me-1"></i>
+                                    <strong>Status:</strong> @(Model.IsPublish ? "Live" : "Draft")
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Social Share Section -->
-                        <div class="mt-3">
-                            <h6>Share this Blog:</h6>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=@blogUrl" target="_blank" class="btn btn-primary btn-sm">
-                                <i class="fab fa-facebook"></i> Facebook
-                            </a>
-                            <a href="https://twitter.com/intent/tweet?url=@blogUrl&text=@Model.Title" target="_blank" class="btn btn-info btn-sm">
-                                <i class="fab fa-twitter"></i> Twitter
-                            </a>
-                            <a href="https://api.whatsapp.com/send?text=@blogUrl" target="_blank" class="btn btn-success btn-sm">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
-                            </a>
+                        <div class="col-12 col-md-4 text-md-end share-icons">
+                            <span class="small fw-bold text-muted">SHARE:</span>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=@blogUrl" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a href="https://twitter.com/intent/tweet?url=@blogUrl" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://api.whatsapp.com/send?text=@blogUrl" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         </div>
+                    </div>
 
-                        <hr>
+                    <hr>
+                    <div class="blog-content mt-4 lh-lg">
                         @Html.Raw(Model.Contents)
                     </div>
                 </div>
-            </div>
+            </article>
         </div>
 
-        <!-- Recent Blogs Section -->
-        <div class="row col-lg-10 offset-1 mb-3">
-            <div class="col-9">
-                <h6>Recent Blogs</h6>
+        <div class="col-12 col-lg-10">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h4 class="fw-bold mb-0 border-start border-4 border-warning ps-3">Recent Blogs</h4>
+                <a asp-action="AllBlogs" asp-controller="Blog" class="text-decoration-none fw-bold small">VIEW ALL</a>
             </div>
-            <div class="col-3 text-end">
-                <a asp-action="AllBlogs" asp-controller="Blog" class="">See All</a>
-            </div>
-        </div>
 
-        <div class="row col-lg-10 offset-1">
-            @foreach (var blog in Model.RecentBlogs)
-            {
-                <div class="col-md-4 mb-2">
-                    <div class="card" style="height:400px; width:300px">
-                        <img src="~/images/@blog.ImagePath" class="card-img-top img-fluid custom-img-recent">
-                        <div class="card-body">
-                            <h5 class="card-title">@blog.Title</h5>
-                            <p>@blog.ShortDescription</p>
-                        </div>
-                        <div>
-                            <a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.Id" class="btn theme-btn m-3">Read More</a>
+            <div class="row g-4">
+                @foreach (var blog in Model.RecentBlogs)
+                {
+                    <div class="col-12 col-md-4 d-flex">
+                        <div class="card clickable-card h-100 w-100">
+                            <div class="recent-img-wrapper">
+                                <img src="~/images/@blog.ImagePath" class="card-img-top" alt="@blog.Title">
+                            </div>
+                            <div class="card-body d-flex flex-column">
+                                <h6 class="card-title fw-bold">@blog.Title</h6>
+                                <p class="card-text text-muted small flex-grow-1">@blog.ShortDescription</p>
+
+                                <a asp-action="Details" asp-controller="Blog" asp-route-id="@blog.Id" class="stretched-link text-decoration-none fw-bold small">
+                                    Read More <i class="fas fa-chevron-right ms-1" style="font-size: 0.7rem;"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
 </div>

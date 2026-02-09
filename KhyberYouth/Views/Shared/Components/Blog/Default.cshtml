@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<KhyberYouth.ViewModel.BlogDetailsViewModel>
 @{
-    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count(); // Use all items if maxItems not specified
-    var blogsToShow = Model.Take(maxItems); // Limit the items to the specified number
+    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count();
+    var blogsToShow = Model.Take(maxItems);
 }
 
 <section class="py-3 py-md-5">
@@ -16,15 +16,22 @@
     </div>
 
     <div class="container overflow-hidden">
-        <div class="row">
+        @* Added g-4 for consistent spacing between cards when they stack *@
+        <div class="row g-4">
             @foreach (var blog in blogsToShow)
             {
-                <div class="col-12 col-lg-4">
-                    <article>
-                        <div class="card border-0" style="height:500px">
+                @* Changed to col-12 for mobile, col-md-6 for tablet, col-lg-4 for desktop *@
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="h-100">
+                        @* Removed style="height:500px" and added h-100 *@
+                        <div class="card border-0 h-100 shadow-sm">
                             <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
                                 <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">
-                                    <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/@blog.ImagePath" style="height:250px">
+                                    @* Added w-100 and object-fit: cover to maintain image ratio *@
+                                    <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size w-100"
+                                         loading="lazy"
+                                         src="~/images/@blog.ImagePath"
+                                         style="height:250px; object-fit: cover;">
                                 </a>
                                 <figcaption>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
@@ -38,11 +45,11 @@
                                 <div class="entry-header mb-3">
                                     <ul class="entry-meta list-unstyled d-flex mb-2">
                                         <li>
-                                            <a class="link-primary text-decoration-none" asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">@blog.Title</a>
+                                            <a class="link-primary text-decoration-none small fw-bold text-uppercase" asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">News</a>
                                         </li>
                                     </ul>
-                                    <h2 class="card-title entry-title h4 mb-0">
-                                        <a class="link-dark text-decoration-none" asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">@blog.Title</a>
+                                    <h2 class="card-title entry-title h5 mb-0">
+                                        <a class="link-dark text-decoration-none fw-bold" asp-controller="Blog" asp-action="Details" asp-route-id="@blog.Id">@blog.Title</a>
                                     </h2>
                                 </div>
                                 <p class="card-text entry-summary text-secondary">

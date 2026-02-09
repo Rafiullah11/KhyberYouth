@@ -4,35 +4,97 @@
     var projectsToShow = Model.Take(maxItems);
 }
 
-<section class="d-help-volunteer-team py-5">
-    <div class="container mt-4">
-        <div class="d-help-section-title-new text-center mb-5">
-            <h1>SEE OUR PERFECT TEAM</h1>
-            <h5>Meet our exceptional team members who inspire and motivate us every day.</h5>
-            <hr class="w-50 mx-auto border-dark-subtle">
-        </div>
+<style>
+    /* Card Container Logic */
+    .team-item {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border: none;
+        border-radius: 12px;
+        position: relative; /* Essential for stretched-link */
+    }
 
-        <div class="row">
+    .team-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+    }
+
+    /* Image Control */
+    .img-wrapper {
+        height: 320px; /* Fixed height for a clean grid */
+        overflow: hidden;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .img-wrapper img {
+        transition: transform 0.6s ease;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .team-item:hover .img-wrapper img {
+        transform: scale(1.1);
+    }
+
+    /* Branding & Badges */
+    .dept-badge {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        color: #ffc107;
+        text-transform: uppercase;
+        display: block;
+    }
+
+    /* Clickable Card Link */
+    .stretched-link::after {
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: 1;
+        content: "";
+    }
+
+    @@media (max-width: 768px) {
+        .img-wrapper {
+            height: 280px;
+        }
+    }
+</style>
+
+@* <header class="theme-color text-white text-center py-5 shadow-sm">
+    <div class="container">
+        <h3>Khyber Youth Welfare Association (KYWA)</h3>
+        <h1 class="display-6 fw-bold text-uppercase">Our Perfect Team</h1>
+        <p class="lead opacity-75">Meet the exceptional minds driving our mission forward.</p>
+    </div>
+</header> *@
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
             @foreach (var member in projectsToShow)
             {
-                <div class="col-md-3 col-sm-6 mb-4">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="position-relative overlay">
-                            <img class="card-img-top img-fluid custom-PassImg-size"
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                    <div class="card shadow-sm h-100 team-item w-100">
+                        
+                        <div class="img-wrapper">
+                            <img class="card-img-top"
                                  loading="lazy"
-                                 src="~/images/@(member.ImagePath ?? "default-image.png")"
-                                 alt="@member.Name"
-                                 style="height: 400px; object-fit: cover;">
+                                 src="~/images/@(member.ImagePath ?? "default-team.png")"
+                                 alt="@member.Name">
                         </div>
 
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">@member.Name</h5>
-                            <p class="card-text text-secondary">
-                                @member.Dept 
-                                <br />
-                            </p>
-                            <a asp-controller="Team" asp-action="Details" asp-route-id="@member.Id"
-                               class="btn btn-primary mt-auto">More details</a>
+                        <div class="card-body d-flex flex-column text-center p-4">
+                            <span class="dept-badge mb-2">@member.Dept</span>
+                            <h5 class="card-title fw-bold text-dark mb-3">@member.Name</h5>
+                            
+                            <div class="mt-auto pt-3 border-top">
+                                <a asp-controller="Team" asp-action="Details" asp-route-id="@member.Id"
+                                   class="stretched-link text-decoration-none text-dark small fw-bold">
+                                   VIEW DETAILS <i class="fas fa-arrow-right ms-1 text-warning"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

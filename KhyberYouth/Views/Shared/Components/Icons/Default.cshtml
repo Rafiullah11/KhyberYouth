@@ -1,19 +1,18 @@
 ﻿@model IEnumerable<KhyberYouth.ViewModel.MainIconDetailsViewModel>
 
-
-<!-- Media, Volunteer, and Donation Section Start -->
 @if (Model != null && Model.Any())
 {
     <div class="container mt-5">
         <div class="row">
             @foreach (var icon in Model)
             {
-                <div class="col-4">
+                /* Changed col-4 to col-12 col-md-4 for responsiveness */
+                <div class="col-12 col-md-4 mb-4 mb-md-0">
                     <a asp-controller="@icon.ControllerName"
                        asp-action="@icon.ActionName"
                        class="text-decoration-none">
                         <div class="card text-center custom-card border-0">
-                            <div class="card-body ">
+                            <div class="card-body">
                                 <h2 class="card-title mb-3 custom-title">@icon.Title.ToUpper()</h2>
                                 <i class="@icon.Icons custom-icon icon-custom-hover"></i>
                                 <p class="mt-3">@icon.Description</p>
@@ -23,13 +22,13 @@
                 </div>
             }
         </div>
-    </div> 
+    </div>
 }
 else
 {
     <div class="container mt-5">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
                 <a asp-controller="MediaGallery" asp-action="Media" class="text-decoration-none">
                     <div class="card text-center custom-card border-0">
                         <div class="card-body">
@@ -40,18 +39,20 @@ else
                     </div>
                 </a>
             </div>
-            <div class="col-sm-4">
+
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
                 <a asp-controller="Volunteers" asp-action="Create" data-toggle="modal" data-target="#myModal" class="text-decoration-none">
                     <div class="card text-center custom-card border-0">
                         <div class="card-body">
-                            <h2 class="card-title fw-bold mb-3 custom-title">BECOME VOLUNTEER</h2>
-                            <i class="fa-solid fa-bullhorn custom-icon icon-custom-hover"></i>
+                            <h2 class="card-title fw-bold mb-3 custom-title text-warning">BECOME VOLUNTEER</h2>
+                            <i class="fa-solid fa-bullhorn custom-icon icon-custom-hover text-warning"></i>
                             <p class="mt-3">Join us to make a difference! Volunteer today and help bring positive change..</p>
                         </div>
                     </div>
                 </a>
             </div>
-            <div class="col-sm-4">
+
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
                 <a asp-controller="Home" asp-action="Donation" class="text-decoration-none">
                     <div class="card text-center custom-card border-0">
                         <div class="card-body">
@@ -65,4 +66,3 @@ else
         </div>
     </div>
 }
-<!-- Media, Volunteer, and Donation Section End -->

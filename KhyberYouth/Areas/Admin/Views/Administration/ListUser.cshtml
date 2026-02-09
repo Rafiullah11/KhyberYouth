@@ -1,61 +1,169 @@
 ﻿@using KhyberYouth.Identity
 @model IEnumerable<ApplicationUser>
 
+<style>
+    .user-card {
+        transition: all 0.2s;
+        border: none;
+        border-left: 5px solid #6c757d;
+    }
 
+        .user-card:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            border-left-color: #0d6efd;
+        }
 
-@if (Model.Any())
-{
-    <div class="row ">
-        <div class="col-lg-9">
-            <h3 class="text-primary mb-4">User List</h3>
+    .search-box {
+        border-radius: 20px;
+        padding-left: 40px;
+    }
 
+    .search-icon {
+        position: absolute;
+        left: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+
+    .avatar-circle {
+        width: 45px;
+        height: 45px;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #0d6efd;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <div class="row align-items-center mb-4">
+        <div class="col-md-6">
+            <h3 class="text-primary fw-bold mb-0">User Directory</h3>
+            <p class="text-muted small">Managing @Model.Count() active accounts</p>
         </div>
-
-        <div class="col-3 text-end padding-right">
-
-            <a asp-action="Register" asp-controller="Account" class="btn btn-primary mb-3 ">
-                Add New Record
+        <div class="col-md-6 text-md-end">
+            <a asp-action="Register" asp-controller="Account" class="btn btn-primary shadow-sm px-4">
+                <i class="fas fa-user-plus me-2"></i>Add New User
             </a>
-
         </div>
-        <hr />
     </div>
 
-    foreach (var user in Model)
+    @if (Model.Any())
     {
-        <div class="card">
-            <div class="card-header">
-                User Id : @user.Id
+        <div class="row mb-4">
+            <div class="col-md-4 position-relative">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="userSearch" class="form-control search-box shadow-sm" placeholder="Search by username or email...">
             </div>
-            <div class="card-body">
-                <h3 class="card-title">
-                    User Name : @user.UserName
-                </h3>
-            </div>
-            <div class="card-header">
-                <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
-                <a asp-action="EditUser" asp-controller="Administration" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
-                <button type="submit" class="btn btn-danger" 
-                        onclick="return confirm('Are you sure you want delete @user.UserName')">Delete</button>
-                 </form>
+        </div>
+
+        <div id="userList">
+            @foreach (var user in Model)
+            {
+                <div class="card user-card shadow-sm mb-3 user-item" data-search-key="@user.UserName.ToLower()">
+                    <div class="card-body py-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="avatar-circle me-3">
+                                    @user.UserName.Substring(0, 1).ToUpper()
+                                </div>
+                                <div>
+                                    <span class="text-muted small d-block">Username</span>
+                                    <span class="fw-bold h6 mb-0">@user.UserName</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <span class="text-muted small d-block">Account ID</span>
+                                <small class="text-truncate d-block" style="max-width: 200px;">@user.Id</small>
+                            </div>
+
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post" id="deleteForm-@user.Id">
+                                    <a asp-action="EditUser" asp-controller="Administration" asp-route-id="@user.Id"
+                                       class="btn btn-outline-primary btn-sm px-3 me-2">
+                                        <i class="fas fa-user-edit me-1"></i>Edit
+                                    </a>
+                                    <button type="button" class="btn btn-outline-danger btn-sm px-3"
+                                            onclick="confirmDeleteUser('@user.Id', '@user.UserName')">
+                                        <i class="fas fa-trash-alt me-1"></i>Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0 text-center p-5 mt-4">
+            <div class="p-4">
+                <i class="fas fa-users-slash fa-4x text-light mb-3"></i>
+                <h4 class="text-muted">No Users Found</h4>
+                <p class="mb-4">It looks like your user directory is currently empty.</p>
+                <a asp-action="Register" asp-controller="Account" class="btn btn-primary px-5">
+                    Create First User
+                </a>
             </div>
         </div>
     }
-}
-else
-{
-    <div class="card">
-        <div class="card-header">
-            no record found
-        </div>
-        <div class="card-body">
-            <h3 class="card-title">
-                click on the button to create record
-            </h3>
-            <a asp-action="Register" asp-controller="Account" class="btn btn-primary">
-                Add new user
-            </a>
-        </div>
+</div>
 
+<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title"><i class="fas fa-exclamation-circle me-2"></i>Delete User Account</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <p>Are you sure you want to permanently delete user:<br><strong id="userNameDisplay" class="h4"></strong>?</p>
+                <div class="alert alert-warning small mt-3">
+                    <i class="fas fa-info-circle me-1"></i> This will remove all access for this user.
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center border-0">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" id="confirmDeleteUserBtn" class="btn btn-danger px-4">Confirm Delete</button>
+            </div>
+        </div>
     </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Real-time Search Logic
+        document.getElementById('userSearch')?.addEventListener('input', function(e) {
+            const filter = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.user-item');
+
+            items.forEach(item => {
+                const text = item.getAttribute('data-search-key');
+                item.style.display = text.includes(filter) ? 'block' : 'none';
+            });
+        });
+
+        // Delete Modal Logic
+        let selectedUserId = null;
+        const uModal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
+
+        function confirmDeleteUser(id, name) {
+            selectedUserId = id;
+            document.getElementById('userNameDisplay').innerText = name;
+            uModal.show();
+        }
+
+        document.getElementById('confirmDeleteUserBtn').addEventListener('click', function() {
+            if (selectedUserId) {
+                document.getElementById('deleteForm-' + selectedUserId).submit();
+            }
+        });
+    </script>
 }

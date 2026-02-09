@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<KhyberYouth.ViewModel.ProjectDetailsViewModel>
 @{
-    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count(); // Use all items if maxItems not specified
-    var projectsToShow = Model.Take(maxItems); // Limit the items to the specified number
+    int maxItems = (ViewData["MaxItems"] as int?) ?? Model.Count();
+    var projectsToShow = Model.Take(maxItems);
 }
 
 <section class="py-3 py-md-5">
@@ -16,16 +16,19 @@
     </div>
 
     <div class="container overflow-hidden">
-
-        <div class="row">
+        <div class="row g-4">
             @foreach (var project in projectsToShow)
             {
-                <div class="col-12 col-lg-4">
+                /* Changed col-lg-4 to col-12 col-md-6 col-lg-4 */
+                <div class="col-12 col-md-6 col-lg-4">
                     <article>
-                        <div class="card border-0" style="height:500px">
+                        <div class="card border-0 h-100 shadow-sm">
                             <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
                                 <a asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id">
-                                    <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size" loading="lazy" src="~/images/@project.ImagePath" style="height:250px">
+                                    <img class="img-fluid bsb-scale bsb-hover-scale-up custom-img-size w-100"
+                                         loading="lazy"
+                                         src="~/images/@project.ImagePath"
+                                         style="height:250px; object-fit: cover;">
                                 </a>
                                 <figcaption>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">

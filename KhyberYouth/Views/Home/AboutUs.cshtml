@@ -1,91 +1,141 @@
-﻿
-    <!-- Header Section -->
-    <header class="theme-color text-white text-center py-5">
-        <h1 class="display-4">About Us</h1>
+﻿<style>
+  /*   .theme-color {
+        background-color: #ffc107;
+    } */
+    /* Example theme color */
+    .theme-btn {
+        background-color: #ffc107;
+        color: #000;
+        font-weight: bold;
+        border: none;
+    }
+
+        .theme-btn:hover {
+            background-color: #e0a800;
+        }
+
+    /* Interactive Card Styles */
+    .interactive-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-top: 4px solid #ffc107; /* Warning color top border */
+    }
+
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+        }
+
+    .icon-box {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #ffc107;
+        transition: transform 0.3s ease;
+    }
+
+    .interactive-card:hover .icon-box {
+        transform: scale(1.1);
+    }
+</style>
+
+<header class="theme-color text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">About Us</h1>
         <p class="lead">Learn more about the Khyber Youth Welfare Organization</p>
-    </header>
+    </div>
+</header>
 
-    <!-- Who We Are Section -->
-    <section class="container my-5">
+<section class="container my-5 py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+            <h2 class="text-warning mb-2 text-uppercase fw-bold">Who We Are</h2>
+            <hr class="w-25 mx-auto mb-4 border-dark-subtle" style="height: 3px; opacity: 1;">
+        </div>
+    </div>
 
-        <div class="container mt-5 col-lg-12">
-            <div>
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                    <h2 class="text-warning mb-2 text-uppercase text-center"> Who We Are</h2>
-                        @* <h6 class="text-center">To empower the less privileged through education, and community engagement</h6> *@
-                        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-12">
+            @{
+                ViewData["MaxItems"] = 1;
+            }
+            @await Component.InvokeAsync("About", new { AboutSection = 1 })
+        </div>
+    </div>
+</section>
 
-            <div>
-                @{
-                    ViewData["MaxItems"] = 1; // Set the number of items to display
-                }
-                @await Component.InvokeAsync("About", new { AboutSection = 1 })
-
+<section class="bg-light py-5 border-top border-bottom">
+    <div class="container text-center">
+        <h2 class="text-warning fw-bold mb-3">Our Mission</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <p class="lead text-secondary" style="line-height: 1.8;">
+                    Our mission is to support, nurture, and inspire the youth to realize their full potential. We aim to drive positive change through community service, education, and developmental programs that contribute to the well-being of society. By focusing on education, sports, and charitable initiatives, we are working to build a brighter, more inclusive future for the youth of Pakistan.
+                </p>
             </div>
         </div>
+    </div>
+</section>
 
-       
-    </section>
-
-    <!-- Mission Section -->
-    <section class="bg-light py-5">
-        <div class="container">
-            <h2 class="text-center text-warning">Our Mission</h2>
-            <p class="text-center">
-                Our mission is to support, nurture, and inspire the youth to realize their full potential. We aim to drive positive change through community service, education, and developmental programs that contribute to the well-being of society. By focusing on education, sports, and charitable initiatives, we are working to build a brighter, more inclusive future for the youth of Pakistan.
-            </p>
-        </div>
-    </section>
-
-    <!-- What We Do Section -->
-    <section class="container my-5">
-        <h2 class="text-warning text-center mb-4">What We Do</h2>
-        <div class="row">
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-warning">Scholarships & Awards</h5>
-                        <p class="card-text">Providing educational scholarships and recognizing achievements to encourage academic success.</p>
+<section class="container my-5 py-4">
+    <h2 class="text-warning text-center mb-5 fw-bold text-uppercase">What We Do</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm interactive-card">
+                <div class="card-body text-center p-4">
+                    <div class="icon-box">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-warning">Community Aid</h5>
-                        <p class="card-text">Helping underprivileged families with essentials, focusing on orphans and those in need.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-warning">Youth Empowerment</h5>
-                        <p class="card-text">Organizing recreational events and leadership programs to foster confidence and unity.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-warning">Skill Development</h5>
-                        <p class="card-text">Conducting workshops to equip youth with valuable skills for sustainable careers.</p>
-                    </div>
+                    <h5 class="card-title fw-bold">Scholarships & Awards</h5>
+                    <p class="card-text text-muted small">Providing educational scholarships and recognizing achievements to encourage academic success.</p>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm interactive-card">
+                <div class="card-body text-center p-4">
+                    <div class="icon-box">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Community Aid</h5>
+                    <p class="card-text text-muted small">Helping underprivileged families with essentials, focusing on orphans and those in need.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm interactive-card">
+                <div class="card-body text-center p-4">
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Youth Empowerment</h5>
+                    <p class="card-text text-muted small">Organizing recreational events and leadership programs to foster confidence and unity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card h-100 shadow-sm interactive-card">
+                <div class="card-body text-center p-4">
+                    <div class="icon-box">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Skill Development</h5>
+                    <p class="card-text text-muted small">Conducting workshops to equip youth with valuable skills for sustainable careers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Get Involved Section -->
-    <section class=" bg-dark text-white text-center py-5">
-        <h2 class="mb-4 container">Get Involved</h2>
-        <p class=" container">At KYWO, we believe that every individual has the power to make a difference. Whether you’re looking to volunteer, donate, or partner with us, there are many ways to get involved and contribute to our mission. Join hands with us, and let’s create a brighter future together.</p>
-        <a href="#get-involved" class="btn theme-btn btn-lg mt-3">Get Involved</a>
-    </section>
-
- 
- 
+<section class="bg-dark text-white text-center py-5">
+    <div class="container py-3">
+        <h2 class="mb-4 fw-bold">Get Involved</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p class="mb-4 opacity-75">
+                    At KYWO, we believe that every individual has the power to make a difference. Whether you’re looking to volunteer, donate, or partner with us, there are many ways to get involved and contribute to our mission. Join hands with us, and let’s create a brighter future together.
+                </p>
+                <a asp-controller="Contact" asp-action="ContactUs" class="btn theme-btn btn-lg px-5 py-3 rounded-pill shadow">Join Us Today</a>
+            </div>
+        </div>
+    </div>
+</section>

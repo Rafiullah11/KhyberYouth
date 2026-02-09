@@ -1,32 +1,122 @@
 ﻿@model KhyberYouth.Models.PaginatedList<KhyberYouth.ViewModel.TeamDetailsViewModel>
 
-<section class="py-3 py-md-5">
-    <div class="blog-single">
-        <div class="container mt-lg-2">
-            <div class="row">
-                <div class="row col-lg-10 offset-1">
-                    @foreach (var teamMember in Model)
-                    {
-                        <div class="col-md-4">
-                            <div class="card mt-lg-3">
-                                <img src="~/images/@teamMember.ImagePath" class="card-img-top img-fluid" style="height:250px; width:300px">
-                                <div class="card-body">
-                                    <h5 class="card-title">@teamMember.Name</h5>
-                                    <p>
-                                        <strong>Qualification:</strong> @teamMember.Qualification
-                                        @* @{
-                                            var text = teamMember.Qualification;
-                                            var readMore = text.Length > 50 ? text.Substring(0, 50) + "..." : text;
-                                        }
-                                        @readMore *@
-                                    </p>
-                                    <a asp-action="Details" asp-controller="Team" asp-route-id="@teamMember.Id" class="btn theme-btn">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
+<style>
+    /* Card Container Logic - Adopted from Volunteer */
+    .team-card {
+        border: none;
+        transition: all 0.3s ease-in-out;
+        border-radius: 12px;
+        position: relative; /* Required for stretched-link */
+        background: #fff;
+    }
+
+    /* Standardized 250px Image Height - Like Volunteer */
+    .team-img-container {
+        height: 250px;
+        overflow: hidden;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        background-color: #f8f9fa;
+    }
+
+        .team-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center; /* 👈 KEY LINE */
+            transition: transform 0.5s ease;
+        }
+
+    /* Interaction Effects */
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+    }
+
+        .team-card:hover img {
+            transform: scale(1.05);
+        }
+
+    /* Stretched link makes the entire card clickable */
+    .stretched-link::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        content: "";
+    }
+</style>
+
+
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center">
+                <h2 class="fw-bold text-uppercase text-warning">Management & Staff</h2>
+                <hr class="w-25 mx-auto border-warning" style="height:3px; opacity:1">
             </div>
         </div>
+
+        <div class="row g-4 justify-content-center">
+            @foreach (var teamMember in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <div class="card team-card shadow-sm w-100 overflow-hidden">
+
+                        <div class="team-img-container">
+                            <img src="~/images/@(teamMember.ImagePath ?? "default-user.png")"
+                                 alt="@teamMember.Name"
+                                 onerror="this.src='/images/default-user.png';">
+                        </div>
+
+                        <div class="card-body text-center d-flex flex-column">
+                            <h5 class="fw-bold mb-1">@teamMember.Name</h5>
+
+                            @* Qualification Badge styled like Volunteer's "Department" *@
+                            <small class="text-warning fw-bold text-uppercase mb-3" style="letter-spacing: 1px;">
+                                @teamMember.Qualification
+                            </small>
+
+                            @* Metadata Text with Icon *@
+                            <p class="text-muted small flex-grow-1">
+                                <i class="fas fa-briefcase me-1"></i>
+                                KYWA @teamMember.Dept Member
+                            </p>
+
+                            <div class="mt-auto pt-3 border-top">
+                                <a asp-action="Details"
+                                   asp-controller="Team"
+                                   asp-route-id="@teamMember.Id"
+                                   class="btn theme-btn w-100 stretched-link">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <div class="row mt-5">
+                <div class="col-12 d-flex justify-content-center gap-2">
+                    <a asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex - 1)"
+                       class="btn btn-outline-warning @(Model.HasPreviousPage ? "" : "disabled")">
+                        Previous
+                    </a>
+                    <span class="btn btn-light disabled">Page @Model.PageIndex of @Model.TotalPages</span>
+                    <a asp-action="Index"
+                       asp-route-pageNumber="@(Model.PageIndex + 1)"
+                       class="btn btn-outline-warning @(Model.HasNextPage ? "" : "disabled")">
+                        Next
+                    </a>
+                </div>
+            </div>
+        }
     </div>
 </section>

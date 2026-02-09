@@ -1,5 +1,44 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<style>
+  /*   .theme-color {
+        background-color: #003366;
+    } */
+    /* Example theme color */
+    .theme-btn {
+        background-color: #ffc107;
+        color: #000;
+        font-weight: bold;
+        border: none;
+    }
+
+        .theme-btn:hover {
+            background-color: #e0a800;
+        }
+
+    /* Interactive Card Styles */
+    .interactive-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-top: 4px solid #ffc107; /* Warning color top border */
+    }
+
+        .interactive-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+        }
+
+    .icon-box {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #ffc107;
+        transition: transform 0.3s ease;
+    }
+
+    .interactive-card:hover .icon-box {
+        transform: scale(1.1);
+    }
+</style>
+@{
+      ViewData["Title"] = "Home Page";
 }
 
 <div class="container-fluid p-0">
@@ -14,13 +53,13 @@
 
     <!-- Start Working Since section -->
 
-    <div class="container mt-5 col-lg-12">
+    <div class="container mt-3 col-lg-12">
         <div>
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
                     <h2 class="text-secondary mb-2 text-uppercase text-center"> Our Mission</h2>
                     <h6 class="text-center">To empower the less privileged through education, and community engagement</h6>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                    <hr class="w-50 mx-auto border-dark-subtle">
                 </div>
             </div>
         </div>
@@ -61,7 +100,7 @@
 
         <!-- Event Section Start -->
         <section class="container-fluid">
-                @await Component.InvokeAsync("Event")
+                 @await Component.InvokeAsync("Event") 
         </section>
         <!-- Event Section End -->
 
@@ -74,57 +113,72 @@
         </section>
         <!--D HELP VOLUNTEER TEAM END-->
 
-        <!--Stats Section Start-->
-        <section class="d-help-stats-wrap">
-            <div class="container mt-5">
-                <div class="row">
-                    <!--Help Stats Start-->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="d-help-stats">
-                            <h4>Enrollment 2018</h4>
-                            <h5><span class="counter">197</span>r.</h5>
-                            <p>We Work Constantly and We Strive for</p>
+        <!--What we do section-->
+        <section class="container my-5 py-4">
+            <h2 class="text-warning text-center mb-5 fw-bold text-uppercase">What We Do</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm interactive-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Scholarships & Awards</h5>
+                            <p class="card-text text-muted small">Providing educational scholarships and recognizing achievements to encourage academic success.</p>
                         </div>
                     </div>
-                    <!--Help Stats End-->
-                    <!--Help Stats Start-->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="d-help-stats">
-                            <h4>Child Abuse Cases</h4>
-                            <h5><span class="counter">98352</span></h5>
-                            <p>Active Volunteers Around the World</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm interactive-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Community Aid</h5>
+                            <p class="card-text text-muted small">Helping underprivileged families with essentials, focusing on orphans and those in need.</p>
                         </div>
                     </div>
-                    <!--Help Stats End-->
-                    <!--Help Stats Start-->
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <div class="d-help-stats">
-                            <h4>Human Rights Violations</h4>
-                            <h5><span class="counter">5,91,000</span></h5>
-                            <p>We Have Compiled for all people</p>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm interactive-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Youth Empowerment</h5>
+                            <p class="card-text text-muted small">Organizing recreational events and leadership programs to foster confidence and unity.</p>
                         </div>
                     </div>
-                    <!--Help Stats End-->
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 shadow-sm interactive-card">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Skill Development</h5>
+                            <p class="card-text text-muted small">Conducting workshops to equip youth with valuable skills for sustainable careers.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <!--Stats Section End-->
 
 
-        <!--Blog Section start-->
+       <!--Blog Section start-->
         <section class="py-3 py-md-5">
 
             @{
                 ViewData["MaxItems"] = 3; // Set the number of items to display
             }
-            @await Component.InvokeAsync("Blog", new { Blogs = 3 })
+            @await Component.InvokeAsync("Blog", new { Blogs = 3 }) 
 
         </section>
        
         <!--Brand logo slider-->
         <section>
             @await Component.InvokeAsync("Brand")
-        </section>
+        </section>  
 
     </div>
 </div>

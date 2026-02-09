@@ -1,50 +1,128 @@
 ﻿@model KhyberYouth.ViewModel.VolunteerDetailsViewModel
 
 @{
-    ViewData["Title"] = "Volunteer Details";
+    ViewData["Title"] = "Volunteer Profile";
 }
 
-<section class="py-4">
+<style>
+    /* Profile Image Styling */
+    .profile-card-img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Professional Info Layout */
+    .info-label {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: #6c757d;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .info-value {
+        font-size: 1.1rem;
+        color: #212529;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffc107; /* KYWA Warning/Gold color */
+        margin-right: 15px;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 10px 0;
+    }
+</style>
+
+<header class="theme-color text-white text-center py-5 shadow-sm">
     <div class="container">
-        <div class="card shadow-lg p-4">
-            <div class="row">
-                <!-- Left Side - Profile Image -->
-                <div class="col-md-4 text-center">
-                    <img src="~/images/@Model.ImagePath" class="img-fluid rounded-circle shadow" alt="Volunteer Image" style="width: 250px; height: 250px; object-fit: cover;">
-                    @* <img src="~/images/@volunteer.ImagePath" class="card-img-top img-fluid" style="height:200px; width:300px"> *@
-                </div>
+        <h3>Khyber Youth Welfare Association (KYWA)</h3>
+        <h1 class="display-6 fw-bold">Volunteer Profile</h1>
+    </div>
+</header>
 
-                <!-- Right Side - Volunteer Details -->
-                <div class="col-md-8">
-                    <h2 class="mb-4">@Model.Name</h2>
-                    <table class="table table-borderless">
-                        <tr>
-                            <th>Qualification:</th>
-                            <td>@Model.Qualification</td>
-                        </tr>
-                        <tr>
-                            <th>Email:</th>
-                            <td>@Model.Email</td>
-                        </tr>
-                        <tr>
-                            <th>Phone:</th>
-                            <td>@Model.PhoneNumber</td>
-                        </tr>
-                        <tr>
-                            <th>Address:</th>
-                            <td>@Model.Address</td>
-                        </tr>
-                        <tr>
-                            <th>Joined Date:</th>
-                            <td>@Model.JoinedDate.ToString("dd-MM-yyyy")</td>
-                        </tr>
-                    </table>
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card border-0 shadow-lg overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-4 bg-light text-center p-5 border-end">
+                            <img src="~/images/@Model.ImagePath"
+                                 class="rounded-circle profile-card-img mb-4"
+                                 alt="@Model.Name">
 
-                    <!-- Action Buttons -->
-                   @*  <div class="mt-4">
-                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-                    </div> *@
+                            <h3 class="fw-bold mb-1">@Model.Name</h3>
+                            <span class="badge bg-warning text-dark px-3 rounded-pill mb-4">Official Volunteer</span>
+
+                            <div class="mt-4 pt-4 border-top">
+                                <small class="text-muted d-block text-uppercase fw-bold">Member Since</small>
+                                <p class="fw-bold">@Model.JoinedDate.ToString("MMMM dd, yyyy")</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 p-4 p-md-5 bg-white">
+                            <h4 class="fw-bold mb-4 border-bottom pb-2">Professional Information</h4>
+
+                            <div class="row">
+                                <div class="col-md-6 detail-item">
+                                    <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                                    <div>
+                                        <span class="info-label">Qualification</span>
+                                        <span class="info-value">@Model.Qualification</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 detail-item">
+                                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                                    <div>
+                                        <span class="info-label">Email Address</span>
+                                        <span class="info-value">@Model.Email</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 detail-item">
+                                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+                                    <div>
+                                        <span class="info-label">Phone Number</span>
+                                        <span class="info-value">@Model.PhoneNumber</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 detail-item">
+                                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div>
+                                        <span class="info-label">Current Address</span>
+                                        <span class="info-value">@Model.Address</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 pt-3 d-flex gap-2">
+                                <a asp-action="AllVolunteer" asp-controller="Volunteers" class="btn btn-outline-secondary px-4">
+                                    <i class="fas fa-arrow-left me-2"></i> Back to Volunteer
+                                </a>
+                                @* Use this if your client demo allows editing *@
+                                @* <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark px-4">Edit Profile</a> *@
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

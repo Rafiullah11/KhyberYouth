@@ -1,0 +1,911 @@
+﻿USE [master]
+GO
+/****** Object:  Database [KhyberYouthDB]    Script Date: 2/9/2026 9:29:51 PM ******/
+CREATE DATABASE [KhyberYouthDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'KhyberYouthDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\KhyberYouthDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'KhyberYouthDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\KhyberYouthDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [KhyberYouthDB] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [KhyberYouthDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [KhyberYouthDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [KhyberYouthDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [KhyberYouthDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [KhyberYouthDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [KhyberYouthDB] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [KhyberYouthDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET RECOVERY FULL 
+GO
+ALTER DATABASE [KhyberYouthDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [KhyberYouthDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [KhyberYouthDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [KhyberYouthDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [KhyberYouthDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [KhyberYouthDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [KhyberYouthDB] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'KhyberYouthDB', N'ON'
+GO
+ALTER DATABASE [KhyberYouthDB] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [KhyberYouthDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [KhyberYouthDB]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AboutSections]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AboutSections](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[SectionTitle] [nvarchar](max) NOT NULL,
+	[Subtitle] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[MainImage] [nvarchar](max) NOT NULL,
+	[FounderImage] [nvarchar](max) NOT NULL,
+	[FounderName] [nvarchar](max) NOT NULL,
+	[FounderTitle] [nvarchar](max) NOT NULL,
+	[DescriptionTitle] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_AboutSections] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoleClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoleClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](450) NOT NULL,
+	[Name] [nvarchar](256) NULL,
+	[NormalizedName] [nvarchar](256) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](450) NOT NULL,
+	[ProviderKey] [nvarchar](450) NOT NULL,
+	[ProviderDisplayName] [nvarchar](max) NULL,
+	[UserId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](450) NOT NULL,
+	[RoleId] [nvarchar](450) NOT NULL,
+ CONSTRAINT [PK_AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](450) NOT NULL,
+	[FullName] [nvarchar](max) NULL,
+	[UserName] [nvarchar](256) NULL,
+	[NormalizedUserName] [nvarchar](256) NULL,
+	[Email] [nvarchar](256) NULL,
+	[NormalizedEmail] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[ConcurrencyStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEnd] [datetimeoffset](7) NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+ CONSTRAINT [PK_AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserTokens](
+	[UserId] [nvarchar](450) NOT NULL,
+	[LoginProvider] [nvarchar](450) NOT NULL,
+	[Name] [nvarchar](450) NOT NULL,
+	[Value] [nvarchar](max) NULL,
+ CONSTRAINT [PK_AspNetUserTokens] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[LoginProvider] ASC,
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BankAccountDetails]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BankAccountDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[AccountTitle] [nvarchar](max) NOT NULL,
+	[AccountNumber] [nvarchar](max) NOT NULL,
+	[IbanNumber] [nvarchar](max) NOT NULL,
+	[CurrencyType] [nvarchar](max) NOT NULL,
+	[BankName] [nvarchar](max) NOT NULL,
+	[BranchCode] [nvarchar](max) NOT NULL,
+	[SwiftCode] [nvarchar](max) NOT NULL,
+	[BankAddress] [nvarchar](max) NOT NULL,
+	[ContactPhoneNumber] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_BankAccountDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Banners]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Banners](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[ImagePath] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Banners] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BlogAuthors]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BlogAuthors](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NULL,
+ CONSTRAINT [PK_BlogAuthors] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[BlogPosts]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BlogPosts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[ImagePath] [nvarchar](max) NULL,
+	[PublishedOn] [datetime2](7) NOT NULL,
+	[BlogAuthorId] [int] NULL,
+	[Contents] [nvarchar](max) NULL,
+	[IsPublish] [bit] NOT NULL,
+ CONSTRAINT [PK_BlogPosts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Brands]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Brands](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[ImagePath] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Brands] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Contacts]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Contacts](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FullName] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[Subject] [nvarchar](max) NOT NULL,
+	[Message] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Contacts] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Events]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Events](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](100) NOT NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[Location] [nvarchar](200) NOT NULL,
+	[CreatedAt] [datetime2](7) NOT NULL,
+	[EndDate] [datetime2](7) NULL,
+ CONSTRAINT [PK_Events] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MainIconDetailsViewModel]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MainIconDetailsViewModel](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[Icons] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_MainIconDetailsViewModel] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MainIcons]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MainIcons](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[Icons] [nvarchar](max) NOT NULL,
+	[ActionName] [nvarchar](max) NOT NULL,
+	[ControllerName] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_MainIcons] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MediaGalleries]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MediaGalleries](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[ImagePath] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_MediaGalleries] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Projects]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Projects](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[Description] [nvarchar](max) NOT NULL,
+	[StartDate] [datetime2](7) NOT NULL,
+	[EndDate] [datetime2](7) NULL,
+	[IsCompleted] [bit] NOT NULL,
+	[ImagePath] [nvarchar](max) NULL,
+	[IsPublished] [bit] NOT NULL,
+ CONSTRAINT [PK_Projects] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Subscriptions]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Subscriptions](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[EventId] [int] NOT NULL,
+ CONSTRAINT [PK_Subscriptions] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TeamMembers]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TeamMembers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[Qualification] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[PhoneNumber] [nvarchar](max) NOT NULL,
+	[Address] [nvarchar](max) NOT NULL,
+	[JoinedDate] [datetime2](7) NOT NULL,
+	[ImagePath] [nvarchar](max) NOT NULL,
+	[Dept] [int] NOT NULL,
+ CONSTRAINT [PK_TeamMembers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Volunteers]    Script Date: 2/9/2026 9:29:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Volunteers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](max) NOT NULL,
+	[Qualification] [nvarchar](max) NULL,
+	[Email] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[Address] [nvarchar](max) NULL,
+	[JoinedDate] [datetime2](7) NOT NULL,
+	[ImagePath] [nvarchar](max) NULL,
+ CONSTRAINT [PK_Volunteers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241023161131_InitialCreate', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241023164244_AddMediaGallery', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241024132850_AddVolunteerandTeam', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241104162101_AddContactAndProject', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241105142356_AddEvent', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241105143849_addingFieldsInEventClass', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241106100158_testMigration', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241106133350_AddDeptEnum', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241107090749_addedBrandAndBaner', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241107165621_addedColumn', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241107180143_addedBankForDonation', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241108112905_addedAboutUs', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241111130841_modifiedContactSection', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241111135951_modifiedContactSectionAddDescriptionTitle', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241111144928_addMainIcons', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241111155942_addMainIconsIconFields', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241111163342_addMainIconsIconFieldsAdd', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241118155854_updatedProjectEdit1', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20241118160044_updatedProjectEdit', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250225142833_addingBlog', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250225163044_removingBlogCategory', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250225164407_removingComments', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250226112122_addIsPublishBoolInProject', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250226112701_addIsPublishBoolInProjectDate', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250226133535_removingIsPublishedOn', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250228212303_addingIdentityApi', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20250228223813_addSomeeMigration', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260104020807_Initials', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260205055724_initialCreated2', N'8.0.10')
+GO
+SET IDENTITY_INSERT [dbo].[AboutSections] ON 
+GO
+INSERT [dbo].[AboutSections] ([Id], [SectionTitle], [Subtitle], [Description], [MainImage], [FounderImage], [FounderName], [FounderTitle], [DescriptionTitle]) VALUES (1, N'Our Mission', N'To empower the less privileged through education, and community engagement', N'Khyber Youth Welfare Organization is a registered non-profit organization with the Government of Pakistan, dedicated to making a positive impact in the community through a variety of initiatives. The organization focuses on providing educational scholarships to deserving students, supporting the needy and poor, particularly orphans, and fostering opportunities for growth and development. Additionally, Khyber Youth Welfare Organization organizes entertainment activities, including sports like cricket, to promote healthy engagement and community bonding. Their mission is to uplift the less privileged and create a better future for all.', N'ef1a3aa7-10a7-4a7e-b172-e39be03b752f_18afebd2-0bea-4949-b994-56a5c9b4f39e_about-me.jpg', N'30e90055-7acd-4b20-aa87-cf4814296d14_ea39fdf1-ef6c-4fd6-a4cd-4414458ec631_rafiq.png', N'M.Rafiq', N'CEO & Founder', N' Khyber Youth Welfare Association')
+GO
+SET IDENTITY_INSERT [dbo].[AboutSections] OFF
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'883b77ad-9e9a-4aec-ac43-985b9f652d04', N'Admin', N'ADMIN', NULL)
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'dd69d7b5-25a9-48c5-909d-ab38124bb677', N'User', N'USER', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[AspNetUserClaims] ON 
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [UserId], [ClaimType], [ClaimValue]) VALUES (1, N'3674d298-1bf7-4a5e-b127-132dfa853046', N'Create Role', N'Create Role')
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [UserId], [ClaimType], [ClaimValue]) VALUES (2, N'3674d298-1bf7-4a5e-b127-132dfa853046', N'Edit Role', N'Edit Role')
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [UserId], [ClaimType], [ClaimValue]) VALUES (3, N'3674d298-1bf7-4a5e-b127-132dfa853046', N'Delete Role', N'Delete Role')
+GO
+SET IDENTITY_INSERT [dbo].[AspNetUserClaims] OFF
+GO
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'3674d298-1bf7-4a5e-b127-132dfa853046', N'883b77ad-9e9a-4aec-ac43-985b9f652d04')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FullName], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'3674d298-1bf7-4a5e-b127-132dfa853046', NULL, N'admin@example.com', N'ADMIN@EXAMPLE.COM', N'admin@example.com', N'ADMIN@EXAMPLE.COM', 1, N'AQAAAAIAAYagAAAAEJypde4dEnj0WnMflYMvccL3PRPNBSrymoNnBbkQgQMbJU3xACZ+6O77uijxeny0XQ==', N'JZUIPNF5JYYJ3K7FBIAMFOPIPEJ6UTEO', N'98d0e386-c25f-4a0d-b84b-e39e4037b925', NULL, 0, 0, NULL, 1, 0)
+GO
+SET IDENTITY_INSERT [dbo].[Banners] ON 
+GO
+INSERT [dbo].[Banners] ([Id], [Name], [ImagePath]) VALUES (3, N'banner bg3', N'252966c1-c19f-4d1e-ad14-2fd7b9dfcfe8_BannerBg.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Banners] OFF
+GO
+SET IDENTITY_INSERT [dbo].[BlogPosts] ON 
+GO
+INSERT [dbo].[BlogPosts] ([Id], [Title], [ImagePath], [PublishedOn], [BlogAuthorId], [Contents], [IsPublish]) VALUES (1, N'Helping the Needy: A Call for Zakat Distribution Before Ramadan', N'50e1bf20-7a9b-43f3-aed1-d13b672224cc_dcbb24bc-b520-429e-9a90-ca6b2a063e55_Zakat-3-scaled.jpg', CAST(N'2026-02-05T10:39:00.9754475' AS DateTime2), NULL, N'As the holy month of Ramadan approaches, it is our duty as Muslims to fulfill one of the five pillars of Islam—Zakat. Zakat is not just an obligation but a means to purify our wealth and help those in need. It ensures that the less fortunate, including the needy, poor, and orphans, can also experience the joy and blessings of Ramadan and Eid-ul-Fitr.
+
+The Importance of Giving Zakat Before Ramadan
+
+Many scholars emphasize the importance of distributing Zakat before Ramadan and Eid-ul-Fitr so that those in need can prepare for the sacred month with ease. The purpose of Zakat is to help those who struggle to afford basic necessities, ensuring they have food, clothing, and shelter. When Zakat is given before Ramadan, it allows the recipients to focus on their spiritual journey without the burden of financial distress.
+
+Khyber Youth Welfare Association (KYWA) – Serving the Needy
+
+At Khyber Youth Welfare Association (KYWA), we believe in extending our hands to the less privileged. Our team and volunteers are dedicated to distributing Zakat and other charitable donations free of cost. We ensure that your contributions reach the deserving people, including orphans, widows, and struggling families, in a transparent and organized manner.
+
+Our organization has been actively working to uplift the poor and support those in distress. With your generous support, we aim to bring smiles to those who are often forgotten by society. This Ramadan, let’s make a difference by ensuring that every family has food on their table and new clothes for Eid-ul-Fitr.
+
+Why You Should Choose KYWA for Zakat Distribution?
+
+Transparency & Trust – We ensure that your Zakat is distributed among the deserving with full accountability.
+
+Dedicated Volunteers – Our team is committed to reaching out to those in need, even in remote areas.
+
+No Service Charges – We provide these services completely free of cost, ensuring that every penny of your donation goes to those in need.
+
+Supporting Orphans & Widows – Special attention is given to orphans and widows to ensure they receive proper care and assistance.
+
+Year-Round Assistance – While Ramadan is a peak time for charity, our team works throughout the year to uplift underprivileged communities.
+
+How Can You Help?
+
+Donate Your Zakat Early – Don’t wait until the last moment. The earlier you give, the better we can organize the distribution.
+
+Spread the Word – Encourage your family and friends to contribute to this noble cause.
+
+Join Us as a Volunteer – If you wish to be part of our mission, we welcome volunteers to help us in our distribution programs.
+
+Conclusion
+
+Ramadan is a month of mercy, and what better way to seek Allah’s blessings than by helping those in need? By giving your Zakat before Ramadan and Eid-ul-Fitr, you not only fulfill your religious duty but also bring joy and relief to struggling families.
+
+The KYWA team and volunteers are ready to distribute your Zakat among the needy, poor, and orphans. Together, we can make a difference. Let’s stand united in spreading kindness and generosity this Ramadan.
+
+For donations and inquiries, contact us today!', 1)
+GO
+INSERT [dbo].[BlogPosts] ([Id], [Title], [ImagePath], [PublishedOn], [BlogAuthorId], [Contents], [IsPublish]) VALUES (2, N'The Importance of Children''s Education', N'5d28005f-3747-434f-9547-350b5b59ea2f_Education.png', CAST(N'2026-02-05T17:51:43.1593779' AS DateTime2), NULL, N'The Importance of Children''s Education: Addressing the Crisis in Tribal Districts of Pakistan.
+Education is the foundation of a prosperous society, yet in many parts of Pakistan, particularly in the tribal districts, children''s education remains a major challenge. The future of our nation depends on the knowledge and skills of our young generation, but many children in these regions are deprived of their basic right to education.
+
+The Crisis of Out-of-School Children in Tribal Districts
+
+The tribal areas of Pakistan, including Tehsil Bara in District Khyber, face significant educational disparities. Many children remain out of school due to poverty, lack of infrastructure, and inadequate resources. Even in schools that do exist, the teacher-to-student ratio is alarming. Some schools have only one or two teachers managing hundreds of students, making it nearly impossible to provide quality education that meets modern standards. Without proper educational facilities, these children are left behind, limiting their potential and future opportunities.
+
+Why Education Matters?
+
+Breaking the Cycle of Poverty – Education equips children with skills and knowledge to secure better jobs, ultimately improving their standard of living.
+
+Empowering Communities – An educated society is better equipped to make informed decisions, contribute to the economy, and drive positive change.
+
+Preventing Child Labor and Extremism – Education keeps children in schools and away from harmful activities, ensuring a safer and progressive future.
+
+Better Health and Well-being – Educated individuals are more aware of health and hygiene, leading to improved community health.
+
+KYWA’s Initiative: Distributing School Bags to Children
+
+At Khyber Youth Welfare Association (KYWA), we believe that every child deserves access to education. To support students in underprivileged areas, KYWA recently distributed 1,000 school bags among children in different schools in Tehsil Bara, District Khyber. This initiative aimed to encourage children to continue their education and alleviate some of the financial burdens on their families.
+
+Providing school bags may seem like a small step, but it carries a profound impact. It motivates children to attend school regularly and provides them with essential supplies to enhance their learning experience. KYWA is committed to supporting education and ensuring that no child is left behind.
+
+Call to Action: How Can You Help?
+
+Support Educational Initiatives – Donate school supplies, books, and resources to underprivileged students.
+
+Advocate for More Teachers – Raise awareness about the need for increased government intervention to improve the education system.
+
+Volunteer with KYWA – Join our efforts in creating a better future for the children of tribal districts.
+
+Encourage Enrollments – Spread awareness in communities about the importance of sending children to school.
+
+Conclusion
+
+Education is the key to a brighter future, yet thousands of children in tribal districts remain deprived of this basic right. We must work together to bridge this gap and provide equal learning opportunities for all. KYWA remains committed to uplifting education standards in underprivileged regions, and with your support, we can continue to make a difference.
+
+Let’s build a future where every child has access to quality education, regardless of their socio-economic background. Education is not a privilege—it is a right!', 1)
+GO
+INSERT [dbo].[BlogPosts] ([Id], [Title], [ImagePath], [PublishedOn], [BlogAuthorId], [Contents], [IsPublish]) VALUES (3, N'ENTERTAINMENT, PHYSICAL & MENTAL HEALTH', N'89bb59f3-8610-4756-8bdf-69f968965d72_Cricket.png', CAST(N'2026-02-05T17:58:27.9717336' AS DateTime2), NULL, N'ENTERTAINMENT, PHYSICAL & MENTAL HEALTH: BUILDING A POSITIVE AND HEALTHY SOCIETY,
+In today’s challenging world, maintaining physical and mental health is just as important as meeting our daily needs. Along with education and basic necessities, entertainment and recreational activities play a vital role in creating a balanced, healthy, and positive society. A healthy body and a peaceful mind are essential for individuals, especially youth, to grow confidently and contribute positively to their communities.
+
+IMPORTANCE OF PHYSICAL HEALTH
+
+Physical health is the foundation of a strong and active life. Regular physical activities such as sports and games help improve stamina, strength, and overall fitness. Activities like cricket and football keep the body active, reduce the risk of diseases, and promote discipline and teamwork. When youth are engaged in healthy physical activities, they stay away from negative habits and develop a sense of responsibility and confidence.
+
+MENTAL HEALTH AND POSITIVE ENTERTAINMENT
+
+Mental health is equally important as physical health. Stress, anxiety, and depression are increasing, especially among youth living in underdeveloped and conflict-affected areas. Positive entertainment, such as sports events, community games, and healthy recreational activities, helps reduce mental stress and brings happiness and motivation.
+
+Sports and group activities create a sense of belonging, improve social interaction, and boost self-esteem. When young people participate in positive entertainment, they feel relaxed, confident, and emotionally strong, which directly impacts their mental well-being.
+
+ROLE OF KYWA IN PROMOTING HEALTH AND ENTERTAINMENT
+
+Khyber Youth Welfare Association (KYWA) strongly believes in promoting a healthy lifestyle through positive entertainment and sports activities. We actively arrange and manage games like cricket and football to encourage youth towards physical fitness and mental well-being.
+
+Our initiatives aim to:
+
+Promote healthy physical activities
+
+Reduce mental stress through positive engagement
+
+Encourage teamwork, discipline, and leadership
+
+Provide safe and constructive entertainment opportunities
+
+All these activities are arranged and managed with the purpose of creating positivity in society and are provided free of cost for the community.
+
+A STEP TOWARDS A BETTER FUTURE
+
+Entertainment combined with physical activity is not a luxury; it is a necessity for a healthy society. By promoting sports and positive recreational activities, we can protect our youth from negative influences and help them grow into confident, healthy, and responsible individuals.
+
+KYWA remains committed to serving the community by promoting physical health, mental well-being, and positive entertainment. With collective efforts and community support, we can build a stronger, healthier, and happier future for everyone.
+
+TOGETHER, LET’S PLAY, STAY HEALTHY, AND LIVE POSITIVELY.', 1)
+GO
+SET IDENTITY_INSERT [dbo].[BlogPosts] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Brands] ON 
+GO
+INSERT [dbo].[Brands] ([Id], [Name], [ImagePath]) VALUES (1, N'Brand1', N'157d0763-8466-4289-97ba-668a61ce7f8f_help-brand1.png')
+GO
+INSERT [dbo].[Brands] ([Id], [Name], [ImagePath]) VALUES (2, N'Brand2', N'268a7d07-7a90-4264-83f2-3b1e7cdf67ad_help-brand2.png')
+GO
+INSERT [dbo].[Brands] ([Id], [Name], [ImagePath]) VALUES (3, N'Brand3', N'0138372d-a42f-4167-b081-d80c2b0bdc46_help-brand3.png')
+GO
+INSERT [dbo].[Brands] ([Id], [Name], [ImagePath]) VALUES (4, N'Brand4', N'fd1a57ee-f76f-489f-82ed-c882b3a24f24_help-brand1.png')
+GO
+INSERT [dbo].[Brands] ([Id], [Name], [ImagePath]) VALUES (5, N'Brand5', N'158a89e3-869a-4345-b564-d1d8498d565f_help-brand2.png')
+GO
+SET IDENTITY_INSERT [dbo].[Brands] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Events] ON 
+GO
+INSERT [dbo].[Events] ([Id], [Title], [StartDate], [Location], [CreatedAt], [EndDate]) VALUES (1, N'Ramzan ', CAST(N'2026-02-12T13:22:00.0000000' AS DateTime2), N'Bara Bazar', CAST(N'2026-02-05T12:22:42.5847064' AS DateTime2), CAST(N'2026-02-12T15:22:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[Events] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MainIcons] ON 
+GO
+INSERT [dbo].[MainIcons] ([Id], [Title], [Description], [Icons], [ActionName], [ControllerName]) VALUES (1, N'MEDIA', N'Explore our journey and see the impact we’re making together.', N'fa-solid fa-music', N'Media', N'MediaGallery')
+GO
+INSERT [dbo].[MainIcons] ([Id], [Title], [Description], [Icons], [ActionName], [ControllerName]) VALUES (2, N'BECOME VOLUNTEER', N'Join us to make a difference! Volunteer today and help bring positive change.', N'fa-solid fa-bullhorn', N'Create', N'Volunteers')
+GO
+INSERT [dbo].[MainIcons] ([Id], [Title], [Description], [Icons], [ActionName], [ControllerName]) VALUES (3, N'SEND DONATION', N'Your donation brings hope and change. Support our mission by donating now.', N'fa-solid fa-hand-holding-dollar', N'Donation', N'Home')
+GO
+SET IDENTITY_INSERT [dbo].[MainIcons] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Projects] ON 
+GO
+INSERT [dbo].[Projects] ([Id], [Name], [Description], [StartDate], [EndDate], [IsCompleted], [ImagePath], [IsPublished]) VALUES (1, N'KYWA Laptop Scholarship Test', N'Every year, the Khyber Youth Welfare Organization (KYWO) proudly organizes a Laptop Scholarship Ceremony to recognize and support talented students who excel in their studies. Through a rigorous scholarship test, KYWO identifies young achievers from diverse backgrounds and awards them with laptops to enhance their educational journey. This event celebrates the hard work and dedication of the students, while encouraging them to pursue their dreams and excel further. Families, teachers, and community members gather at the ceremony, applauding the successful candidates as they receive their laptops on stage. The KYWO Scholarship Program symbolizes hope, empowerment, and a commitment to nurturing the next generation of leaders.', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), CAST(N'2026-02-28T00:00:00.0000000' AS DateTime2), 0, N'f258516d-64ee-4ed9-b108-09a0e42da0a5_4e6bbbd1-86bd-4614-ba26-21421ddf69da_scholarship.webp', 1)
+GO
+INSERT [dbo].[Projects] ([Id], [Name], [Description], [StartDate], [EndDate], [IsCompleted], [ImagePath], [IsPublished]) VALUES (2, N'Orphan and Needy People', N'Here''s an image representing the heartfelt community efforts of KYWA (Khyber Youth Walfare Association). The organization is helping the needy people', CAST(N'2026-02-06T00:00:00.0000000' AS DateTime2), CAST(N'2026-02-27T00:00:00.0000000' AS DateTime2), 0, N'ee182ed3-23d3-4931-95fc-4923e5510d9d_dcbb24bc-b520-429e-9a90-ca6b2a063e55_Zakat-3-scaled.jpg', 1)
+GO
+INSERT [dbo].[Projects] ([Id], [Name], [Description], [StartDate], [EndDate], [IsCompleted], [ImagePath], [IsPublished]) VALUES (3, N'SPL Sepah Primier League (Cricket Series)', N'The SPL - Sepah Premier League is an exciting annual cricket series organized by the Khyber Youth Welfare Association (KYWA), designed to bring the community together for thrilling entertainment. Played as a fast-paced 10-over format, SPL showcases exhilarating matches where local talent battles it out in front of enthusiastic crowds. Each year, players and fans alike look forward to the SPL as it creates an electric atmosphere with its high-energy games, nail-biting finishes, and vibrant displays of skill. Beyond entertainment, the league fosters a spirit of unity and sportsmanship, as families, friends, and neighbors gather to cheer on their favorite teams and celebrate their shared love for cricket.', CAST(N'2026-02-06T00:00:00.0000000' AS DateTime2), CAST(N'2026-02-28T00:00:00.0000000' AS DateTime2), 0, N'1631aced-6464-496b-9b7f-8ea41b2f89f8_f6a5f446-e53d-4596-a961-281be9b92cf4_crictek.webp', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Projects] OFF
+GO
+SET IDENTITY_INSERT [dbo].[TeamMembers] ON 
+GO
+INSERT [dbo].[TeamMembers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Dept]) VALUES (1, N'Rafiq', N'BSc', N'Rafiq@gmail.com', N'1234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'50517833-d45d-434b-925f-faeeae125a47_Team1.png', 1)
+GO
+INSERT [dbo].[TeamMembers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Dept]) VALUES (2, N'Wazir', N'BA', N'Wazir@gmail.com', N'123456789', N'Bara', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), N'd83b5028-da22-4b93-9f7f-442bf9bd4479_Team3.jpg', 2)
+GO
+INSERT [dbo].[TeamMembers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Dept]) VALUES (3, N'Tufiq', N'FA', N'Tufiq@gmail.com', N'23456789', N'Bara', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'c631080f-4879-4102-8674-d49b56f717a8_Team4.jpg', 4)
+GO
+INSERT [dbo].[TeamMembers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Dept]) VALUES (4, N'Farooq', N'MSc', N'Farooq@gmail.com', N'23456789', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'810bb48b-8877-4124-943e-f32641ef6aca_Team2.jpg', 6)
+GO
+SET IDENTITY_INSERT [dbo].[TeamMembers] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Volunteers] ON 
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (1, N'Ali', N'BS-CS', N'Ali@gmaiml.com', N'033390001234', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'a6d69129-14b8-45e3-b4c5-0dfc07a3b591_Vulonteer1.png')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (2, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ed8f405a-0d88-45a0-95a4-1e0ede65e20e_AboutImage.jpg')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (3, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ac02bf68-3284-410a-859f-2a726e597a73_AboutImage.jpg')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (4, N'ff', N'yy', N'fff', N'45678', N'cvbn', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), N'71a0b577-1ee9-4eca-af93-5c047ab255da_AboutImage.jpg')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (5, N'ghj', N'qwe', N'asdfgh', N'asdfg', N'asdf', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'5b2ef3a9-6aa7-4b46-8956-d80c990c8b73_Team1.png')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (9, N'fg', N'rtyu', N'hjk', N'vnm,.', N'fghjkl', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'2c7cede3-e13b-4da2-a1aa-508990eaf3d1_Team2.jpg')
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (11, N'sdfgh', N'asdfghj', N'dfghjkl', N'dfghjkl;', N'dfghjkl', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'4fb6d5b5-c2e6-4f08-b64e-11bcb7520295_Team3.jpg')
+GO
+SET IDENTITY_INSERT [dbo].[Volunteers] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaims]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [RoleNameIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
+(
+	[NormalizedName] ASC
+)
+WHERE ([NormalizedName] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaims]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogins]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [EmailIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
+(
+	[NormalizedEmail] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UserNameIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
+(
+	[NormalizedUserName] ASC
+)
+WHERE ([NormalizedUserName] IS NOT NULL)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_BlogPosts_BlogAuthorId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_BlogPosts_BlogAuthorId] ON [dbo].[BlogPosts]
+(
+	[BlogAuthorId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_Subscriptions_EventId]    Script Date: 2/9/2026 9:29:52 PM ******/
+CREATE NONCLUSTERED INDEX [IX_Subscriptions_EventId] ON [dbo].[Subscriptions]
+(
+	[EventId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[AboutSections] ADD  DEFAULT (N'') FOR [DescriptionTitle]
+GO
+ALTER TABLE [dbo].[BlogPosts] ADD  DEFAULT (CONVERT([bit],(0))) FOR [IsPublish]
+GO
+ALTER TABLE [dbo].[Events] ADD  DEFAULT ('0001-01-01T00:00:00.0000000') FOR [CreatedAt]
+GO
+ALTER TABLE [dbo].[MainIcons] ADD  DEFAULT (N'') FOR [Icons]
+GO
+ALTER TABLE [dbo].[MainIcons] ADD  DEFAULT (N'') FOR [ActionName]
+GO
+ALTER TABLE [dbo].[MainIcons] ADD  DEFAULT (N'') FOR [ControllerName]
+GO
+ALTER TABLE [dbo].[Projects] ADD  DEFAULT (CONVERT([bit],(0))) FOR [IsPublished]
+GO
+ALTER TABLE [dbo].[TeamMembers] ADD  DEFAULT ((0)) FOR [Dept]
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetRoleClaims] CHECK CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserTokens]  WITH CHECK ADD  CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserTokens] CHECK CONSTRAINT [FK_AspNetUserTokens_AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[BlogPosts]  WITH CHECK ADD  CONSTRAINT [FK_BlogPosts_BlogAuthors_BlogAuthorId] FOREIGN KEY([BlogAuthorId])
+REFERENCES [dbo].[BlogAuthors] ([Id])
+GO
+ALTER TABLE [dbo].[BlogPosts] CHECK CONSTRAINT [FK_BlogPosts_BlogAuthors_BlogAuthorId]
+GO
+ALTER TABLE [dbo].[Subscriptions]  WITH CHECK ADD  CONSTRAINT [FK_Subscriptions_Events_EventId] FOREIGN KEY([EventId])
+REFERENCES [dbo].[Events] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Subscriptions] CHECK CONSTRAINT [FK_Subscriptions_Events_EventId]
+GO
+USE [master]
+GO
+ALTER DATABASE [KhyberYouthDB] SET  READ_WRITE 
+GO

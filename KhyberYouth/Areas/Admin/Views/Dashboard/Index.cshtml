@@ -1,9 +1,69 @@
 ﻿@{
-    
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<div class="container py-4">
+<style>
+    /* Custom Styling for Modern Dashboard Cards */
+    .stat-card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #fff;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .icon-shape {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        margin: 0 auto 15px;
+    }
+
+    /* Button Styling */
+    .btn-action {
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-weight: 500;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.75rem;
+    }
+
+    /* Theme colors for icons */
+    .bg-soft-primary { background-color: #e7f1ff; color: #0d6efd; }
+    .bg-soft-success { background-color: #e1f7ed; color: #198754; }
+    .bg-soft-warning { background-color: #fff8e6; color: #ffc107; }
+
+    .welcome-banner {
+        background: linear-gradient(90deg, #343a40 0%, #4b545c 100%);
+        color: white;
+        border-radius: 15px;
+    }
+</style>
+
+<div class="container-fluid py-4">
+  @*   <div class="card welcome-banner shadow-sm border-0 mb-5">
+        <div class="card-body p-4 p-lg-5">
+            <div class="row align-items-center">
+                <div class="col-md-8 text-center text-md-start">
+                    <h2 class="fw-bold mb-1">Welcome back, Admin! 👋</h2>
+                    <p class="opacity-75 mb-0">Here's what's happening with your KhyberYouth portal today.</p>
+                </div>
+                <div class="col-md-4 text-center text-md-end mt-3 mt-md-0">
+                    <span class="badge bg-light text-dark p-2 px-3 rounded-pill">System Online</span>
+                </div>
+            </div>
+        </div>
+    </div> *@
+
     <!-- Welcome Section -->
     <div class="card shadow-lg border-0 mb-4">
         <div class="card-body text-center">
@@ -12,41 +72,53 @@
         </div>
     </div>
 
-    <!-- Admin Tiles Section -->
-    <div class="row">
+    <div class="row g-4">
         <div class="col-md-4">
-            <div class="card text-white bg-primary shadow-sm mb-4">
-                <div class="card-body text-center">
-                    <i class="fas fa-users fa-3x mb-2"></i>
-                    <h5 class="card-title">Users</h5>
-                    <p class="card-text">Manage user accounts and permissions.</p>
-                    <a asp-area="Admin" asp-action="ListUser" asp-controller="Administration" class="btn btn-light btn-sm">View Users</a>
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-soft-primary">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2 text-dark">User Management</h5>
+                    <p class="text-muted small mb-4">Add, edit, or remove staff accounts and manage permissions.</p>
+                    <a asp-area="Admin" asp-action="ListUser" asp-controller="Administration" 
+                       class="btn btn-primary btn-action w-100 shadow-sm">
+                        Manage Users
+                    </a>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
-            <div class="card text-white bg-success shadow-sm mb-4">
-                <div class="card-body text-center">
-                    <i class="fas fa-user-shield fa-3x mb-2"></i> <!-- Roles Icon Added -->
-                    <h5 class="card-title">Roles</h5>
-                    <p class="card-text">Manage user roles and permissions.</p>
-                    <a asp-area="Admin" asp-action="ListRole" asp-controller="Administration" class="btn btn-light btn-sm">View Roles</a>
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-soft-success">
+                        <i class="fas fa-user-shield fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2 text-dark">Access Roles</h5>
+                    <p class="text-muted small mb-4">Define security levels and assign roles to system users.</p>
+                    <a asp-area="Admin" asp-action="ListRole" asp-controller="Administration" 
+                       class="btn btn-success btn-action w-100 shadow-sm text-white">
+                        Manage Roles
+                    </a>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4">
-            <div class="card text-white bg-warning shadow-sm mb-4">
-                <div class="card-body text-center">
-                    <i class="fas fa-key fa-3x mb-2"></i>
-                    <h5 class="card-title">Change Password</h5>
-                    <p class="card-text">Change or reset your account password.</p>
-                    <a asp-area="Admin" asp-action="ResetPassword" asp-controller="Account" class="btn btn-light btn-sm">
-                        Change Password
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="icon-shape bg-soft-warning">
+                        <i class="fas fa-key fa-2x"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2 text-dark">Account Security</h5>
+                    <p class="text-muted small mb-4">Keep your account safe by updating your login credentials.</p>
+                    <a asp-area="Admin" asp-action="ResetPassword" asp-controller="Account" 
+                       class="btn btn-warning btn-action w-100 shadow-sm text-dark">
+                        Update Password
                     </a>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
