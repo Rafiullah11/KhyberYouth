@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KhyberYouth.Helpers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KhyberYouth.ViewModel
@@ -10,6 +11,7 @@ namespace KhyberYouth.ViewModel
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public VolunteerStatus Status { get; set; } = VolunteerStatus.Pending;
 
         [DataType(DataType.Date)]
         public DateTime JoinedDate { get; set; }

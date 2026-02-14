@@ -1,26 +1,154 @@
 ﻿@model KhyberYouth.ViewModel.BannerDetailsViewModel
 
 @{
-    ViewData["Title"] = "Team Details";
-    var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
+    ViewData["Title"] = "Banner Details";
+    // Using leading slash for reliable Dashboard path resolution
+    var photoPath = "/images/" + (Model.ImagePath ?? "placeholder.png");
 }
 
-<div class="container mt-lg-5">
-    <div class="card mb-3 offset-2" style="max-width: 800px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img asp-append-version="true" src="@photoPath" class="img-fluid rounded-start" alt="Profile Image">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">@Model.Name</h5>
+<style>
+    .admin-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .banner-preview-bg {
+        background: #222; /* Dark background to make banner colors pop */
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .banner-display-img {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover; /* Maintains wide banner look */
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        transition: transform 0.5s ease;
+    }
+
+        .banner-display-img:hover {
+            transform: scale(1.02);
+        }
+
+    .info-tile {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 100%;
+    }
+
+        .info-tile i {
+            font-size: 1.8rem;
+            color: #ffc107;
+            margin-bottom: 12px;
+        }
+
+        .info-tile label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-tile span {
+            font-weight: 700;
+            color: #212529;
+            font-size: 1.1rem;
+        }
+
+    .status-indicator {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+</style>
+
+<header class="theme-color text-white py-4 mb-5 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="mb-0">Admin Dashboard</h3>
+            <p class="opacity-75 mb-0">Website Assets / Banner Details</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light fw-bold px-4">
+                <i class="fas fa-edit me-2 text-warning"></i>Edit Banner
+            </a>
+            <a asp-action="Index" class="btn btn-outline-light px-4">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+            <div class="card admin-card overflow-hidden">
+                <div class="banner-preview-bg">
+                    <img src="@photoPath"
+                         class="banner-display-img"
+                         alt="@Model.Name Preview"
+                         asp-append-version="true"
+                         onerror="this.onerror=null;this.src='/images/placeholder.png';">
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="row align-items-center mb-5">
+                        <div class="col-md-8">
+                            <label class="text-muted small fw-bold text-uppercase">Internal Banner Name</label>
+                            <h1 class="fw-bold text-dark mt-1">@Model.Name</h1>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <span class="badge bg-success-subtle text-success border border-success px-3 py-2 status-indicator">
+                                <i class="fas fa-check-circle me-1"></i> ACTIVE ASSET
+                            </span>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-image"></i>
+                                <label>Asset Type</label>
+                                <span>Homepage Banner</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-expand"></i>
+                                <label>Display Mode</label>
+                                <span>Full Width</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-hashtag"></i>
+                                <label>Asset ID</label>
+                                <span>#@Model.Id</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-top d-flex justify-content-between align-items-center">
+                        <p class="text-muted small mb-0">
+                            <i class="fas fa-exclamation-triangle me-1 text-warning"></i>
+                            Changing this image will affect the visual branding of your landing page immediately.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card-footer">
-            <a asp-controller="Banner" asp-action="Index" class="btn btn-primary">Back</a>
-            <a asp-controller="Banner" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
-            <a asp-controller="Banner" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>

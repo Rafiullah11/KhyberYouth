@@ -1,4 +1,5 @@
-﻿@model IEnumerable<KhyberYouth.Models.Volunteer>
+﻿@using KhyberYouth.Helpers
+@model IEnumerable<KhyberYouth.Models.Volunteer>
 
 <div class="container p-3 mt-lg-5">
     <!-- Header Section -->
@@ -24,6 +25,7 @@
                     <th>Phone</th>
                     <th>Address</th>
                     <th>Joined Date</th>
+                    <th>IsApproved</th>
                     <th>Profile</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -48,6 +50,28 @@
                             @readMore
                         </td>
                         <td>@volunteer.JoinedDate.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <form asp-action="UpdateStatus" method="post">
+                                <input type="hidden" name="id" value="@volunteer.Id" />
+
+                                <select name="status" class="form-select form-select-sm"
+                                        onchange="this.form.submit()">
+
+                                    <option value="0" selected="@(volunteer.Status == VolunteerStatus.Pending)">
+                                        Pending
+                                    </option>
+
+                                    <option value="1" selected="@(volunteer.Status == VolunteerStatus.Approved)">
+                                        Approved
+                                    </option>
+
+                                    <option value="2" selected="@(volunteer.Status == VolunteerStatus.Rejected)">
+                                        Rejected
+                                    </option>
+
+                                </select>
+                            </form>
+                        </td>
                         <td>
                             <img asp-append-version="true" src="@photoPath" alt="@volunteer.Name" width="50" height="50" />
                         </td>

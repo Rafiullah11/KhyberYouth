@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our News</h2>
+                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our Projects</h2>
                 <h3 class="display-8 mb-1 mb-md-1 text-center">Our ongoing and completed projects</h3>
                 <hr class="w-50 mx-auto mb-2 mb-xl-4 border-dark-subtle">
             </div>
@@ -46,7 +46,18 @@
                                         </li>
                                     </ul>
                                     <h2 class="card-title entry-title h4 mb-0">
-                                        <a class="link-dark text-decoration-none" asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id">@project.Name</a>
+                                        <a class="link-dark text-decoration-none" asp-controller="Projects" asp-action="Details" asp-route-id="@project.Id">
+                                           
+                                            @* @project.Name *@
+
+                                            <p class="card-text text-secondary flex-grow-1">
+                                                @{
+                                                    var text = project.Name ?? "";
+                                                    var readMore = text.Length > 23 ? text.Substring(0, 23) + "..." : text;
+                                                }
+                                                @readMore
+                                            </p>
+                                         </a>
                                     </h2>
                                 </div>
                                 <p class="card-text entry-summary text-secondary">

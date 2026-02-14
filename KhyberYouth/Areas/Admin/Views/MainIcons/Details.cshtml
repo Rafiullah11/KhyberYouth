@@ -1,0 +1,156 @@
+﻿@model KhyberYouth.ViewModel.MainIconDetailsViewModel
+
+@{
+    ViewData["Title"] = "Icon Details";
+}
+
+<style>
+    .admin-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .icon-display-bg {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 50px 0;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .icon-preview-circle {
+        width: 120px;
+        height: 120px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4rem;
+        color: #ffc107;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        border: 2px solid #fff;
+    }
+
+    .info-tile {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 100%;
+    }
+
+        .info-tile i {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .info-tile label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-tile span {
+            font-weight: 600;
+            color: #212529;
+        }
+
+    .route-badge {
+        background: #e9ecef;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+        color: #444;
+        border: 1px solid #dee2e6;
+    }
+</style>
+
+<header class="theme-color text-white py-4 mb-5 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="mb-0">Admin Dashboard</h3>
+            <p class="opacity-75 mb-0">Feature Management / Icon Details</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light fw-bold">
+                <i class="fas fa-edit me-2 text-warning"></i>Edit Record
+            </a>
+            <a asp-action="Index" class="btn btn-outline-light">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card admin-card overflow-hidden">
+                <div class="icon-display-bg">
+                    <div class="icon-preview-circle">
+                        <i class="@Model.Icons"></i>
+                    </div>
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bold text-dark">@Model.Title</h1>
+                        <code class="text-muted">CSS Class: @Model.Icons</code>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-terminal"></i>
+                                <label>Controller</label>
+                                <span class="route-badge">@Model.ControllerName</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-link"></i>
+                                <label>Action</label>
+                                <span class="route-badge">@Model.ActionName</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-fingerprint"></i>
+                                <label>Record ID</label>
+                                <span>#@Model.Id</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="fw-bold mb-3"><i class="fas fa-info-circle text-warning me-2"></i>Feature Description</h5>
+                            <div class="p-4 bg-light rounded border text-muted" style="line-height: 1.6;">
+                                @Model.Description
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-3 border-top">
+                        <small class="text-muted">
+                            <i class="fas fa-lightbulb me-1"></i>
+                            This icon directs users to <strong>/@Model.ControllerName/@Model.ActionName</strong> on the main website.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

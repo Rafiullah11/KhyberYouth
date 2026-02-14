@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KhyberYouth.Helpers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KhyberYouth.Models
@@ -14,6 +15,10 @@ namespace KhyberYouth.Models
 
         [DataType(DataType.Date)]
         public DateTime JoinedDate { get; set; }
+
+        // New Property for Moderation
+
+        public VolunteerStatus Status { get; set; } = VolunteerStatus.Pending;
         public string? ImagePath { get; set; } // Path to the image file
 
         [NotMapped] // This won't be mapped to the database

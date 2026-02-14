@@ -559,6 +559,9 @@ namespace KhyberYouth.Migrations
                     b.Property<string>("Qualification")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Volunteers");

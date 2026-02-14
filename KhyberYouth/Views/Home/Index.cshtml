@@ -100,12 +100,14 @@
 
         <!-- Event Section Start -->
         <section class="container-fluid">
+            
                  @await Component.InvokeAsync("Event") 
         </section>
         <!-- Event Section End -->
 
         <!--D HELP VOLUNTEER TEAM START-->
         <section class="d-help-volunteer-team">
+           
             @{
                 ViewData["MaxItems"] = 4; // Set the number of items to display
             }
@@ -114,7 +116,7 @@
         <!--D HELP VOLUNTEER TEAM END-->
 
         <!--What we do section-->
-        <section class="container my-5 py-4">
+        <section class="container my-2 py-2">
             <h2 class="text-warning text-center mb-5 fw-bold text-uppercase">What We Do</h2>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
@@ -166,8 +168,8 @@
 
 
        <!--Blog Section start-->
-        <section class="py-3 py-md-5">
-
+        <section class=" py-md-2">
+           
             @{
                 ViewData["MaxItems"] = 3; // Set the number of items to display
             }
@@ -177,6 +179,7 @@
        
         <!--Brand logo slider-->
         <section>
+          
             @await Component.InvokeAsync("Brand")
         </section>  
 

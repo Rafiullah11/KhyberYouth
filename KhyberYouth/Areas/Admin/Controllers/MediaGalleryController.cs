@@ -11,6 +11,7 @@ namespace KhyberYouth.Areas.Admin.Controllers
 {
     [Authorize] // Restricts access to authenticated users
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
     public class MediaGalleryController : Controller
     {
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostEnvironment;
@@ -36,9 +37,9 @@ namespace KhyberYouth.Areas.Admin.Controllers
             return View();
         }
 
-
+        // [Area("Admin")]
         [HttpGet("Details/{id}")]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             _logger.LogTrace("Fetching details for media item.");
@@ -120,36 +121,48 @@ namespace KhyberYouth.Areas.Admin.Controllers
             return View(editViewModel);
         }
 
+   
         [HttpPost("Edit")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(MediaGalleryEditViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var media = await _context.MediaGalleries.FindAsync(model.Id);
+
+            if (media == null)
+                return NotFound();
+
+            // Update basic fields
+            media.Title = model.Title;
+            media.Description = model.Description;
+
+            // If new photo uploaded
+            if (model.Photo != null)
             {
-                var media = await _context.MediaGalleries.FindAsync(model.Id);
-
-                media.Title = model.Title;
-                media.Description = model.Description;
-
-                if (model.Photo != null)
+                // Delete old image
+                if (!string.IsNullOrEmpty(model.ExistingImagePath))
                 {
-                    if (model.ExistingImagePath != null)
-                    {
-                        string oldFilePath = Path.Combine(_hostEnvironment.WebRootPath, "images", model.ExistingImagePath);
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
+                    string oldFilePath = Path.Combine(
+                        _hostEnvironment.WebRootPath,
+                        "images",
+                        model.ExistingImagePath);
 
-                    media.ImagePath = PhotoUploadMethod(model);
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
                 }
 
-                _context.Update(media);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                // Upload new file
+                media.ImagePath = UploadFile(model.Photo);
             }
 
-            return View(model);
+            _context.MediaGalleries.Update(media);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet("Delete/{id}")]
@@ -179,19 +192,19 @@ namespace KhyberYouth.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        private string PhotoUploadMethod(MediaGalleryEditViewModel model)
+        private string UploadFile(IFormFile imageFile)
         {
             string uniqueFileName = null;
 
-            if (model.Photo != null)
+            if (imageFile != null)
             {
                 string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    model.Photo.CopyTo(fileStream);
+                    imageFile.CopyTo(fileStream);
                 }
             }
 

@@ -2,54 +2,155 @@
 
 @{
     ViewData["Title"] = "Team Details";
-    var photoPath = "~/images/" + (Model.ImagePath ?? "placeholder.png");
+    // Using leading slash for reliable Dashboard path resolution
+    var photoPath = "/images/" + (Model.ImagePath ?? "placeholder.png");
 }
 
-<div class="container mt-lg-5">
-    <div class="card mb-3 offset-2" style="max-width: 800px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img asp-append-version="true" src="@photoPath" class="img-fluid rounded-start" alt="Profile Image">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">@Model.Name</h5>
-                    <table class="table">
-                        <tr>
-                            <td><strong>Email:</strong> @Model.Email</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Contact:</strong> @Model.PhoneNumber</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Qualification:</strong> @Model.Qualification</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Department:</strong> @Model.Dept</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Join Date:</strong> @Model.JoinedDate.ToString("dd-MM-yyyy")</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Address:</strong> @Model.Address</td>
-                        </tr>
-                    </table>
+<style>
+    .admin-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .team-header-bg {
+        background: #f8f9fa;
+        padding: 40px 0;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: center;
+    }
+
+    .team-profile-img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .info-tile {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 100%;
+        transition: 0.3s;
+    }
+
+        .info-tile:hover {
+            border-color: #ffc107;
+            background: #fff;
+        }
+
+        .info-tile i {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .info-tile label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-tile span {
+            font-weight: 600;
+            color: #212529;
+        }
+</style>
+
+<header class="theme-color text-white py-4 mb-5 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="mb-0">Admin Dashboard</h3>
+            <p class="opacity-75 mb-0">Team Management / Member Profile</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light fw-bold">
+                <i class="fas fa-edit me-2"></i>Edit Member
+            </a>
+            <a asp-action="Index" class="btn btn-outline-light">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+            <div class="card admin-card overflow-hidden">
+                <div class="team-header-bg">
+                    <img src="@photoPath"
+                         class="team-profile-img"
+                         alt="@Model.Name"
+                         asp-append-version="true"
+                         onerror="this.onerror=null;this.src='/images/placeholder.png';">
+                </div>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bold text-dark mb-1">@Model.Name</h1>
+                        <span class="badge bg-warning text-dark px-4 py-2 rounded-pill text-uppercase">
+                            <i class="fas fa-briefcase me-2"></i>@Model.Dept
+                        </span>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-3 col-6">
+                            <div class="info-tile">
+                                <i class="fas fa-envelope"></i>
+                                <label>Official Email</label>
+                                <span class="small text-break">@Model.Email</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="info-tile">
+                                <i class="fas fa-phone-alt"></i>
+                                <label>Contact No</label>
+                                <span>@Model.PhoneNumber</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="info-tile">
+                                <i class="fas fa-user-graduate"></i>
+                                <label>Qualification</label>
+                                <span>@Model.Qualification</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="info-tile">
+                                <i class="fas fa-calendar-check"></i>
+                                <label>Joined Since</label>
+                                <span>@Model.JoinedDate.ToString("MMM dd, yyyy")</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="fw-bold mb-3">
+                                <i class="fas fa-map-marked-alt text-warning me-2"></i>Address Information
+                            </h5>
+                            <div class="p-4 bg-light rounded border text-muted">
+                                @Model.Address
+                            </div>
+                        </div>
+                    </div>
+
+                   
                 </div>
             </div>
         </div>
-       @*  <div class="card-footer">
-            <a asp-controller="Team" asp-action="Index" class="btn btn-primary">Back</a>
-            <a asp-controller="Team" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
-            <a asp-controller="Team" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
-
-        </div> *@
     </div>
 </div>
-
-<!-- Related Team Section -->
-<section class="d-help-volunteer-team mt-5">
-    @{
-        ViewData["MaxItems"] = 4; // Set the number of items to display
-    }
-    @await Component.InvokeAsync("Team", new { TeamMember = 4 })
-</section>

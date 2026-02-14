@@ -14,10 +14,10 @@ namespace KhyberYouth.ViewModel
         public string Description { get; set; }
 
         [Display(Name = "MainImage Image")]
-        public IFormFile MainImageFile { get; set; }
+        public IFormFile? MainImageFile { get; set; }
 
         [Display(Name = "FounderImage Image")]
-        public IFormFile FounderImageFile { get; set; }
+        public IFormFile? FounderImageFile { get; set; }
         public string FounderName { get; set; }
         public string FounderTitle { get; set; }
 

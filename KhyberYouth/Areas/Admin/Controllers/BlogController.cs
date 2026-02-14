@@ -29,6 +29,41 @@ namespace KhyberYouth.Areas.Admin.Controllers
             return View(await PaginatedList<BlogPost>.CreateAsync(blogs, pageNumber ?? 1, pageSize));
         }
 
+        // GET: BlogPosts/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null) return NotFound();
+            var blogPost = await _context.BlogPosts.FindAsync(id);
+            if (blogPost == null) return NotFound();
+
+            var recentBlogs = await _context.BlogPosts
+                .Where(b => b.Id != id)
+                .OrderByDescending(b => b.PublishedOn)
+                .Take(3)
+                .Select(b => new BlogViewModel
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    ShortDescription = string.IsNullOrEmpty(b.Contents) ? "No content available." : (b.Contents.Length > 50 ? b.Contents.Substring(0, 50) + "..." : b.Contents),
+                    ImagePath = b.ImagePath
+                })
+                .ToListAsync();
+            var blogUrl = Url.Action("Details", "Blog", new { id = blogPost.Id }, Request.Scheme);
+            var viewModel = new BlogDetailsViewModel
+            {
+                Id = blogPost.Id,
+                Title = blogPost.Title,
+                Contents = blogPost.Contents, // Sanitize before displaying
+                PublishedOn = blogPost.PublishedOn,
+                IsPublish = blogPost.IsPublish,
+                ImagePath = blogPost.ImagePath,
+                RecentBlogs = recentBlogs,
+                BlogUrl = blogUrl // Pass the generated blog URL
+            };
+
+            return View(viewModel);
+        }
+
         // GET: BlogPosts/Create
         public IActionResult Create() => View();
 

@@ -20,6 +20,9 @@
             padding-top: 66px;
         }
 
+        body {
+            margin-bottom: 0px; 
+        }
         /* Clean up mobile menu gaps */
         .navbar-collapse {
             border-top: 1px solid rgba(0,0,0,0.05);
@@ -112,7 +115,9 @@
             @RenderBody()
         </main>
     </div>
+    <partial name="_FooterPartial" />
     @await RenderSectionAsync("Scripts", required: false)
+   
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
@@ -135,5 +140,6 @@
             });
         });
     </script>
+
 </body>
 </html>

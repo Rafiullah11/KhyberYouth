@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KhyberYouth.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace KhyberYouth.ViewModel
 {
@@ -13,6 +14,8 @@ namespace KhyberYouth.ViewModel
 
         [DataType(DataType.Date)]
         public DateTime JoinedDate { get; set; }
+
+        public VolunteerStatus Status { get; set; } 
         public IFormFile ImageFile { get; set; }
         public string ExistingImagePath { get; set; }
     }

@@ -15,6 +15,7 @@ namespace KhyberYouth.Areas.Admin.Controllers
 {
     [Authorize] // Restricts access to authenticated users
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -1,0 +1,151 @@
+﻿@model KhyberYouth.ViewModel.BlogDetailsViewModel
+
+@{
+    ViewData["Title"] = "Blog Details";
+    // Using a leading slash / is the most reliable way to hit wwwroot from a Dashboard Area
+    var photoPath = "/images/" + (Model.ImagePath ?? "placeholder.png");
+}
+
+<style>
+    .admin-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .project-header-img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .status-pill {
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .info-tile {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 100%;
+    }
+
+        .info-tile i {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .info-tile label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-tile span {
+            font-weight: 600;
+            color: #212529;
+        }
+</style>
+
+<header class="theme-color text-white py-4 mb-5 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="mb-0">Admin Dashboard</h3>
+            <p class="opacity-75 mb-0">Blog Management / Details</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light fw-bold">
+                <i class="fas fa-edit me-2"></i>Edit Blog
+            </a>
+            <a asp-action="Index" class="btn btn-outline-light">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+            <div class="card admin-card overflow-hidden">
+                <img src="@photoPath"
+                     class="project-header-img"
+                     alt="@Model.Title"
+                     asp-append-version="true"
+                     onerror="this.onerror=null;this.src='/images/placeholder.png';">
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <h1 class="fw-bold text-dark">@Model.Title</h1>
+                            <div class="mt-2">
+                                @if (Model.IsPublish)
+                                {
+                                    <span class="status-pill bg-success text-white">Live on Website</span>
+                                }
+                                else
+                                {
+                                    <span class="status-pill bg-secondary text-white">Draft Mode</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-6 col-md-3">
+                            <div class="info-tile">
+                                <i class="fas fa-calendar-alt"></i>
+                                <label>Published On</label>
+                                <span>@Model.PublishedOn.ToString("MMM dd, yyyy")</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="info-tile">
+                                <i class="fas fa-user-edit"></i>
+                                <label>Author</label>
+                                <span>KYWA Admin</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="info-tile">
+                                <i class="fas fa-eye"></i>
+                                <label>Public Status</label>
+                                <span>@(Model.IsPublish ? "Visible" : "Hidden")</span>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="info-tile">
+                                <i class="fas fa-hashtag"></i>
+                                <label>Blog ID</label>
+                                <span>#@Model.Id</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="fw-bold mb-3">Blog Content Preview</h5>
+                            <div class="p-4 bg-light rounded border text-muted" style="line-height: 1.8;">
+                                @Html.Raw(Model.Contents)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

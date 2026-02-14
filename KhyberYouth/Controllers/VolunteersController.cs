@@ -1,14 +1,15 @@
-﻿using KhyberYouth.Models;
+﻿using KhyberYouth.Helpers;
+using KhyberYouth.Models;
 using KhyberYouth.ViewModel;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.IO;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
 namespace KhyberYouth.Controllers
 {
@@ -72,6 +73,25 @@ namespace KhyberYouth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VolunteerCreateViewModel model)
         {
+            if (model.ImageFile != null)
+            {
+                // 1. Check File Extension
+                var extension = Path.GetExtension(model.ImageFile.FileName).ToLower();
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+
+                if (!allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError("ImageFile", "Only .jpg,png,webp and .jpeg files are allowed.");
+                }
+
+               
+            }
+            else
+            {
+                // Optional: Make image mandatory
+                ModelState.AddModelError("ImageFile", "Please upload a profile picture.");
+            }
+
             if (ModelState.IsValid)
             {
                 string uniqueFileName = UploadFile(model.ImageFile);
@@ -91,9 +111,12 @@ namespace KhyberYouth.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(AllVolunteer));
             }
+
+            // If we reach here, validation failed. Return the view with error messages.
             return View(model);
         }
 
+        
         private string UploadFile(IFormFile imageFile)
         {
             string uniqueFileName = null;

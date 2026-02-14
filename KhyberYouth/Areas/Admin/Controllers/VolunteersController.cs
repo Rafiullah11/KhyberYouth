@@ -1,14 +1,15 @@
-﻿using KhyberYouth.Models;
+﻿using KhyberYouth.Helpers;
+using KhyberYouth.Models;
 using KhyberYouth.ViewModel;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.IO;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
 namespace KhyberYouth.Areas.Admin.Controllers
 {
@@ -33,12 +34,20 @@ namespace KhyberYouth.Areas.Admin.Controllers
             var volunteers = await _context.Volunteers.ToListAsync();
             return View(volunteers);
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(int id, VolunteerStatus status)
+        {
+            var volunteer = await _context.Volunteers.FindAsync(id);
 
-        //public IActionResult AllVolunteer(int page = 1)
-        //{
-        //    ViewData["Page"] = page; // Pass the page number to the view
-        //    return View();
-        //}
+            if (volunteer != null)
+            {
+                volunteer.Status = status;
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult AllVolunteer()
         {
             return View();
@@ -128,6 +137,7 @@ namespace KhyberYouth.Areas.Admin.Controllers
                 PhoneNumber = volunteer.PhoneNumber,
                 Address = volunteer.Address,
                 JoinedDate = volunteer.JoinedDate,
+                Status = volunteer.Status,
                 ExistingImagePath = volunteer.ImagePath
             };
 
@@ -154,6 +164,7 @@ namespace KhyberYouth.Areas.Admin.Controllers
                 volunteer.PhoneNumber = model.PhoneNumber;
                 volunteer.Address = model.Address;
                 volunteer.JoinedDate = model.JoinedDate;
+                volunteer.Status = model.Status;
 
                 if (model.ImageFile != null)
                 {

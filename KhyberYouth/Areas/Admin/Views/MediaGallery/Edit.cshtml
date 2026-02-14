@@ -1,48 +1,90 @@
 ﻿@model KhyberYouth.ViewModel.MediaGalleryEditViewModel
+
 @{
     ViewData["Title"] = "Edit Media Item";
     var photoPath = "~/images/" + (Model.ExistingImagePath ?? "placeholder.png");
 }
 
-<div class="container container-fluid mt-lg-5">
-    <h4>Edit Media Item</h4>
-    <div class="row col-12">
-        <div class="col-md-6 offset-2">
-            <form enctype="multipart/form-data" asp-controller="MediaGallery" asp-action="Edit">
-                <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="ExistingImagePath" />
+<div class="container mt-lg-5">
 
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                <div class="form-group mt-2">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-
-                <div class="form-group mt-2">
-                    <label asp-for="Description" class="control-label"></label>
-                    <textarea asp-for="Description" class="form-control"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-
-                <div class="form-group mt-2">
-                    <label asp-for="Photo" class="control-label"></label>
-                    <input asp-for="Photo" class="form-control custom-file-input" type="file" />
-                    <span asp-validation-for="Photo" class="text-danger"></span>
-                </div>
-
-                <div class="form-group mt-2">
-                    <img asp-append-version="true" src="@photoPath" alt="Media Image" width="250" />
-                </div>
-
-                <div class="form-group mt-4">
-                    <input type="submit" value="Update" class="btn theme-btn" />
-                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
+    <!-- Header Card (Same as Project Edit) -->
+    <div class="card shadow mb-4 theme-color col-md-10 offset-1">
+        <div class="card-body text-center">
+            <h4 class="text-light">Update Media Item</h4>
         </div>
     </div>
+
+    <!-- Form Card -->
+    <form class="border border-warning shadow col-md-10 offset-1"
+          enctype="multipart/form-data"
+          asp-controller="MediaGallery"
+          asp-action="Edit"
+          method="post">
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ExistingImagePath" />
+
+
+        <!-- Title -->
+        <div class="row m-3">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row m-3">
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="row m-3">
+            <div class="form-group col-md-12">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="form-control custom-file-input" type="file" />
+            </div>
+        </div>
+
+       @*  <div class="row m-3">
+            <div class="form-group col-md-12">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo"
+                       class="form-control custom-file-input"
+                       type="file" />
+            </div>
+        </div> *@
+
+        <!-- Existing Image Preview -->
+        <div class="row m-3">
+            <div class="form-group col-md-12 text-center">
+                <p class="fw-bold mb-2">Current Image</p>
+                <img asp-append-version="true"
+                     src="@photoPath"
+                     alt="Media Image"
+                     class="img-thumbnail shadow"
+                     style="max-width:250px;" />
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-group m-4">
+            <input type="submit"
+                   value="Update Media"
+                   class="btn theme-btn" />
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+                Back to List
+            </a>
+        </div>
+
+    </form>
 </div>
 
 @section Scripts {

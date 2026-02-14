@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KhyberYouth.Helpers;
 using KhyberYouth.Models;
 using KhyberYouth.ViewModel;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace KhyberYouth.ViewComponents
@@ -17,7 +19,12 @@ namespace KhyberYouth.ViewComponents
         public IViewComponentResult Invoke()
         {
             // Fetch all volunteers without pagination
-            var volunteers = _context.Volunteers.ToList();
+          
+
+            var volunteers = _context.Volunteers
+                .Where(v => v.Status == VolunteerStatus.Approved)
+                 .OrderByDescending(v => v.Id)
+                .ToList();
 
             // Map to ViewModel
             var volunteerViewModels = volunteers.Select(volunteer => new VolunteerViewModel

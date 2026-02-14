@@ -15,7 +15,7 @@ namespace KhyberYouth.ViewModel
         public string Description { get; set; }
 
         // Property for the new uploaded photo
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
 
         // Property for displaying the existing image
         public string ExistingImagePath { get; set; }

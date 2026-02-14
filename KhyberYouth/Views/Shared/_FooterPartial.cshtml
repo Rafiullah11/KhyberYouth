@@ -1,51 +1,68 @@
-﻿
-            <!-- Section: Social media -->
-            <section class="mb-4">
-                <!-- Facebook -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #3b5998;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
+﻿<footer class="main-footer">
+    <div class="container footer-top">
+        <div class="row gy-4">
 
-                <!-- Twitter -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #55acee;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-twitter"></i>
-                </a>
+            <!-- About -->
+            <div class="col-lg-4 col-md-6">
+                <h4 class="footer-logo">KYWA<span>.</span></h4>
+                <p class="footer-about">
+                    Khyber Youth Welfare Association empowers communities through
+                    education, scholarships, and sustainable development programs.
+                </p>
 
-                <!-- Google -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #dd4b39;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-google"></i>
-                </a>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
 
-                <!-- Instagram -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #ac2bac;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-instagram"></i>
-                </a>
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="footer-title">Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="AboutUs">About Us</a></li>
+                    <li><a asp-controller="Blog" asp-action="AllBlogs">Blogs</a></li>
+                    <li><a asp-controller="Projects" asp-action="AllProject">Projects</a></li>
+                    <li><a asp-controller="Contact" asp-action="ContactUs">Contact</a></li>
+                </ul>
+            </div>
 
-                <!-- Linkedin -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #0082ca;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <!-- Github -->
-                <a class="btn btn-primary btn-floating m-1"
-                   style="background-color: #333333;"
-                   href="#!"
-                   role="button">
-                    <i class="fab fa-github"></i>
-                </a>
-            </section>
-         
+            <!-- Support -->
+            <div class="col-lg-2 col-md-6">
+                <h6 class="footer-title">Support</h6>
+                <ul class="footer-links">
+                    <li><a asp-controller="Volunteers" asp-action="AllVolunteer">Volunteer</a></li>
+                    <li><a asp-controller="Home" asp-action="Donation">Donate</a></li>
+                    <li><a asp-controller="Event" asp-action="AllEvent">Events</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-4 col-md-6">
+                <h6 class="footer-title">Contact Info</h6>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i> Peshawar, KPK, Pakistan</li>
+                    <li><i class="fas fa-phone"></i> +92 300 0000000</li>
+                    <li><i class="fas fa-envelope"></i> info@khyberyouth.org</li>
+                    <li><i class="fas fa-clock"></i> Mon – Sat: 9AM – 6PM</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container d-flex justify-content-between flex-column flex-md-row text-center text-md-start">
+            <p class="mb-2 mb-md-0">
+                &copy; @DateTime.Now.Year KYWA. All rights reserved.
+            </p>
+            <div>
+                <a href="#">Privacy Policy</a>
+                <a href="#" class="ms-3">Terms of Use</a>
+            </div>
+        </div>
+    </div>
+</footer>

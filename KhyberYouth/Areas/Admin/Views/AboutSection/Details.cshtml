@@ -1,86 +1,174 @@
 ﻿@model KhyberYouth.ViewModel.AboutDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
-    var mainImage = "~/images/" + (Model.ExistingMainImagePath ?? "placeholder.png");
-    var founderImage = "~/images/" + (Model.ExistingFounderImagePath ?? "placeholder.png");
+    ViewData["Title"] = "About Section Details";
+    // Using leading slash for reliable Dashboard path resolution
+    var mainImage = "/images/" + (Model.ExistingMainImagePath ?? "placeholder.png");
+    var founderImage = "/images/" + (Model.ExistingFounderImagePath ?? "placeholder.png");
 }
 
-<div class="container container-fluid mt-lg-5">
-    <div class="card shadow mb-4 theme-color col-md-10 offset-1">
-        <div class="card-body text-center">
-            <h4 class="text-light">About Section</h4>
+<style>
+    .admin-card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .about-header-bg {
+        background: #f8f9fa;
+        padding: 40px;
+        border-radius: 15px 15px 0 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .img-container {
+        text-align: center;
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        height: 100%;
+    }
+
+    .about-main-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .about-founder-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%; /* Circular for the founder */
+        border: 4px solid #ffc107;
+        margin-bottom: 10px;
+    }
+
+    .info-tile {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 100%;
+    }
+
+        .info-tile i {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        .info-tile label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .info-tile span {
+            font-weight: 600;
+            color: #212529;
+        }
+
+    .content-section {
+        background: #fff;
+        border-left: 5px solid #ffc107;
+        padding: 25px;
+        border-radius: 0 12px 12px 0;
+    }
+</style>
+
+<header class="theme-color text-white py-4 mb-5 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <h3 class="mb-0">Admin Dashboard</h3>
+            <p class="opacity-75 mb-0">Page Management / About Details</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-light fw-bold">
+                <i class="fas fa-edit me-2 text-warning"></i>Edit About Section
+            </a>
+            <a asp-action="Index" class="btn btn-outline-light">
+                <i class="fas fa-arrow-left me-2"></i>Back to List
+            </a>
         </div>
     </div>
-    <div class="container col-md-10 offset-1 border border-warning shadow">
-        <div class="row">
-            <div class=" card-body col-md-6 mt-3">
-                <div class="form-group col-md-6">
-                    <img asp-append-version="true" src="@mainImage" alt="Media Image" width="250" />
+</header>
+
+<div class="container pb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+            <div class="card admin-card overflow-hidden">
+
+                <div class="about-header-bg">
+                    <div class="row g-4 justify-content-center align-items-center">
+                        <div class="col-md-5">
+                            <div class="img-container">
+                                <img src="@mainImage" class="about-main-img" alt="Main Section Image">
+                                <label class="text-muted fw-bold small uppercase">Main Section Image</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="img-container">
+                                <img src="@founderImage" class="about-founder-img" alt="Founder Image">
+                                <h6 class="mb-0 fw-bold">@Model.FounderName</h6>
+                                <small class="text-warning fw-bold">Founder</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer m-3">
-                    <p>Main Section Image</p>
+
+                <div class="card-body p-4 p-md-5">
+                    <div class="mb-5">
+                        <label class="text-warning fw-bold text-uppercase small">@Model.Subtitle</label>
+                        <h1 class="fw-bold text-dark">@Model.SectionTitle</h1>
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-user-tie"></i>
+                                <label>Founder Name</label>
+                                <span>@Model.FounderName</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-award"></i>
+                                <label>Founder Designation</label>
+                                <span>@Model.FounderTitle</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-tile">
+                                <i class="fas fa-heading"></i>
+                                <label>Description Title</label>
+                                <span>@Model.DescriptionTitle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5 class="fw-bold mb-3"><i class="fas fa-file-alt text-warning me-2"></i>Full Description Content</h5>
+                            <div class="content-section border shadow-sm">
+                                <p class="text-muted" style="line-height: 1.8; white-space: pre-line;">
+                                    @Model.Description
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class=" card-body col-md-6 mt-3">
-                <div class="form-group col-md-6">
-                    <img asp-append-version="true" src="@founderImage" alt="Media Image" width="250" />
-                </div>
-                <div class="card-footer">
-                    @Html.DisplayFor(model => model.FounderName)
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-
-                <div class="p-4">
-                    <dl class="row">
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.SectionTitle)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.SectionTitle)
-                        </dd>
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.Subtitle)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.Subtitle)
-                        </dd>
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.FounderName)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.FounderName)
-                        </dd>
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.FounderTitle)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.FounderTitle)
-                        </dd>
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.DescriptionTitle)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.DescriptionTitle)
-                        </dd>
-                        <dt class="col-sm-3">
-                            @Html.DisplayNameFor(model => model.Description)
-                        </dt>
-                        <dd class="col-sm-9">
-                            @Html.DisplayFor(model => model.Description)
-                        </dd>
-
-                    </dl>
-
-                </div>
-            </div>
-        </div>
-        <div class="form-group m-2">
-            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn theme-btn">Edit</a>
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
         </div>
     </div>
 </div>

@@ -118,7 +118,7 @@
                                 <div class="upload-box">
                                     <i class="fas fa-cloud-upload-alt fa-2x text-warning mb-2"></i>
                                     <p class="mb-2 fw-bold small">Click to upload or drag and drop</p>
-                                    <input asp-for="ImageFile" class="form-control" type="file" />
+                                    <input asp-for="ImageFile" class="form-control" accept=".jpg,.jpeg,.png,.webp" type="file" />
                                     <span asp-validation-for="ImageFile" class="text-danger small"></span>
                                 </div>
                             </div>
