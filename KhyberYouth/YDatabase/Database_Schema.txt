@@ -1,12 +1,12 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [KhyberYouthDB]    Script Date: 2/9/2026 9:29:51 PM ******/
+/****** Object:  Database [KhyberYouthDB]    Script Date: 4/22/2026 9:08:04 AM ******/
 CREATE DATABASE [KhyberYouthDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
 ( NAME = N'KhyberYouthDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\KhyberYouthDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'KhyberYouthDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\KhyberYouthDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'KhyberYouthDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\KhyberYouthDB_log.ldf' , SIZE = 73728KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
  WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
 GO
 ALTER DATABASE [KhyberYouthDB] SET COMPATIBILITY_LEVEL = 160
@@ -84,7 +84,7 @@ ALTER DATABASE [KhyberYouthDB] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLE
 GO
 USE [KhyberYouthDB]
 GO
-/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -98,7 +98,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AboutSections]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AboutSections]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,7 +119,7 @@ CREATE TABLE [dbo].[AboutSections](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -135,7 +135,7 @@ CREATE TABLE [dbo].[AspNetRoleClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -151,7 +151,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -167,7 +167,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -184,7 +184,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -199,7 +199,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -227,7 +227,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -245,7 +245,7 @@ CREATE TABLE [dbo].[AspNetUserTokens](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BankAccountDetails]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[BankAccountDetails]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -267,7 +267,7 @@ CREATE TABLE [dbo].[BankAccountDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Banners]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Banners]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -282,7 +282,7 @@ CREATE TABLE [dbo].[Banners](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BlogAuthors]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[BlogAuthors]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -297,7 +297,7 @@ CREATE TABLE [dbo].[BlogAuthors](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BlogPosts]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[BlogPosts]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -316,7 +316,7 @@ CREATE TABLE [dbo].[BlogPosts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Brands]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Brands]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -331,7 +331,7 @@ CREATE TABLE [dbo].[Brands](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Contacts]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Contacts]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -348,7 +348,7 @@ CREATE TABLE [dbo].[Contacts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Events]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Events]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -366,7 +366,7 @@ CREATE TABLE [dbo].[Events](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MainIconDetailsViewModel]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[MainIconDetailsViewModel]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -382,7 +382,7 @@ CREATE TABLE [dbo].[MainIconDetailsViewModel](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MainIcons]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[MainIcons]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,7 +400,7 @@ CREATE TABLE [dbo].[MainIcons](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[MediaGalleries]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[MediaGalleries]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -416,7 +416,7 @@ CREATE TABLE [dbo].[MediaGalleries](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Projects]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Projects]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -436,7 +436,7 @@ CREATE TABLE [dbo].[Projects](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Subscriptions]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Subscriptions]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -451,7 +451,7 @@ CREATE TABLE [dbo].[Subscriptions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TeamMembers]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[TeamMembers]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -472,7 +472,7 @@ CREATE TABLE [dbo].[TeamMembers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Volunteers]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Table [dbo].[Volunteers]    Script Date: 4/22/2026 9:08:05 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -486,6 +486,7 @@ CREATE TABLE [dbo].[Volunteers](
 	[Address] [nvarchar](max) NULL,
 	[JoinedDate] [datetime2](7) NOT NULL,
 	[ImagePath] [nvarchar](max) NULL,
+	[Status] [int] NOT NULL,
  CONSTRAINT [PK_Volunteers] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -550,9 +551,15 @@ INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N
 GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260205055724_initialCreated2', N'8.0.10')
 GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260214050300_addIsApprovedInVolunteer', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260214054802_addIsApprovedInVolunteerStatus', N'8.0.10')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20260214064103_addIsApprovedInVolunteerStatus1', N'8.0.10')
+GO
 SET IDENTITY_INSERT [dbo].[AboutSections] ON 
 GO
-INSERT [dbo].[AboutSections] ([Id], [SectionTitle], [Subtitle], [Description], [MainImage], [FounderImage], [FounderName], [FounderTitle], [DescriptionTitle]) VALUES (1, N'Our Mission', N'To empower the less privileged through education, and community engagement', N'Khyber Youth Welfare Organization is a registered non-profit organization with the Government of Pakistan, dedicated to making a positive impact in the community through a variety of initiatives. The organization focuses on providing educational scholarships to deserving students, supporting the needy and poor, particularly orphans, and fostering opportunities for growth and development. Additionally, Khyber Youth Welfare Organization organizes entertainment activities, including sports like cricket, to promote healthy engagement and community bonding. Their mission is to uplift the less privileged and create a better future for all.', N'ef1a3aa7-10a7-4a7e-b172-e39be03b752f_18afebd2-0bea-4949-b994-56a5c9b4f39e_about-me.jpg', N'30e90055-7acd-4b20-aa87-cf4814296d14_ea39fdf1-ef6c-4fd6-a4cd-4414458ec631_rafiq.png', N'M.Rafiq', N'CEO & Founder', N' Khyber Youth Welfare Association')
+INSERT [dbo].[AboutSections] ([Id], [SectionTitle], [Subtitle], [Description], [MainImage], [FounderImage], [FounderName], [FounderTitle], [DescriptionTitle]) VALUES (1, N'Our Mission', N'To empower the less privileged through education, and community engagement', N'Khyber Youth Welfare Organization is a registered non-profit organization with the Government of Pakistan, dedicated to making a positive impact in the community through a variety of initiatives. The organization focuses on providing educational scholarships to deserving students, supporting the needy and poor, particularly orphans, and fostering opportunities for growth and development. Additionally, Khyber Youth Welfare Organization organizes entertainment activities, including sports like cricket, to promote healthy engagement and community bonding. Their mission is to uplift the less privileged and create a better future for all.', N'33af2a76-df8e-4df8-9607-4351dd96c8e6_18afebd2-0bea-4949-b994-56a5c9b4f39e_about-me.jpg', N'df862533-5852-49b5-bb56-1a230d6e5abe_rafiq founder1.png', N'M.Rafiq', N'CEO & Founder', N' Khyber Youth Welfare Association')
 GO
 SET IDENTITY_INSERT [dbo].[AboutSections] OFF
 GO
@@ -577,6 +584,8 @@ GO
 SET IDENTITY_INSERT [dbo].[Banners] ON 
 GO
 INSERT [dbo].[Banners] ([Id], [Name], [ImagePath]) VALUES (3, N'banner bg3', N'252966c1-c19f-4d1e-ad14-2fd7b9dfcfe8_BannerBg.jpg')
+GO
+INSERT [dbo].[Banners] ([Id], [Name], [ImagePath]) VALUES (4, N'Laptop', N'4d4a52fb-a75a-4ee1-ae43-723284575012_Banner bg.png')
 GO
 SET IDENTITY_INSERT [dbo].[Banners] OFF
 GO
@@ -661,42 +670,26 @@ Education is the key to a brighter future, yet thousands of children in tribal d
 
 Let’s build a future where every child has access to quality education, regardless of their socio-economic background. Education is not a privilege—it is a right!', 1)
 GO
-INSERT [dbo].[BlogPosts] ([Id], [Title], [ImagePath], [PublishedOn], [BlogAuthorId], [Contents], [IsPublish]) VALUES (3, N'ENTERTAINMENT, PHYSICAL & MENTAL HEALTH', N'89bb59f3-8610-4756-8bdf-69f968965d72_Cricket.png', CAST(N'2026-02-05T17:58:27.9717336' AS DateTime2), NULL, N'ENTERTAINMENT, PHYSICAL & MENTAL HEALTH: BUILDING A POSITIVE AND HEALTHY SOCIETY,
+INSERT [dbo].[BlogPosts] ([Id], [Title], [ImagePath], [PublishedOn], [BlogAuthorId], [Contents], [IsPublish]) VALUES (3, N'Entertainment, Physical & Mental Health', N'89bb59f3-8610-4756-8bdf-69f968965d72_Cricket.png', CAST(N'2026-02-05T17:58:27.9717336' AS DateTime2), NULL, N'Entertainment, Physical & Mental Health: Building A Positive And Healthy Society,
 In today’s challenging world, maintaining physical and mental health is just as important as meeting our daily needs. Along with education and basic necessities, entertainment and recreational activities play a vital role in creating a balanced, healthy, and positive society. A healthy body and a peaceful mind are essential for individuals, especially youth, to grow confidently and contribute positively to their communities.
-
-IMPORTANCE OF PHYSICAL HEALTH
-
+Importance Of Physical Health
 Physical health is the foundation of a strong and active life. Regular physical activities such as sports and games help improve stamina, strength, and overall fitness. Activities like cricket and football keep the body active, reduce the risk of diseases, and promote discipline and teamwork. When youth are engaged in healthy physical activities, they stay away from negative habits and develop a sense of responsibility and confidence.
-
-MENTAL HEALTH AND POSITIVE ENTERTAINMENT
-
+Mental Health And Positive Entertainment
 Mental health is equally important as physical health. Stress, anxiety, and depression are increasing, especially among youth living in underdeveloped and conflict-affected areas. Positive entertainment, such as sports events, community games, and healthy recreational activities, helps reduce mental stress and brings happiness and motivation.
-
 Sports and group activities create a sense of belonging, improve social interaction, and boost self-esteem. When young people participate in positive entertainment, they feel relaxed, confident, and emotionally strong, which directly impacts their mental well-being.
-
-ROLE OF KYWA IN PROMOTING HEALTH AND ENTERTAINMENT
-
+Role Of Kywa In Promoting Health And Entertainment
 Khyber Youth Welfare Association (KYWA) strongly believes in promoting a healthy lifestyle through positive entertainment and sports activities. We actively arrange and manage games like cricket and football to encourage youth towards physical fitness and mental well-being.
-
 Our initiatives aim to:
-
 Promote healthy physical activities
-
 Reduce mental stress through positive engagement
-
 Encourage teamwork, discipline, and leadership
-
-Provide safe and constructive entertainment opportunities
-
+Provide safe and constructive entertainment opportunities.
 All these activities are arranged and managed with the purpose of creating positivity in society and are provided free of cost for the community.
-
 A STEP TOWARDS A BETTER FUTURE
-
 Entertainment combined with physical activity is not a luxury; it is a necessity for a healthy society. By promoting sports and positive recreational activities, we can protect our youth from negative influences and help them grow into confident, healthy, and responsible individuals.
-
 KYWA remains committed to serving the community by promoting physical health, mental well-being, and positive entertainment. With collective efforts and community support, we can build a stronger, healthier, and happier future for everyone.
-
-TOGETHER, LET’S PLAY, STAY HEALTHY, AND LIVE POSITIVELY.', 1)
+Together, Let’s Play, Stay Healthy, And Live Positively.
+', 1)
 GO
 SET IDENTITY_INSERT [dbo].[BlogPosts] OFF
 GO
@@ -730,6 +723,18 @@ INSERT [dbo].[MainIcons] ([Id], [Title], [Description], [Icons], [ActionName], [
 GO
 SET IDENTITY_INSERT [dbo].[MainIcons] OFF
 GO
+SET IDENTITY_INSERT [dbo].[MediaGalleries] ON 
+GO
+INSERT [dbo].[MediaGalleries] ([Id], [Title], [Description], [ImagePath]) VALUES (1, N'Entertainment', N'the is for entertainment', N'eaa85b88-3a63-478e-9f9c-4ef9dc08957c_3.jpeg')
+GO
+INSERT [dbo].[MediaGalleries] ([Id], [Title], [Description], [ImagePath]) VALUES (2, N'Sports', N'this is for sports', N'86add172-fc26-447c-9dd2-69d4072913e1_p3.jpg')
+GO
+INSERT [dbo].[MediaGalleries] ([Id], [Title], [Description], [ImagePath]) VALUES (3, N'Education', N'This is for Education vv', N'414519f9-da2c-48b0-91cd-c2b2881286fe_4d343fdf-8e16-4e45-9381-3da945e7aa09_Education.png')
+GO
+INSERT [dbo].[MediaGalleries] ([Id], [Title], [Description], [ImagePath]) VALUES (4, N'Founder', N'Founder Image', N'febb7a39-e50e-4ab8-ad16-a88d101dbfe0_rafiq founder1.png')
+GO
+SET IDENTITY_INSERT [dbo].[MediaGalleries] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Projects] ON 
 GO
 INSERT [dbo].[Projects] ([Id], [Name], [Description], [StartDate], [EndDate], [IsCompleted], [ImagePath], [IsPublished]) VALUES (1, N'KYWA Laptop Scholarship Test', N'Every year, the Khyber Youth Welfare Organization (KYWO) proudly organizes a Laptop Scholarship Ceremony to recognize and support talented students who excel in their studies. Through a rigorous scholarship test, KYWO identifies young achievers from diverse backgrounds and awards them with laptops to enhance their educational journey. This event celebrates the hard work and dedication of the students, while encouraging them to pursue their dreams and excel further. Families, teachers, and community members gather at the ceremony, applauding the successful candidates as they receive their laptops on stage. The KYWO Scholarship Program symbolizes hope, empowerment, and a commitment to nurturing the next generation of leaders.', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), CAST(N'2026-02-28T00:00:00.0000000' AS DateTime2), 0, N'f258516d-64ee-4ed9-b108-09a0e42da0a5_4e6bbbd1-86bd-4614-ba26-21421ddf69da_scholarship.webp', 1)
@@ -754,25 +759,29 @@ SET IDENTITY_INSERT [dbo].[TeamMembers] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Volunteers] ON 
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (1, N'Ali', N'BS-CS', N'Ali@gmaiml.com', N'033390001234', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'a6d69129-14b8-45e3-b4c5-0dfc07a3b591_Vulonteer1.png')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (1, N'Ali', N'BS-CS', N'Ali@gmaiml.com', N'033390001234', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'a6d69129-14b8-45e3-b4c5-0dfc07a3b591_Vulonteer1.png', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (2, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ed8f405a-0d88-45a0-95a4-1e0ede65e20e_AboutImage.jpg')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (2, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ed8f405a-0d88-45a0-95a4-1e0ede65e20e_AboutImage.jpg', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (3, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ac02bf68-3284-410a-859f-2a726e597a73_AboutImage.jpg')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (3, N'Niaz', N'FC', N'Niaz@email.com', N'234567890', N'Bara', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'ac02bf68-3284-410a-859f-2a726e597a73_AboutImage.jpg', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (4, N'ff', N'yy', N'fff', N'45678', N'cvbn', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), N'71a0b577-1ee9-4eca-af93-5c047ab255da_AboutImage.jpg')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (4, N'ff', N'yy', N'fff', N'45678', N'cvbn', CAST(N'2026-02-05T00:00:00.0000000' AS DateTime2), N'71a0b577-1ee9-4eca-af93-5c047ab255da_AboutImage.jpg', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (5, N'ghj', N'qwe', N'asdfgh', N'asdfg', N'asdf', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'5b2ef3a9-6aa7-4b46-8956-d80c990c8b73_Team1.png')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (5, N'ghj', N'qwe', N'asdfgh', N'asdfg', N'asdf', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'5b2ef3a9-6aa7-4b46-8956-d80c990c8b73_Team1.png', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (9, N'fg', N'rtyu', N'hjk', N'vnm,.', N'fghjkl', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'2c7cede3-e13b-4da2-a1aa-508990eaf3d1_Team2.jpg')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (9, N'fg', N'rtyu', N'hjk', N'vnm,.', N'fghjkl', CAST(N'2026-02-03T00:00:00.0000000' AS DateTime2), N'2c7cede3-e13b-4da2-a1aa-508990eaf3d1_Team2.jpg', 1)
 GO
-INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath]) VALUES (11, N'sdfgh', N'asdfghj', N'dfghjkl', N'dfghjkl;', N'dfghjkl', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'4fb6d5b5-c2e6-4f08-b64e-11bcb7520295_Team3.jpg')
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (11, N'sdfgh', N'asdfghj', N'dfghjkl', N'dfghjkl;', N'dfghjkl', CAST(N'2026-02-04T00:00:00.0000000' AS DateTime2), N'4fb6d5b5-c2e6-4f08-b64e-11bcb7520295_Team3.jpg', 1)
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (12, N'Test Volunteer', N'MSc Social', N'Test@email.com', N'03339008998', N'Peshawar,KPK', CAST(N'2026-02-14T00:00:00.0000000' AS DateTime2), N'91e2f7ea-52bc-41b2-8696-958cbeac491f_rafiq founder1.png', 1)
+GO
+INSERT [dbo].[Volunteers] ([Id], [Name], [Qualification], [Email], [PhoneNumber], [Address], [JoinedDate], [ImagePath], [Status]) VALUES (13, N'Volunteer', N'MSc', N'Volunteer@email.com', N'03331234567', N'Bara', CAST(N'2026-02-14T00:00:00.0000000' AS DateTime2), N'fff8a817-391d-45b6-9a57-4cbb04a80f42_Zakat.webp', 1)
 GO
 SET IDENTITY_INSERT [dbo].[Volunteers] OFF
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_AspNetRoleClaims_RoleId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaims]
 (
 	[RoleId] ASC
@@ -780,7 +789,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetRoleClaims_RoleId] ON [dbo].[AspNetRoleClaim
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [RoleNameIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [RoleNameIndex]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
 (
 	[NormalizedName] ASC
@@ -790,7 +799,7 @@ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNOR
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_AspNetUserClaims_UserId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaims]
 (
 	[UserId] ASC
@@ -798,7 +807,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserClaims_UserId] ON [dbo].[AspNetUserClaim
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_AspNetUserLogins_UserId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogins]
 (
 	[UserId] ASC
@@ -806,7 +815,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserLogins_UserId] ON [dbo].[AspNetUserLogin
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_AspNetUserRoles_RoleId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
 (
 	[RoleId] ASC
@@ -814,7 +823,7 @@ CREATE NONCLUSTERED INDEX [IX_AspNetUserRoles_RoleId] ON [dbo].[AspNetUserRoles]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [EmailIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [EmailIndex]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
 (
 	[NormalizedEmail] ASC
@@ -822,7 +831,7 @@ CREATE NONCLUSTERED INDEX [EmailIndex] ON [dbo].[AspNetUsers]
 GO
 SET ANSI_PADDING ON
 GO
-/****** Object:  Index [UserNameIndex]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [UserNameIndex]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
 (
 	[NormalizedUserName] ASC
@@ -830,13 +839,13 @@ CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
 WHERE ([NormalizedUserName] IS NOT NULL)
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_BlogPosts_BlogAuthorId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_BlogPosts_BlogAuthorId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_BlogPosts_BlogAuthorId] ON [dbo].[BlogPosts]
 (
 	[BlogAuthorId] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_Subscriptions_EventId]    Script Date: 2/9/2026 9:29:52 PM ******/
+/****** Object:  Index [IX_Subscriptions_EventId]    Script Date: 4/22/2026 9:08:06 AM ******/
 CREATE NONCLUSTERED INDEX [IX_Subscriptions_EventId] ON [dbo].[Subscriptions]
 (
 	[EventId] ASC
@@ -857,6 +866,8 @@ GO
 ALTER TABLE [dbo].[Projects] ADD  DEFAULT (CONVERT([bit],(0))) FOR [IsPublished]
 GO
 ALTER TABLE [dbo].[TeamMembers] ADD  DEFAULT ((0)) FOR [Dept]
+GO
+ALTER TABLE [dbo].[Volunteers] ADD  DEFAULT ((0)) FOR [Status]
 GO
 ALTER TABLE [dbo].[AspNetRoleClaims]  WITH CHECK ADD  CONSTRAINT [FK_AspNetRoleClaims_AspNetRoles_RoleId] FOREIGN KEY([RoleId])
 REFERENCES [dbo].[AspNetRoles] ([Id])
